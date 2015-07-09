@@ -19,21 +19,6 @@ public class ParkingManager {
     
     
     private String name;
-    private ArrayList<Parking> parkings;
-
-    /**
-     * @return the parkings
-     */
-    public ArrayList<Parking> getParkings() {
-        return parkings;
-    }
-
-    /**
-     * @param parkings the parkings to set
-     */
-    public void setParkings(ArrayList<Parking> parkings) {
-        this.parkings = parkings;
-    }
 
     /**
      * @return the name

@@ -26,7 +26,7 @@ public class ServicesManager {
     @Autowired
     ParkingRepository repository;
 
-    @RequestMapping(value = "/test")
+    /*@RequestMapping(value = "/test")
     public @ResponseBody
     String get(WebRequest request) {
         
@@ -39,7 +39,7 @@ public class ServicesManager {
         repository.save(m);
         
         return "ok";
-    }
+    }*/
     
 }
 

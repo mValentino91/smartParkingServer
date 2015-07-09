@@ -3,79 +3,109 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.parking.persistence.mongo.documents;
 
-import org.springframework.data.annotation.TypeAlias;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  *
  * @author Marco
  */
-@TypeAlias("com.parking.persistence.mongo.documents.Parking")
+@Document(collection = "parking")
 public class Parking {
-    
+
     private String name;
-    private int fascia;
-    private int capienza;
-    private int occupazione;
+    private String parkingManagerId;
+    private String address;
+    private int zone;
+    private int capacity;
+    private int occupied;
+    private float price;
     private boolean isFull;
     private double[] location;
 
     /**
-     * @return the Name
+     * @return the name
      */
     public String getName() {
         return name;
     }
 
     /**
-     * @param Name the Name to set
+     * @param name the name to set
      */
     public void setName(String name) {
         this.name = name;
     }
 
     /**
-     * @return the fascia
+     * @return the parkingManagerId
      */
-    public int getFascia() {
-        return fascia;
+    public String getParkingManagerId() {
+        return parkingManagerId;
     }
 
     /**
-     * @param fascia the fascia to set
+     * @param parkingManagerId the parkingManagerId to set
      */
-    public void setFascia(int fascia) {
-        this.fascia = fascia;
+    public void setParkingManagerId(String parkingManagerId) {
+        this.parkingManagerId = parkingManagerId;
     }
 
     /**
-     * @return the capienza
+     * @return the address
      */
-    public int getCapienza() {
-        return capienza;
+    public String getAddress() {
+        return address;
     }
 
     /**
-     * @param capienza the capienza to set
+     * @param address the address to set
      */
-    public void setCapienza(int capienza) {
-        this.capienza = capienza;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     /**
-     * @return the occupazione
+     * @return the capacity
      */
-    public int getOccupazione() {
-        return occupazione;
+    public int getCapacity() {
+        return capacity;
     }
 
     /**
-     * @param occupazione the occupazione to set
+     * @param capacity the capacity to set
      */
-    public void setOccupazione(int occupazione) {
-        this.occupazione = occupazione;
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+
+    /**
+     * @return the occupied
+     */
+    public int getOccupied() {
+        return occupied;
+    }
+
+    /**
+     * @param occupied the occupied to set
+     */
+    public void setOccupied(int occupied) {
+        this.occupied = occupied;
+    }
+
+    /**
+     * @return the price
+     */
+    public float getPrice() {
+        return price;
+    }
+
+    /**
+     * @param price the price to set
+     */
+    public void setPrice(float price) {
+        this.price = price;
     }
 
     /**
@@ -105,5 +135,18 @@ public class Parking {
     public void setLocation(double[] location) {
         this.location = location;
     }
-    
+
+    /**
+     * @return the zone
+     */
+    public int getZone() {
+        return zone;
+    }
+
+    /**
+     * @param zone the zone to set
+     */
+    public void setZone(int zone) {
+        this.zone = zone;
+    }
 }

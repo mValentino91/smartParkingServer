@@ -3,16 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package com.parking.persistence.mongo.repositories;
 
-import com.parking.persistence.mongo.documents.Parking;
+import com.parking.persistence.mongo.documents.ParkingManager;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**
  *
- * @author mekko
+ * @author Marco
  */
-public interface ParkingRepository extends PagingAndSortingRepository<Parking,String>{
+public interface ParkingManagerRepository extends PagingAndSortingRepository<ParkingManager,String>{
     
 }
-
