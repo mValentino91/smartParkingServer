@@ -5,10 +5,9 @@
  */
 package com.parking.controller;
 
-import com.parking.persistence.mongo.documents.Parking;
-import com.parking.persistence.mongo.documents.ParkingManager;
+import com.parking.managers.AgentsManager;
+import com.parking.persistence.mongo.repositories.ParkingManagerRepository;
 import com.parking.persistence.mongo.repositories.ParkingRepository;
-import java.util.ArrayList; 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,27 +19,29 @@ import org.springframework.web.context.request.WebRequest;
  * @author Marco Valentino
  */
 @Controller
-@RequestMapping(value = "/service")
-public class ServicesManager {
+@RequestMapping(value = "/initController")
+public class InitController {
 
     @Autowired
-    ParkingRepository repository;
+    ParkingRepository parkingRepo;
 
-    /*@RequestMapping(value = "/test")
+    @Autowired
+    ParkingManagerRepository parkingManagerRepo;
+
+    @RequestMapping(value = "/init")
     public @ResponseBody
-    String get(WebRequest request) {
-        
-        Parking p = new Parking();
-        p.setName("test");
-        ParkingManager m = new ParkingManager();
-        ArrayList<Parking> list = new ArrayList<Parking>();
-        list.add(p);
-        m.setParkings(list);
-        repository.save(m);
-        
-        return "ok";
-    }*/
-    
-}
+    String init(WebRequest request) {
 
-    
+        AgentsManager.start();
+        return "Agents successfully activated!";
+    }
+
+    @RequestMapping(value = "/restart")
+    public @ResponseBody
+    String restart(WebRequest request) {
+
+        AgentsManager.restart();
+        return "Agents successfully restarted!";
+    }
+
+}

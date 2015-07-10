@@ -16,8 +16,18 @@
         <spring.security.core.version>3.2.5.RELEASE</spring.security.core.version>
         <javax.jstl-taglibs.version>1.1.2</javax.jstl-taglibs.version>
     </properties>
-
+    <repositories>
+        <repository> 
+            <id>tilab</id> 
+            <url>http://jade.tilab.com/maven/</url> 
+        </repository>
+    </repositories>
     <dependencies>
+        <dependency>  
+            <groupId>com.tilab.jade</groupId> 
+            <artifactId>jade</artifactId> 
+            <version>4.3.3</version>  
+        </dependency>
         <dependency>
             <groupId>javax.servlet.jsp.jstl</groupId>
             <artifactId>javax.servlet.jsp.jstl-api</artifactId>
