@@ -6,10 +6,17 @@
 
 package com.parking.dbManager;
 
+import com.parking.persistence.mongo.documents.Parking;
+import com.parking.persistence.mongo.documents.ParkingManager;
+
 /**
  *
  * @author Marco Valentino
  */
 public interface PersistenceManager {
+    
+    public Iterable<ParkingManager> getAllParkingManager();
+    public Iterable<Parking> getAllParking();
+    public Iterable<Parking> getParkingByManager(String parkingManagerId);
     
 }

@@ -5,6 +5,8 @@
  */
 package com.parking.managers;
 
+import com.parking.dbManager.PersistenceWrapper;
+import com.parking.persistence.mongo.documents.ParkingManager;
 import jade.core.Profile;
 import jade.core.ProfileImpl;
 import jade.wrapper.AgentContainer;
@@ -21,24 +23,9 @@ import java.util.Map;
 public class AgentsManager {
 
     private static Map<String, AgentController> hashUserAgent = new HashMap<String, AgentController>();
+    private static Map<String, AgentController> hashParkingManagerAgent = new HashMap<String, AgentController>();
     private static AgentContainer mainContainer;
     private static boolean envStarted = false;
-
-    /**
-     * @param sessionId
-     * @return the userAgent
-     */
-    public static AgentController getUserAgent(String sessionId) {
-        return hashUserAgent.get(sessionId);
-    }
-
-    /**
-     * @param sessionId
-     * @param userAgent the userAgent to set
-     */
-    public static void setUserAgent(String sessionId, AgentController userAgent) {
-        hashUserAgent.put(sessionId, userAgent);
-    }
 
     /**
      * @return the mainContainer
@@ -54,40 +41,51 @@ public class AgentsManager {
         mainContainer = aMainContainer;
     }
 
-    public static void start(String sessionId) {
+    public static int startUserAgent(String sessionId) {
         try {
             //se l'agente per la sessione è già stato creato
             if (hashUserAgent.get(sessionId) != null) {
-                return;
+                return 0;
             }
             //se l'ambiente di esecuzione jade non è stato avviato
             if (!envStarted) {
-                startEnvironment();
+                try {
+                    startEnvironment();
+                    startParkingManagerAgents();
+                } catch (ControllerException ex) {
+                    ex.printStackTrace();
+                    System.out.println("Error start jade environment...");
+                    return 1;
+                }
             }
             //creazione e avvio di un nuovo user agent
             System.out.println("Launching the rma agent on the main container ...");
             AgentsManager.setUserAgent(sessionId, AgentsManager.getMainContainer().createNewAgent(sessionId, "com.parking.agents.UserAgent", new Object[0]));
             AgentsManager.getUserAgent(sessionId).start();
+            return 0;
 
         } catch (StaleProxyException e) {
             e.printStackTrace();
             System.out.println("Error launching agent...");
+            return 1;
         }
     }
 
-    public static void restart(String sessionId) {
+    public static int restartUserAgent(String sessionId) {
         try {
             System.out.println(AgentsManager.getUserAgent(sessionId).getState());
             AgentsManager.getUserAgent(sessionId).activate();
+            return 0;
 
-        } catch (Exception e) {
+        } catch (StaleProxyException e) {
             //e.printStackTrace();
             System.out.println("SmartSelection (agentRestart): Error launching agent...");
+            return 1;
         }
 
     }
 
-    private static void startEnvironment() {
+    public static void startEnvironment() throws ControllerException {
         //se l'ambiente è già stato avviato
         if (envStarted) {
             return;
@@ -98,29 +96,71 @@ public class AgentsManager {
         // Exit the JVM when there are no more containers around
         rt.setCloseVM(true);
         System.out.print("runtime created\n");
-
         // Create a default profile
         Profile profile = new ProfileImpl(null, 1200, null);
-
         System.out.print("profile created\n");
-
         System.out.println("Launching a whole in-process platform..." + profile);
         AgentsManager.setMainContainer(rt.createMainContainer(profile));
-
         // now set the default Profile to start a container
         ProfileImpl pContainer = new ProfileImpl(null, 1200, null);
         System.out.println("Launching the agent container ..." + pContainer);
-
         AgentContainer cont = rt.createAgentContainer(pContainer);
-        try {
-            cont.start();
-        } catch (ControllerException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        cont.start();
         System.out.println("Launching the agent container after ..." + pContainer);
         System.out.println("containers created");
         envStarted = true;
     }
 
+    public static void startParkingManagerAgents() throws StaleProxyException {
+
+        Iterable<ParkingManager> parkingManagers = PersistenceWrapper.get().getAllParkingManager();
+
+        //test
+        for (int i = 0; i < 1000; i++) {
+            System.out.println("Launching new parking manager agent on the main container ...");
+            AgentsManager.setParkingManagerAgent("prova" + i, AgentsManager.getMainContainer().createNewAgent("prova" + i, "com.parking.agents.ParkingManagerAgent", new Object[0]));
+            AgentsManager.getParkingManagerAgent("prova" + i).start();
+        }
+        //fine test
+
+        //per ogni parking manager creo un nuovo agente
+        for (ParkingManager parkingManager : parkingManagers) {
+            //creazione e avvio di un nuovo parking manager agent
+            System.out.println("Launching new parking manager agent on the main container ...");
+            AgentsManager.setParkingManagerAgent(parkingManager.getName(), AgentsManager.getMainContainer().createNewAgent(parkingManager.getName(), "com.parking.agents.ParkingManagerAgent", new Object[0]));
+            AgentsManager.getParkingManagerAgent(parkingManager.getName()).start();
+        }
+    }
+
+    /**
+     * @param sessionId
+     * @return the userAgent
+     */
+    private static AgentController getUserAgent(String sessionId) {
+        return hashUserAgent.get(sessionId);
+    }
+
+    /**
+     * @param sessionId
+     * @param userAgent the userAgent to set
+     */
+    private static void setUserAgent(String sessionId, AgentController userAgent) {
+        hashUserAgent.put(sessionId, userAgent);
+    }
+
+    /**
+     * @param id
+     * @return the parkingManagerAgent
+     */
+    private static AgentController getParkingManagerAgent(String id) {
+        return hashParkingManagerAgent.get(id);
+    }
+
+    /**
+     * @param sessionId
+     * @param userAgent the parkingManagerAgent to set
+     */
+    private static void setParkingManagerAgent(String id, AgentController parkingManagerAgent) {
+        hashParkingManagerAgent.put(id, parkingManagerAgent);
+    }
 }

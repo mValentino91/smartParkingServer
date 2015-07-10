@@ -5,44 +5,64 @@
  */
 package com.parking.controller;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.parking.dbManager.PersistenceManager;
+import com.parking.dbManager.PersistenceWrapper;
 import com.parking.managers.AgentsManager;
-import com.parking.persistence.mongo.repositories.ParkingManagerRepository;
-import com.parking.persistence.mongo.repositories.ParkingRepository;
+import jade.wrapper.ControllerException;
+import jade.wrapper.StaleProxyException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.context.request.WebRequest;
+import org.springframework.context.annotation.Scope;
 
 /**
  *
  * @author Marco Valentino
  */
 @Controller
-@RequestMapping(value = "/initController")
+@Scope("application")
 public class InitController {
 
     @Autowired
-    ParkingRepository parkingRepo;
+    private PersistenceManager persistence;
 
-    @Autowired
-    ParkingManagerRepository parkingManagerRepo;
-
-    @RequestMapping(value = "/init")
+    private Gson gson = new Gson();
+    
+    @RequestMapping(value = "/initEnvironment")
     public @ResponseBody
     String init(HttpServletRequest request) {
-
-        AgentsManager.start(request.getSession().getId());
-        return "Agents successfully activated!";
+        PersistenceWrapper.set(persistence);
+        try {
+            AgentsManager.startEnvironment();
+        } catch (ControllerException ex) {
+            Logger.getLogger(InitController.class.getName()).log(Level.SEVERE, null, ex);
+            return "Errore nell'inizializzazione dell'ambiente jade";
+        }
+        try {
+            AgentsManager.startParkingManagerAgents();
+        } catch (StaleProxyException ex) {
+            Logger.getLogger(InitController.class.getName()).log(Level.SEVERE, null, ex);
+            return "Errore nella creazione dei manager dei parkeggi";
+        }
+        return "inizializzazione avvenuta con successo!";
     }
-
-    @RequestMapping(value = "/restart")
+    
+    @RequestMapping(value = "/initUserAgent")
     public @ResponseBody
-    String restart(HttpServletRequest request) {
+    String initUserAgent(HttpServletRequest request) {
 
-        AgentsManager.restart(request.getSession().getId());
-        return "Agents successfully restarted!";
+        int res = AgentsManager.startUserAgent(request.getSession().getId());
+        //create json response
+        JsonObject response = new JsonObject();
+        JsonObject code = new JsonObject();
+        code.addProperty("code", res);
+        response.add("response", code);
+        return gson.toJson(response);
     }
-
 }
