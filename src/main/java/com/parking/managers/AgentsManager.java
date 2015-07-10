@@ -11,8 +11,8 @@ import jade.wrapper.AgentContainer;
 import jade.wrapper.AgentController;
 import jade.wrapper.ControllerException;
 import jade.wrapper.StaleProxyException;
+import java.util.HashMap;
 import java.util.Map;
-import org.springframework.beans.factory.support.ManagedMap;
 
 /**
  *
@@ -20,7 +20,7 @@ import org.springframework.beans.factory.support.ManagedMap;
  */
 public class AgentsManager {
 
-    private static Map<String, AgentController> hashUserAgent = new ManagedMap<String, AgentController>();
+    private static Map<String, AgentController> hashUserAgent = new HashMap<String, AgentController>();
     private static AgentContainer mainContainer;
     private static boolean envStarted = false;
 
