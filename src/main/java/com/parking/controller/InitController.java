@@ -8,6 +8,7 @@ package com.parking.controller;
 import com.parking.managers.AgentsManager;
 import com.parking.persistence.mongo.repositories.ParkingManagerRepository;
 import com.parking.persistence.mongo.repositories.ParkingRepository;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,17 +31,17 @@ public class InitController {
 
     @RequestMapping(value = "/init")
     public @ResponseBody
-    String init(WebRequest request) {
+    String init(HttpServletRequest request) {
 
-        AgentsManager.start();
+        AgentsManager.start(request.getSession().getId());
         return "Agents successfully activated!";
     }
 
     @RequestMapping(value = "/restart")
     public @ResponseBody
-    String restart(WebRequest request) {
+    String restart(HttpServletRequest request) {
 
-        AgentsManager.restart();
+        AgentsManager.restart(request.getSession().getId());
         return "Agents successfully restarted!";
     }
 
