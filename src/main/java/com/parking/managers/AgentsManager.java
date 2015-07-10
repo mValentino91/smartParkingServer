@@ -56,9 +56,15 @@ public class AgentsManager {
 
     public static void start(String sessionId) {
         try {
+            //se l'agente per la sessione è già stato creato
+            if (hashUserAgent.get(sessionId) != null) {
+                return;
+            }
+            //se l'ambiente di esecuzione jade non è stato avviato
             if (!envStarted) {
                 startEnvironment();
             }
+            //creazione e avvio di un nuovo user agent
             System.out.println("Launching the rma agent on the main container ...");
             AgentsManager.setUserAgent(sessionId, AgentsManager.getMainContainer().createNewAgent(sessionId, "com.parking.agents.UserAgent", new Object[0]));
             AgentsManager.getUserAgent(sessionId).start();
@@ -82,6 +88,7 @@ public class AgentsManager {
     }
 
     private static void startEnvironment() {
+        //se l'ambiente è già stato avviato
         if (envStarted) {
             return;
         }
@@ -114,7 +121,6 @@ public class AgentsManager {
         System.out.println("Launching the agent container after ..." + pContainer);
         System.out.println("containers created");
         envStarted = true;
-        return;
     }
 
 }
