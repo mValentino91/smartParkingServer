@@ -15,13 +15,23 @@ import jade.core.Agent;
  */
 public class UserAgent extends Agent {
 
-    PersistenceManager persistence;
+    private PersistenceManager persistence;
+    private double location[];
+    private double destination[];
+    private double threshold = 0.6; 
 
     //method to initialize agent
     protected void setup() {
 
         System.out.println("Hello! Im User Agent. My id is: " + getAID().getName());
         persistence = PersistenceWrapper.get();
+        //get alla input arguments
+        Object[] args = getArguments();
+        if(args!=null){
+            location = (double[]) args[0];
+            destination = (double[]) args[1];
+        }
+        //get all sellers
+        //start negotiation
     }
-
 }

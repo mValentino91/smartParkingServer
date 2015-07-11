@@ -10,8 +10,14 @@ import com.parking.persistence.mongo.documents.ParkingManager;
 import com.parking.persistence.mongo.repositories.ParkingManagerRepository;
 import com.parking.persistence.mongo.repositories.ParkingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.geo.Distance;
+import org.springframework.data.geo.GeoResult;
+import org.springframework.data.geo.GeoResults;
+import org.springframework.data.geo.Metrics;
+import org.springframework.data.geo.Point;
 import org.springframework.data.mongodb.core.MongoOperations;
 import static org.springframework.data.mongodb.core.query.Criteria.where;
+import org.springframework.data.mongodb.core.query.NearQuery;
 import org.springframework.data.mongodb.core.query.Query;
 
 /**
@@ -40,8 +46,27 @@ public class ConcretePersistenceManager implements PersistenceManager {
     }
 
     @Override
-    public Iterable<Parking> getParkingByManager(String parkingManagerId) {        
+    public Iterable<Parking> getParkingByManager(String parkingManagerId) {
         return mongo.find(new Query(where("parkingManagerId").is(parkingManagerId)), Parking.class);
+    }
+
+    @Override
+    public GeoResults<Parking> findNearParking(double location[], double radius) {
+
+        Point point = new Point(location[0], location[1]);
+        NearQuery query = NearQuery.near(point).maxDistance(new Distance(radius, Metrics.KILOMETERS));
+
+        return mongo.geoNear(query, Parking.class);
+    }
+
+    @Override
+    public void saveParking(Parking p) {
+        parkingRepo.save(p);
+    }
+
+    @Override
+    public void saveParkingManager(ParkingManager p) {
+        managerRepo.save(p);
     }
 
 }

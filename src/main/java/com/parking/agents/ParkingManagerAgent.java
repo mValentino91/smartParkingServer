@@ -17,9 +17,9 @@ import jade.core.Agent;
  */
 public class ParkingManagerAgent extends Agent{
     
-    PersistenceManager persistence;
-    String name;
-    Iterable<Parking> parkingList;
+    private PersistenceManager persistence;
+    private String name;
+    private Iterable<Parking> parkingsList;
     
     //method to initialize agent
     protected void setup(){
@@ -27,7 +27,7 @@ public class ParkingManagerAgent extends Agent{
         System.out.println("Hello! Im Parking Manager Agent. My id is: "+getAID().getName());
         persistence = PersistenceWrapper.get();
         name = getAID().getLocalName();
-        persistence.getParkingByManager(name);
+        parkingsList = persistence.getParkingByManager(name);
         
     }
 }

@@ -10,16 +10,17 @@ import com.google.gson.JsonObject;
 import com.parking.dbManager.PersistenceManager;
 import com.parking.dbManager.PersistenceWrapper;
 import com.parking.managers.AgentsManager;
+import com.parking.persistence.mongo.documents.Parking;
 import jade.wrapper.ControllerException;
 import jade.wrapper.StaleProxyException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.context.annotation.Scope;
 
 /**
  *
@@ -33,7 +34,7 @@ public class InitController {
     private PersistenceManager persistence;
 
     private Gson gson = new Gson();
-    
+
     @RequestMapping(value = "/initEnvironment")
     public @ResponseBody
     String init(HttpServletRequest request) {
@@ -56,8 +57,9 @@ public class InitController {
     @RequestMapping(value = "/initUserAgent")
     public @ResponseBody
     String initUserAgent(HttpServletRequest request) {
-
-        int res = AgentsManager.startUserAgent(request.getSession().getId());
+        double location[] = {0, 0};
+        double destination[] = {0, 0};
+        int res = AgentsManager.startUserAgent(request.getSession().getId(), location, destination);
         //create json response
         JsonObject response = new JsonObject();
         JsonObject code = new JsonObject();
@@ -65,4 +67,29 @@ public class InitController {
         response.add("response", code);
         return gson.toJson(response);
     }
+    
+    /*@RequestMapping(value = "/testJson")
+    public @ResponseBody
+    String test(HttpServletRequest request) {
+        Parking p = new Parking();
+        p.setName("prova");
+        p.setAddress("prova");
+        p.setCapacity(1);
+        p.setIsFull(false);
+        p.setLocation(new double[]{0,0});
+        p.setOccupied(0);
+        p.setParkingManagerId("prova");
+        p.setPrice(2);
+        p.setZone(3);
+        persistence.saveParking(p);
+        Gson gson = new Gson();
+        Iterable<Parking> list = persistence.getAllParking();
+        for (Parking parking : list) {
+            
+            return gson.toJson(parking);
+            
+        }
+        return "no parkings";
+    }*/
+
 }

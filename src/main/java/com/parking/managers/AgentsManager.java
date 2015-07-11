@@ -41,7 +41,7 @@ public class AgentsManager {
         mainContainer = aMainContainer;
     }
 
-    public static int startUserAgent(String sessionId) {
+    public static int startUserAgent(String sessionId, double location[], double destination[]) {
         try {
             //se l'agente per la sessione è già stato creato
             if (hashUserAgent.get(sessionId) != null) {
@@ -60,7 +60,8 @@ public class AgentsManager {
             }
             //creazione e avvio di un nuovo user agent
             System.out.println("Launching the rma agent on the main container ...");
-            AgentsManager.setUserAgent(sessionId, AgentsManager.getMainContainer().createNewAgent(sessionId, "com.parking.agents.UserAgent", new Object[0]));
+            AgentsManager.setUserAgent(sessionId, AgentsManager.getMainContainer().createNewAgent(sessionId, "com.parking.agents.UserAgent",
+                    new Object[]{location, destination}));
             AgentsManager.getUserAgent(sessionId).start();
             return 0;
 
