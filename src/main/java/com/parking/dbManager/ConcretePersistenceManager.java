@@ -11,7 +11,6 @@ import com.parking.persistence.mongo.repositories.ParkingManagerRepository;
 import com.parking.persistence.mongo.repositories.ParkingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.geo.Distance;
-import org.springframework.data.geo.GeoResult;
 import org.springframework.data.geo.GeoResults;
 import org.springframework.data.geo.Metrics;
 import org.springframework.data.geo.Point;
