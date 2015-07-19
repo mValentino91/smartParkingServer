@@ -23,6 +23,7 @@ public class Parking {
     private float price;
     private boolean isFull;
     private double[] location;
+    private double utility;
 
     /**
      * @return the name
@@ -148,5 +149,19 @@ public class Parking {
      */
     public void setZone(int zone) {
         this.zone = zone;
+    }
+
+    /**
+     * @return the utility
+     */
+    public double getUtility() {
+        return utility;
+    }
+
+    /**
+     * @param utility the utility to set
+     */
+    public void setUtility(double utility) {
+        this.utility = utility;
     }
 }

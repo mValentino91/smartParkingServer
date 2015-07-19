@@ -4,12 +4,14 @@
  * and open the template in the editor.
  */
 
-package com.parking.controller;
+package com.parking.negotiation;
 
 /**
  *
  * @author Marco
  */
-public class ExternalServicesController {
+public interface UtilityCalculator {
+    
+    public double calculate(double[] params, double[] weights);
     
 }
