@@ -34,8 +34,6 @@ public class ParkingManagerAgent extends Agent {
     private Iterable<Parking> parkingsList;
     private HashMap<String, ArrayList<Parking>> proposes;
     private Gson gson = new Gson();
-    private double[] destination;
-    private double[] location;
     private double[] weights = {0.5, 0.5}; //pesi per il calcolo dell'utilità. Posti liberi e zona
 
     //method to initialize agent
@@ -106,10 +104,10 @@ public class ParkingManagerAgent extends Agent {
                 // richiesta di negoziazione da parte dell'utente
                 if (msg.getPerformative() == ACLMessage.CFP) {
                     // CFP Message received. Process it
-                    String jsonMsg = msg.getContent();
+                    /*String jsonMsg = msg.getContent();
                     RequestCFP msgOBJ = gson.fromJson(jsonMsg, RequestCFP.class);
                     destination = msgOBJ.getDestination();
-                    location = msgOBJ.getLocation();
+                    location = msgOBJ.getLocation();*/
                     //creare la lista delle preferenze per l'utente
                     proposes.put(msg.getSender().getName(), caclulateProposes());
                     if (proposes.get(msg.getSender().getName()) != null && proposes.get(msg.getSender().getName()).size() > 0) {
