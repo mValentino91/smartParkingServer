@@ -32,7 +32,7 @@ public class ParkingManagerAgent extends Agent {
     private UtilityCalculator utilityCalculator = new ParkingManagerUtilityCalculator();
     private String name;
     private Iterable<Parking> parkingsList;
-    private HashMap<String, ArrayList<Parking>> proposes;
+    private HashMap<String, ArrayList<Parking>> proposes = new HashMap<String, ArrayList<Parking>>();
     private Gson gson = new Gson();
     private double[] weights = {0.5, 0.5}; //pesi per il calcolo dell'utilità. Posti liberi e zona
 
@@ -43,6 +43,7 @@ public class ParkingManagerAgent extends Agent {
         persistence = PersistenceWrapper.get();
         name = getAID().getLocalName();
         parkingsList = persistence.getParkingByManager(name);
+        System.out.println(gson.toJson(parkingsList));
         // Register the book-selling service in the yellow pages
         // crea un descrittore dell'agente
         DFAgentDescription dfd = new DFAgentDescription();
@@ -109,6 +110,9 @@ public class ParkingManagerAgent extends Agent {
                     destination = msgOBJ.getDestination();
                     location = msgOBJ.getLocation();*/
                     //creare la lista delle preferenze per l'utente
+                    System.out.println(msg.getSender().getName());
+                    System.out.println(caclulateProposes());
+                    
                     proposes.put(msg.getSender().getName(), caclulateProposes());
                     if (proposes.get(msg.getSender().getName()) != null && proposes.get(msg.getSender().getName()).size() > 0) {
                         reply.setPerformative(ACLMessage.PROPOSE);

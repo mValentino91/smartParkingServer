@@ -6,6 +6,7 @@
 package com.parking.managers;
 
 import com.parking.dbManager.PersistenceWrapper;
+import com.parking.persistence.mongo.documents.Parking;
 import com.parking.persistence.mongo.documents.ParkingManager;
 import jade.core.Profile;
 import jade.core.ProfileImpl;
@@ -23,6 +24,7 @@ import java.util.Map;
 public class AgentsManager {
 
     private static Map<String, AgentController> hashUserAgent = new HashMap<String, AgentController>();
+    private static Map<String, Parking> results = new HashMap<String, Parking>();
     private static Map<String, AgentController> hashParkingManagerAgent = new HashMap<String, AgentController>();
     private static AgentContainer mainContainer;
     private static boolean envStarted = false;
@@ -61,7 +63,7 @@ public class AgentsManager {
             //creazione e avvio di un nuovo user agent
             System.out.println("Launching the rma agent on the main container ...");
             AgentsManager.setUserAgent(sessionId, AgentsManager.getMainContainer().createNewAgent(sessionId, "com.parking.agents.UserAgent",
-                    new Object[]{location, destination, weights, treshold}));
+                    new Object[]{location, destination, weights, treshold, results}));
             AgentsManager.getUserAgent(sessionId).start();
             return 0;
 
@@ -116,14 +118,6 @@ public class AgentsManager {
 
         Iterable<ParkingManager> parkingManagers = PersistenceWrapper.get().getAllParkingManager();
 
-        //test
-        for (int i = 0; i < 1000; i++) {
-            System.out.println("Launching new parking manager agent on the main container ...");
-            AgentsManager.setParkingManagerAgent("prova" + i, AgentsManager.getMainContainer().createNewAgent("prova" + i, "com.parking.agents.ParkingManagerAgent", new Object[0]));
-            AgentsManager.getParkingManagerAgent("prova" + i).start();
-        }
-        //fine test
-
         //per ogni parking manager creo un nuovo agente
         for (ParkingManager parkingManager : parkingManagers) {
             //creazione e avvio di un nuovo parking manager agent
@@ -155,6 +149,14 @@ public class AgentsManager {
      */
     private static AgentController getParkingManagerAgent(String id) {
         return hashParkingManagerAgent.get(id);
+    }
+
+    /**
+     * @param id
+     * @return the parking
+     */
+    public static Parking getNegotiationState(String id) {
+        return results.get(id);
     }
 
     /**

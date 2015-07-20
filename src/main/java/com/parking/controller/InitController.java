@@ -13,6 +13,7 @@ import com.parking.dbManager.PersistenceManager;
 import com.parking.dbManager.PersistenceWrapper;
 import com.parking.managers.AgentsManager;
 import com.parking.persistence.mongo.documents.Parking;
+import com.parking.persistence.mongo.documents.ParkingManager;
 import jade.wrapper.ControllerException;
 import jade.wrapper.StaleProxyException;
 import java.util.logging.Level;
@@ -82,10 +83,17 @@ public class InitController {
         response.add("response", code);
         return gson.toJson(response);
     }
+    
+     @RequestMapping(value = "/getState")
+    public @ResponseBody
+    String getState(HttpServletRequest request) {
+        return gson.toJson(AgentsManager.getNegotiationState(request.getSession().getId()));
+    }
 
-    /*@RequestMapping(value = "/testJson")
+    @RequestMapping(value = "/testJson")
      public @ResponseBody
      String test(HttpServletRequest request) {
+        ParkingManager m = new ParkingManager();
      Parking p = new Parking();
      p.setName("prova");
      p.setAddress("prova");
@@ -96,6 +104,9 @@ public class InitController {
      p.setParkingManagerId("prova");
      p.setPrice(2);
      p.setZone(3);
+     p.setUtility(1);
+     m.setName("prova");
+     persistence.saveParkingManager(m);
      persistence.saveParking(p);
      Gson gson = new Gson();
      Iterable<Parking> list = persistence.getAllParking();
@@ -105,5 +116,5 @@ public class InitController {
             
      }
      return "no parkings";
-     }*/
+     }
 }
