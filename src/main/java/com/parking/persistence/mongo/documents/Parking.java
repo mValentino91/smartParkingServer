@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * @author Marco
  */
 @Document(collection = "parking")
-public class Parking {
+public class Parking extends Collection {
 
     private String name;
     private String parkingManagerId;
