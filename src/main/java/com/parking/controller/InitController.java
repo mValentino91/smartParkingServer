@@ -6,7 +6,9 @@
 package com.parking.controller;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.parking.dbManager.PersistenceManager;
 import com.parking.dbManager.PersistenceWrapper;
 import com.parking.managers.AgentsManager;
@@ -38,6 +40,7 @@ public class InitController {
     @RequestMapping(value = "/initEnvironment")
     public @ResponseBody
     String init(HttpServletRequest request) {
+        //recuperare valori dei pesi
         PersistenceWrapper.set(persistence);
         try {
             AgentsManager.startEnvironment();
@@ -53,13 +56,25 @@ public class InitController {
         }
         return "inizializzazione avvenuta con successo!";
     }
-    
+
     @RequestMapping(value = "/initUserAgent")
     public @ResponseBody
     String initUserAgent(HttpServletRequest request) {
-        double location[] = {0, 0};
-        double destination[] = {0, 0};
-        int res = AgentsManager.startUserAgent(request.getSession().getId(), location, destination);
+        String requestJson = request.getParameter("requestJson");
+        JsonParser parser = new JsonParser();
+        JsonElement json = parser.parse(requestJson);
+        JsonElement obj = json.getAsJsonArray().get(0);
+        JsonElement partenza = obj.getAsJsonObject().get("partenza").getAsJsonArray();
+        JsonElement destinazione = obj.getAsJsonObject().get("arrivo").getAsJsonArray();
+        double location[] = {partenza.getAsJsonArray().get(0).getAsDouble(), partenza.getAsJsonArray().get(1).getAsDouble()};
+        double destination[] = {destinazione.getAsJsonArray().get(0).getAsDouble(), destinazione.getAsJsonArray().get(1).getAsDouble()};
+        double weights[] = {
+            obj.getAsJsonObject().get("prezzo").getAsDouble(),
+            obj.getAsJsonObject().get("distanza").getAsDouble(),
+            obj.getAsJsonObject().get("tempo").getAsDouble()
+        };
+        double treshold = obj.getAsJsonObject().get("soglia").getAsDouble();
+        int res = AgentsManager.startUserAgent(request.getSession().getId(), location, destination, weights, treshold);
         //create json response
         JsonObject response = new JsonObject();
         JsonObject code = new JsonObject();
@@ -67,29 +82,28 @@ public class InitController {
         response.add("response", code);
         return gson.toJson(response);
     }
-    
-    /*@RequestMapping(value = "/testJson")
-    public @ResponseBody
-    String test(HttpServletRequest request) {
-        Parking p = new Parking();
-        p.setName("prova");
-        p.setAddress("prova");
-        p.setCapacity(1);
-        p.setIsFull(false);
-        p.setLocation(new double[]{0,0});
-        p.setOccupied(0);
-        p.setParkingManagerId("prova");
-        p.setPrice(2);
-        p.setZone(3);
-        persistence.saveParking(p);
-        Gson gson = new Gson();
-        Iterable<Parking> list = persistence.getAllParking();
-        for (Parking parking : list) {
-            
-            return gson.toJson(parking);
-            
-        }
-        return "no parkings";
-    }*/
 
+    /*@RequestMapping(value = "/testJson")
+     public @ResponseBody
+     String test(HttpServletRequest request) {
+     Parking p = new Parking();
+     p.setName("prova");
+     p.setAddress("prova");
+     p.setCapacity(1);
+     p.setIsFull(false);
+     p.setLocation(new double[]{0,0});
+     p.setOccupied(0);
+     p.setParkingManagerId("prova");
+     p.setPrice(2);
+     p.setZone(3);
+     persistence.saveParking(p);
+     Gson gson = new Gson();
+     Iterable<Parking> list = persistence.getAllParking();
+     for (Parking parking : list) {
+            
+     return gson.toJson(parking);
+            
+     }
+     return "no parkings";
+     }*/
 }
