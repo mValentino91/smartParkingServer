@@ -1,12 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.parking.agents;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.parking.dbManager.PersistenceManager;
 import com.parking.dbManager.PersistenceWrapper;
 import com.parking.persistence.mongo.documents.Parking;
@@ -20,7 +14,6 @@ import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.domain.FIPAException;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
-import java.util.ArrayList;
 import java.util.Map;
 
 /**
@@ -140,7 +133,6 @@ public class UserAgent extends Agent {
                             Parking parking = gson.fromJson(acceptedPark, Parking.class);
                             // Calculate Utility for UA
                             // if (carPark.getProperties().getUtilityU() >= threshold) {
-                            //predisposizione per contrattazione multiseller
                             //  if (carPark.getProperties().getUtilityU() > bestUtility) {
                             carPark = parking;
                             bestSeller = reply.getSender();

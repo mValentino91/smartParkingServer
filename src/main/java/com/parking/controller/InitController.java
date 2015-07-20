@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.parking.controller;
 
 import com.google.gson.Gson;
@@ -15,7 +10,6 @@ import com.parking.managers.AgentsManager;
 import com.parking.persistence.mongo.documents.Parking;
 import com.parking.persistence.mongo.documents.ParkingManager;
 import jade.wrapper.ControllerException;
-import jade.wrapper.StaleProxyException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
@@ -27,7 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  *
- * @author Marco Valentino
+ * @author Marco
  */
 @Controller
 @Scope("application")
@@ -49,12 +43,12 @@ public class InitController {
             Logger.getLogger(InitController.class.getName()).log(Level.SEVERE, null, ex);
             return "Errore nell'inizializzazione dell'ambiente jade";
         }
-        try {
+        /*try {
             AgentsManager.startParkingManagerAgents();
         } catch (StaleProxyException ex) {
             Logger.getLogger(InitController.class.getName()).log(Level.SEVERE, null, ex);
             return "Errore nella creazione dei manager dei parkeggi";
-        }
+        }*/
         return "inizializzazione avvenuta con successo!";
     }
 

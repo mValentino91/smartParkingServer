@@ -1,11 +1,12 @@
+
 package com.parking.negotiation;
 
 /**
  *
  * @author Marco
  */
-public class ParkingManagerUtilityCalculator implements UtilityCalculator {
-
+public class UserAgentUtilityCalculator implements UtilityCalculator {
+   
      /**
      * @param params the parameters.
      * @param weights the weights for each params.
@@ -23,4 +24,5 @@ public class ParkingManagerUtilityCalculator implements UtilityCalculator {
         }
         return sum1 / sum2;
     }
+
 }

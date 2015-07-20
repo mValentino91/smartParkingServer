@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.parking.managers;
 
 import com.parking.dbManager.PersistenceWrapper;
@@ -112,9 +107,10 @@ public class AgentsManager {
         System.out.println("Launching the agent container after ..." + pContainer);
         System.out.println("containers created");
         envStarted = true;
+        startParkingManagerAgents();
     }
 
-    public static void startParkingManagerAgents() throws StaleProxyException {
+    private static void startParkingManagerAgents() throws StaleProxyException {
 
         Iterable<ParkingManager> parkingManagers = PersistenceWrapper.get().getAllParkingManager();
 
