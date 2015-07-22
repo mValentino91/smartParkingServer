@@ -30,7 +30,6 @@ public class ParkingManagerAgent extends Agent {
     private HashMap<String, ArrayList<Parking>> proposes = new HashMap<String, ArrayList<Parking>>();
     private Gson gson = new Gson();
     private double[] weights = {0.5, 0.5}; //pesi per il calcolo dell'utilità. Posti liberi e zona
-
     //method to initialize agent
     protected void setup() {
         //initialize agent
@@ -38,7 +37,6 @@ public class ParkingManagerAgent extends Agent {
         persistence = PersistenceWrapper.get();
         name = getAID().getLocalName();
         parkingsList = persistence.getParkingByManager(name);
-        System.out.println(gson.toJson(parkingsList));
         // Register the book-selling service in the yellow pages
         // crea un descrittore dell'agente
         DFAgentDescription dfd = new DFAgentDescription();
@@ -77,8 +75,8 @@ public class ParkingManagerAgent extends Agent {
         //calculate utilities
         ArrayList<Parking> results = new ArrayList<Parking>();
         for (Parking parking : parkingsList) {
-            double[] params = {parking.getCapacity() - parking.getOccupied(), parking.getZone()};
-            parking.setUtility(utilityCalculator.calculate(params, this.weights));
+            double[] params = {parking.getCapacity()-parking.getOccupied(), parking.getZone()};
+            parking.setUtility(utilityCalculator.calculate(params, this.weights, new double[]{parking.getCapacity(),4}));
             if (parking.getUtility() > 0) {
                 results.add(parking);
             }

@@ -6,6 +6,6 @@ package com.parking.negotiation;
  */
 public interface UtilityCalculator {
     
-    public double calculate(double[] params, double[] weights);
+    public double calculate(double[] params, double[] weights, double[] normFactors);
     
 }

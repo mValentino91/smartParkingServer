@@ -13,7 +13,7 @@ public class UserAgentUtilityCalculator implements UtilityCalculator {
      * @return utility
      */
     @Override
-    public double calculate(double[] params, double[] weights) {
+    public double calculate(double[] params, double[] weights, double[] normFactors) {
         //normalizzare da 1 a 0
         double sum1 = 0, sum2 = 0;
         int index = 0;

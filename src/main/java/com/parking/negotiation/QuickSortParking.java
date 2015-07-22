@@ -23,7 +23,7 @@ public class QuickSortParking {
         ArrayList<Parking> greater = new ArrayList<Parking>();
 
         for (int i = 0; i < input.size(); i++) {
-            if (input.get(i).getUtility() <= pivot.getUtility()) {
+            if (input.get(i).getUtility() >= pivot.getUtility()) {
                 if (i == middle) {
                     continue;
                 }

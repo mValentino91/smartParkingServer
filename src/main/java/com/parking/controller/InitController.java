@@ -9,10 +9,15 @@ import com.parking.dbManager.PersistenceWrapper;
 import com.parking.managers.AgentsManager;
 import com.parking.persistence.mongo.documents.Parking;
 import com.parking.persistence.mongo.documents.ParkingManager;
+import com.parking.persistence.mongo.documents.XMLParser;
 import jade.wrapper.ControllerException;
+import java.io.File;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -44,11 +49,11 @@ public class InitController {
             return "Errore nell'inizializzazione dell'ambiente jade";
         }
         /*try {
-            AgentsManager.startParkingManagerAgents();
-        } catch (StaleProxyException ex) {
-            Logger.getLogger(InitController.class.getName()).log(Level.SEVERE, null, ex);
-            return "Errore nella creazione dei manager dei parkeggi";
-        }*/
+         AgentsManager.startParkingManagerAgents();
+         } catch (StaleProxyException ex) {
+         Logger.getLogger(InitController.class.getName()).log(Level.SEVERE, null, ex);
+         return "Errore nella creazione dei manager dei parkeggi";
+         }*/
         return "inizializzazione avvenuta con successo!";
     }
 
@@ -77,38 +82,42 @@ public class InitController {
         response.add("response", code);
         return gson.toJson(response);
     }
-    
-     @RequestMapping(value = "/getState")
+
+    @RequestMapping(value = "/getState")
     public @ResponseBody
     String getState(HttpServletRequest request) {
         return gson.toJson(AgentsManager.getNegotiationState(request.getSession().getId()));
     }
 
-    @RequestMapping(value = "/testJson")
-     public @ResponseBody
-     String test(HttpServletRequest request) {
-        ParkingManager m = new ParkingManager();
-     Parking p = new Parking();
-     p.setName("prova");
-     p.setAddress("prova");
-     p.setCapacity(1);
-     p.setIsFull(false);
-     p.setLocation(new double[]{0,0});
-     p.setOccupied(0);
-     p.setParkingManagerId("prova");
-     p.setPrice(2);
-     p.setZone(3);
-     p.setUtility(1);
-     m.setName("prova");
-     persistence.saveParkingManager(m);
-     persistence.saveParking(p);
-     Gson gson = new Gson();
-     Iterable<Parking> list = persistence.getAllParking();
-     for (Parking parking : list) {
-            
-     return gson.toJson(parking);
-            
-     }
-     return "no parkings";
-     }
+    @RequestMapping(value = "/parsingXML")
+    public @ResponseBody
+    String parsing(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        ServletContext sc = session.getServletContext();
+        XMLParser parser = new XMLParser(sc.getRealPath("/") + "dist" + File.separator + "xmls" + File.separator + "carparks.xml", "place", "parking");
+        
+        ArrayList<Parking> list = parser.getList();
+        for (Parking parking : list) {
+            persistence.saveParking(parking);
+        }
+        return gson.toJson(persistence.getAllParking());
+    }
+    
+    @RequestMapping(value = "/parkingManager")
+    public @ResponseBody
+    String parkingManager(HttpServletRequest request) {
+
+        ParkingManager p1 = new ParkingManager();
+        p1.setName("NapoliPark");
+        ParkingManager p2 = new ParkingManager();
+        p2.setName("ParkingPrisca");
+        ParkingManager p3 = new ParkingManager();
+        p3.setName("ParcheggiCampania");
+        
+        persistence.saveParkingManager(p1);
+        persistence.saveParkingManager(p2);
+        persistence.saveParkingManager(p3);
+       
+        return gson.toJson(persistence.getAllParkingManager());
+    }
 }
