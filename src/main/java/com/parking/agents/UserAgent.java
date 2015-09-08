@@ -3,6 +3,9 @@ package com.parking.agents;
 import com.google.gson.Gson;
 import com.parking.dbManager.PersistenceManager;
 import com.parking.dbManager.PersistenceWrapper;
+import java.awt.Point;
+import com.parking.negotiation.UserAgentUtilityCalculator;
+import com.parking.negotiation.UtilityCalculator;
 import com.parking.persistence.mongo.documents.Parking;
 import jade.core.AID;
 import jade.core.Agent;
@@ -14,6 +17,7 @@ import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.domain.FIPAException;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
+import java.awt.geom.Point2D;
 import java.util.Map;
 
 /**
@@ -22,12 +26,17 @@ import java.util.Map;
  */
 public class UserAgent extends Agent {
 
+    //raggio massimo in cui considerare i parcheggi
+    private static final double maxDistance = 0.01;
+    //prezzo massimo per un parcheggio
+    private static final double maxPrice = 15;
     private static final long serialVersionUID = 1L;
     private PersistenceManager persistence;
     private double location[];
     private double destination[];
     private double threshold;
     private double weights[];
+    private UtilityCalculator utilityCalculator = new UserAgentUtilityCalculator();
     // The list of known seller agents
     private AID[] sellerAgents;
     private Map<String, Parking> result;
@@ -44,7 +53,7 @@ public class UserAgent extends Agent {
             destination = (double[]) args[1];
             weights = (double[]) args[2];
             threshold = (Double) args[3];
-            result = (Map<String,Parking>) args[4];
+            result = (Map<String, Parking>) args[4];
         }
         addBehaviour(new SimpleBehaviour() {
             private static final long serialVersionUID = 1L;
@@ -131,14 +140,18 @@ public class UserAgent extends Agent {
                             // This is an offer. Process it
                             String acceptedPark = reply.getContent();
                             Parking parking = gson.fromJson(acceptedPark, Parking.class);
+                            double utility = calculateUtility(parking);
+                            if (utility > 0) {
+                                System.out.println("Parcheggio " + parking.getName()
+                                        + " Parking Manager " + parking.getParkingManagerId()
+                                        + "Utility: " + utility);
+                            }
                             // Calculate Utility for UA
-                            // if (carPark.getProperties().getUtilityU() >= threshold) {
-                            //  if (carPark.getProperties().getUtilityU() > bestUtility) {
-                            carPark = parking;
-                            bestSeller = reply.getSender();
-
-                            //    }
-                            // }
+                            if (utility >= threshold && utility > bestUtility && utility > 0) {
+                                carPark = parking;
+                                bestSeller = reply.getSender();
+                                bestUtility = utility;
+                            }
                         }
                         repliesCnt++;
                         if (repliesCnt >= sellerAgents.length) {
@@ -220,5 +233,16 @@ public class UserAgent extends Agent {
             this.propose = propose;
         }
 
-    }  // End of inner class RequestPerformer
-}
+        public double calculateUtility(Parking parking) {
+
+            Point.Double dest = new Point2D.Double(destination[0], destination[1]);
+            double distance = dest.distance(parking.getLocation()[0], parking.getLocation()[1]);
+            if (distance > maxDistance || parking.getPrice() > maxPrice) {
+                return 0;
+            }
+            double[] params = {maxPrice - parking.getPrice(), maxDistance - distance};
+            return utilityCalculator.calculate(params, weights, new double[]{maxPrice, maxDistance});
+        }
+    }
+
+}  // End of inner class RequestPerformer
