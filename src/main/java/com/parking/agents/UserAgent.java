@@ -26,8 +26,10 @@ import java.util.Map;
  */
 public class UserAgent extends Agent {
 
-    //raggio massimo in cui considerare i parcheggi
+    //raggio massimo in cui considerare i parcheggi dal punto di destinazione
     private static final double maxDistance = 0.01;
+    //raggio massimo in cui considerare i parcheggi dal punto di partenza
+    private static final double maxDistance2 = 1;
     //prezzo massimo per un parcheggio
     private static final double maxPrice = 15;
     private static final long serialVersionUID = 1L;
@@ -142,9 +144,12 @@ public class UserAgent extends Agent {
                             Parking parking = gson.fromJson(acceptedPark, Parking.class);
                             double utility = calculateUtility(parking);
                             if (utility > 0) {
-                                System.out.println("Parcheggio " + parking.getName()
-                                        + " Parking Manager " + parking.getParkingManagerId()
-                                        + "Utility: " + utility);
+                                System.out.println("\nParcheggio " + parking.getName()
+                                        + " \nParking Manager " + parking.getParkingManagerId()
+                                        + "\nCoordinate: " + parking.getLocation()[0]+" "+parking.getLocation()[1]
+                                        +"\nPrezzo: " + parking.getPrice()
+                                        + "\nUtility: " + utility
+                                        + "\n=================================");
                             }
                             // Calculate Utility for UA
                             if (utility >= threshold && utility > bestUtility && utility > 0) {
@@ -236,12 +241,15 @@ public class UserAgent extends Agent {
         public double calculateUtility(Parking parking) {
 
             Point.Double dest = new Point2D.Double(destination[0], destination[1]);
+            Point.Double loc = new Point2D.Double(location[0], location[1]);
             double distance = dest.distance(parking.getLocation()[0], parking.getLocation()[1]);
-            if (distance > maxDistance || parking.getPrice() > maxPrice) {
+            double distance2 = loc.distance(parking.getLocation()[0], parking.getLocation()[1]);
+
+            if (distance > maxDistance || distance2 > maxDistance2 || parking.getPrice() > maxPrice) {
                 return 0;
             }
-            double[] params = {maxPrice - parking.getPrice(), maxDistance - distance};
-            return utilityCalculator.calculate(params, weights, new double[]{maxPrice, maxDistance});
+            double[] params = {maxPrice - parking.getPrice(), maxDistance - distance, maxDistance2 - distance2};
+            return utilityCalculator.calculate(params, weights, new double[]{maxPrice, maxDistance, maxDistance2});
         }
     }
 

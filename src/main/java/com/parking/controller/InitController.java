@@ -70,7 +70,8 @@ public class InitController {
         double destination[] = {destinazione.getAsJsonArray().get(0).getAsDouble(), destinazione.getAsJsonArray().get(1).getAsDouble()};
         double weights[] = {
             obj.getAsJsonObject().get("prezzo").getAsDouble(),
-            obj.getAsJsonObject().get("distanza").getAsDouble()
+            obj.getAsJsonObject().get("distanza").getAsDouble(),
+            obj.getAsJsonObject().get("tempo").getAsDouble()
         };
         double treshold = obj.getAsJsonObject().get("soglia").getAsDouble();
         int res = AgentsManager.startUserAgent(request.getSession().getId(), location, destination, weights, treshold);
