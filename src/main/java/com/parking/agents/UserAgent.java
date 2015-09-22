@@ -146,8 +146,8 @@ public class UserAgent extends Agent {
                             if (utility > 0) {
                                 System.out.println("\nParcheggio " + parking.getName()
                                         + " \nParking Manager " + parking.getParkingManagerId()
-                                        + "\nCoordinate: " + parking.getLocation()[0]+" "+parking.getLocation()[1]
-                                        +"\nPrezzo: " + parking.getPrice()
+                                        + "\nCoordinate: " + parking.getLocation()[0] + " " + parking.getLocation()[1]
+                                        + "\nPrezzo: " + parking.getPrice()
                                         + "\nUtility: " + utility
                                         + "\n=================================");
                             }
@@ -157,8 +157,9 @@ public class UserAgent extends Agent {
                                 bestSeller = reply.getSender();
                                 bestUtility = utility;
                             }
+
+                            repliesCnt++;
                         }
-                        repliesCnt++;
                         if (repliesCnt >= sellerAgents.length) {
                             // Are received all replies						
                             if (bestSeller == null) {
@@ -167,7 +168,8 @@ public class UserAgent extends Agent {
                                 } else {
                                     step = 2;
                                 }
-                            } else if (reply.getPerformative() == ACLMessage.INFORM) {
+                            } else if (reply.getPerformative() == ACLMessage.INFORM
+                                    || reply.getPerformative() == ACLMessage.REJECT_PROPOSAL) {
                                 step = 4;
                             } else {
                                 step = 3;
@@ -200,7 +202,7 @@ public class UserAgent extends Agent {
                     ACLMessage order = new ACLMessage(ACLMessage.ACCEPT_PROPOSAL);
                     order.addReceiver(bestSeller);
                     order.setContent(propose);
-                    order.setConversationId("book-trade");
+                    //order.setConversationId("book-trade");
                     order.setReplyWith("order" + System.currentTimeMillis());
                     myAgent.send(order);
                     // Prepare the template to get the purchase order reply
@@ -217,9 +219,36 @@ public class UserAgent extends Agent {
                     if (reply != null) {
                         if (reply.getPerformative() == ACLMessage.INFORM) {
                             result.put(myAgent.getLocalName(), carPark);
-                            block();
+                            block(); //ferma l'agente
+                        } else if (reply.getPerformative() == ACLMessage.REJECT_PROPOSAL) {
+                            //altrimenti rinegozia
+                            DFAgentDescription template = new DFAgentDescription();
+                            ServiceDescription sd = new ServiceDescription();
+                            sd.setType("selling");
+                            template.addServices(sd);
+                            try {
+                                DFAgentDescription[] result = DFService.search(myAgent, template);
+                                sellerAgents = new AID[result.length];
+                                while (result.length <= 0) {
+                                    result = DFService.search(myAgent, template);
+                                    sellerAgents = new AID[result.length];
+                                }
+                                for (int i = 0; i < result.length; ++i) {
+                                    sellerAgents[i] = result[i].getName();
+                                }
+                            } catch (FIPAException fe) {
+                                fe.printStackTrace();
+                            }
+                            ACLMessage cfp = new ACLMessage(ACLMessage.CFP);
+                            for (int i = 0; i < sellerAgents.length; ++i) {
+                                cfp.addReceiver(sellerAgents[i]);
+                            }
+                            cfp.setConversationId("trade");
+                            cfp.setReplyWith("cfp" + System.currentTimeMillis());
+                            myAgent.send(cfp);
                         }
                     }
+                    step = 0;
                     break;
             }
         }

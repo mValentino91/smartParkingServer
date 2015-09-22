@@ -31,6 +31,7 @@ public class ParkingManagerAgent extends Agent {
     private Gson gson = new Gson();
     private double[] weights = {0.5, 0.5}; //pesi per il calcolo dell'utilità. Posti liberi e zona
     //method to initialize agent
+
     protected void setup() {
         //initialize agent
         System.out.println("Hello! Im Parking Manager Agent. My id is: " + getAID().getName());
@@ -75,8 +76,8 @@ public class ParkingManagerAgent extends Agent {
         //calculate utilities
         ArrayList<Parking> results = new ArrayList<Parking>();
         for (Parking parking : parkingsList) {
-            double[] params = {parking.getCapacity()-parking.getOccupied(), parking.getZone()};
-            parking.setUtility(utilityCalculator.calculate(params, this.weights, new double[]{parking.getCapacity(),4}));
+            double[] params = {parking.getCapacity() - parking.getOccupied(), parking.getZone()};
+            parking.setUtility(utilityCalculator.calculate(params, this.weights, new double[]{parking.getCapacity(), 4}));
             if (parking.getUtility() > 0) {
                 results.add(parking);
             }
@@ -99,13 +100,13 @@ public class ParkingManagerAgent extends Agent {
                 if (msg.getPerformative() == ACLMessage.CFP) {
                     // CFP Message received. Process it
                     /*String jsonMsg = msg.getContent();
-                    RequestCFP msgOBJ = gson.fromJson(jsonMsg, RequestCFP.class);
-                    destination = msgOBJ.getDestination();
-                    location = msgOBJ.getLocation();*/
+                     RequestCFP msgOBJ = gson.fromJson(jsonMsg, RequestCFP.class);
+                     destination = msgOBJ.getDestination();
+                     location = msgOBJ.getLocation();*/
                     //creare la lista delle preferenze per l'utente
                     System.out.println(msg.getSender().getName());
                     System.out.println(caclulateProposes());
-                    
+
                     proposes.put(msg.getSender().getName(), caclulateProposes());
                     if (proposes.get(msg.getSender().getName()) != null && proposes.get(msg.getSender().getName()).size() > 0) {
                         reply.setPerformative(ACLMessage.PROPOSE);
@@ -124,8 +125,18 @@ public class ParkingManagerAgent extends Agent {
                     // get object
                     Parking parking = gson.fromJson(acceptedPark, Parking.class);
                     //risponde informando della prenotazione
-                    //gestire prenotazione
-                    reply.setPerformative(ACLMessage.INFORM);
+                    //gestisce prenotazione
+                    if (parking.getCapacity() - parking.getOccupied() > 0) {
+                        //incrementa l'occupazione del parcheggio
+                        parking.setOccupied(parking.getOccupied() + 1);
+                        //salva il parcheggio
+                        persistence.saveParking(parking);
+                        reply.setPerformative(ACLMessage.INFORM);
+                        System.out.println("Agente Parkeggi " + myAgent.getAID().getName() + ": Prenotazione Effettuata per il parcheggio " + parking.getName());
+                    } else {
+                        reply.setPerformative(ACLMessage.REJECT_PROPOSAL);
+                        System.out.println("Agente Parkeggi " + myAgent.getAID().getName() + ": Prenotazione Rifiutata per il parcheggio " + parking.getName());
+                    }
                     myAgent.send(reply);
                     String propose = gson.toJson(proposes.get(msg.getSender().getName()).get(0));
                     reply.setContent(propose);
