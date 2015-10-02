@@ -38,7 +38,7 @@ public class ParkingManagerAgent extends Agent {
         persistence = PersistenceWrapper.get();
         name = getAID().getLocalName();
         parkingsList = persistence.getParkingByManager(name);
-        // Register the book-selling service in the yellow pages
+         // Register the book-selling service in the yellow pages
         // crea un descrittore dell'agente
         DFAgentDescription dfd = new DFAgentDescription();
         // salva l'ID
@@ -78,6 +78,7 @@ public class ParkingManagerAgent extends Agent {
         for (Parking parking : parkingsList) {
             double[] params = {parking.getCapacity() - parking.getOccupied(), parking.getZone()};
             parking.setUtility(utilityCalculator.calculate(params, this.weights, new double[]{parking.getCapacity(), 4}));
+
             if (parking.getUtility() > 0) {
                 results.add(parking);
             }
@@ -98,11 +99,11 @@ public class ParkingManagerAgent extends Agent {
                 ACLMessage reply = msg.createReply();
                 // richiesta di negoziazione da parte dell'utente
                 if (msg.getPerformative() == ACLMessage.CFP) {
-                    // CFP Message received. Process it
-                    /*String jsonMsg = msg.getContent();
-                     RequestCFP msgOBJ = gson.fromJson(jsonMsg, RequestCFP.class);
-                     destination = msgOBJ.getDestination();
-                     location = msgOBJ.getLocation();*/
+                     // CFP Message received. Process it
+                     /*String jsonMsg = msg.getContent();
+                     -                    RequestCFP msgOBJ = gson.fromJson(jsonMsg, RequestCFP.class);
+                     -                    destination = msgOBJ.getDestination();
+                     -                    location = msgOBJ.getLocation();*/
                     //creare la lista delle preferenze per l'utente
                     System.out.println(msg.getSender().getName());
                     System.out.println(caclulateProposes());
@@ -124,30 +125,20 @@ public class ParkingManagerAgent extends Agent {
                     String acceptedPark = msg.getContent();
                     // get object
                     Parking parking = gson.fromJson(acceptedPark, Parking.class);
-                    //risponde informando della prenotazione
-                    //gestisce prenotazione
-                    if (parking.getCapacity() - parking.getOccupied() > 0) {
-                        //incrementa l'occupazione del parcheggio
-                        parking.setOccupied(parking.getOccupied() + 1);
-                        //salva il parcheggio
-                        persistence.saveParking(parking);
-                        reply.setPerformative(ACLMessage.INFORM);
-                        System.out.println("Agente Parkeggi " + myAgent.getAID().getName() + ": Prenotazione Effettuata per il parcheggio " + parking.getName());
-                    } else {
-                        reply.setPerformative(ACLMessage.REJECT_PROPOSAL);
-                        System.out.println("Agente Parkeggi " + myAgent.getAID().getName() + ": Prenotazione Rifiutata per il parcheggio " + parking.getName());
-                    }
-                    myAgent.send(reply);
+                     //risponde informando della prenotazione
+                    //gestire prenotazione
+                    reply.setPerformative(ACLMessage.INFORM);
                     String propose = gson.toJson(proposes.get(msg.getSender().getName()).get(0));
                     reply.setContent(propose);
                     myAgent.send(reply);
+                    //System.out.println("Agente Parkeggi " + myAgent.getAID().getName() + ": Prenotazione Effettuata per il parcheggio " + parking.getName());
                     block();
                 } else if (msg.getPerformative() == ACLMessage.REJECT_PROPOSAL) {
                     if (proposes.get(msg.getSender().getName()).size() > 1) {
                         reply.setPerformative(ACLMessage.PROPOSE);
                         // Remove last parking offer by list
                         proposes.get(msg.getSender().getName()).remove(0);
-                        // build a new offer for the buyer
+                         // build a new offer for the buyer
                         // create json propose
                         String propose = gson.toJson(proposes.get(msg.getSender().getName()).get(0));
                         // prepare reply
