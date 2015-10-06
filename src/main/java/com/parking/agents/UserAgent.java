@@ -34,6 +34,7 @@ public class UserAgent extends Agent {
     private static final double maxPrice = 15;
     private static final long serialVersionUID = 1L;
     private PersistenceManager persistence;
+    private Gson gson = new Gson();
     private double location[];
     private double destination[];
     private double threshold;
@@ -46,7 +47,8 @@ public class UserAgent extends Agent {
     //method to initialize agent
     protected void setup() {
 
-        System.out.println("Hello! Im User Agent. My id is: " + getAID().getName());
+        System.out.println("=================================\n"
+                + "Hello! Im User Agent. My id is: " + getAID().getName());
         persistence = PersistenceWrapper.get();
         //get alla input arguments
         Object[] args = getArguments();
@@ -61,6 +63,8 @@ public class UserAgent extends Agent {
             private static final long serialVersionUID = 1L;
 
             public void action() {
+                System.out.println("=================================\n"
+                        + myAgent.getAID().getName() + ": Inizio Negoziazione");
                 DFAgentDescription template = new DFAgentDescription();
                 ServiceDescription sd = new ServiceDescription();
                 sd.setType("selling");
@@ -122,104 +126,86 @@ public class UserAgent extends Agent {
     private class RequestPerformer extends CyclicBehaviour {
 
         private static final long serialVersionUID = 1L;
-        private AID bestSeller; // The agent who provides the best offer 
+        private AID bestSeller = null; // The agent who provides the best offer 
         private double bestUtility = 0; // The best utility obtained		
         private int repliesCnt = 0; // The counter of replies from seller agents
         private MessageTemplate mt; // The template to receive replies
-        private int step = 0;
         private Parking carPark = null;
         private String propose;
-        private Gson gson = new Gson();
 
         public void action() {
+            //attende messaggi dai parkings managers
+            ACLMessage reply = myAgent.receive();
+            if (reply != null) {
+                // Reply received
+                if (reply.getPerformative() == ACLMessage.PROPOSE) {
 
-            switch (step) {
-                case 0:
-                    ACLMessage reply = myAgent.receive();
-                    if (reply != null) {
-                        // Reply received
-                        if (reply.getPerformative() == ACLMessage.PROPOSE) {
-                            // This is an offer. Process it
-                            String acceptedPark = reply.getContent();
-                            Parking parking = gson.fromJson(acceptedPark, Parking.class);
-                            double utility = calculateUtility(parking);
-                            // Calculate Utility for UA
-                            if (utility >= threshold && utility > bestUtility) {
-                                carPark = parking;
-                                bestSeller = reply.getSender();
-                                bestUtility = utility;
-                                System.out.println("=================================\n Parcheggio: " 
-                                        + carPark.getName() + "\n"
-                                        + "Utilità: " + utility);
-                            }
-                            repliesCnt++;
-                        }
-                        if (repliesCnt >= sellerAgents.length) {
-                            // Are received all replies						
-                            if (bestSeller == null) {
-                                if (reply.getPerformative() == ACLMessage.FAILURE) {
-                                    step = 4;
-                                } else {
-                                    step = 2;
-                                }
-                            } else if (reply.getPerformative() == ACLMessage.INFORM) {
-                                step = 4;
-                            } else {
-                                step = 3;
-                            }
+                    System.out.println("=================================\n"
+                            + myAgent.getAID().getName() + ": Proposta Ricevuta ");
+                    // This is an offer. Process it
+                    String acceptedPark = reply.getContent();
+                    Parking parking = gson.fromJson(acceptedPark, Parking.class);
+                    double utility = calculateUtility(parking);
+                    // Calculate Utility for UA
+                    if (utility >= threshold && utility > bestUtility) {
+                        carPark = parking;
+                        bestSeller = reply.getSender();
+                        bestUtility = utility;
+                        System.out.println("=================================\n"
+                                + myAgent.getAID().getName() + " Proposta Ragionevole - Parcheggio: "
+                                + carPark.getName() + "\n"
+                                + "Utilità: " + utility);
+                    }
+                    repliesCnt++;
+                    if (repliesCnt >= sellerAgents.length) {
+                        //ho ricevuto le proposte da tutti gli agenti
+                        repliesCnt = 0;
+                        //rispondo a tutti gli agenti venditori
+                        //se nessun offerta soddisfa l'agente le rifiuta tutte
+                        if (bestSeller == null) {
+                            refuseAll(myAgent);
+                        } else {
+                            acceptProposal(myAgent, bestSeller, carPark);
                         }
                     }
-                    break;
-                case 2:
-                    // Send the purchase order to the seller that provided the best offer
-                    ACLMessage reject = new ACLMessage(ACLMessage.REJECT_PROPOSAL);
-                    reject.setSender(myAgent.getAID());
-                    for (int i = 0; i < sellerAgents.length; ++i) {
-                        reject.addReceiver(sellerAgents[i]);
-                    }
-                    // build a new offer for the buyer
-                    // create json propose
-                    Gson gson = new Gson();
-                    propose = gson.toJson(carPark);
-                    // prepare reply
-                    // send reply
-                    myAgent.send(reject);
-                    // Prepare the template to get the purchase order reply
-                    mt = MessageTemplate.and(MessageTemplate.MatchConversationId("book-trade"),
-                            MessageTemplate.MatchInReplyTo(reject.getReplyWith()));
-                    step = 0;
-                    break;
-                case 3:
-                    gson = new Gson();
-                    propose = gson.toJson(carPark);
-                    ACLMessage order = new ACLMessage(ACLMessage.ACCEPT_PROPOSAL);
-                    order.addReceiver(bestSeller);
-                    order.setContent(propose);
-                    order.setConversationId("book-trade");
-                    order.setReplyWith("order" + System.currentTimeMillis());
-                    myAgent.send(order);
-                    // Prepare the template to get the purchase order reply
-                    mt = MessageTemplate.and(MessageTemplate.MatchConversationId("book-trade"),
-                            MessageTemplate.MatchInReplyTo(order.getReplyWith()));
-                    step = 0;
-                    break;
-                case 4:
-                    System.out.println("1");
+                } else if (reply.getPerformative() == ACLMessage.INFORM) {
                     // create json propose
                     gson = new Gson();
                     propose = gson.toJson(carPark);
-                    // Receive the purchase order reply
-                    reply = myAgent.receive(mt);
-                    if (reply != null) {
-                        System.out.println("2");
-                        if (reply.getPerformative() == ACLMessage.INFORM) {
-                            System.out.println("3");
-                            result.put(myAgent.getLocalName(), carPark);
-                            block();
-                        }
-                    }
-                    break;
+                    System.out.println("=================================\n"
+                            + myAgent.getAID().getName() + ": Conferma Prenotazione Ricevuta... ");
+                    result.put(myAgent.getLocalName(), carPark);
+                    System.out.println("=================================\n"
+                            + myAgent.getAID().getName() + ": Prenotazione avvenuta " + carPark.getName());
+                }
             }
+        }
+
+        public void refuseAll(Agent myAgent) {
+
+            System.out.println("=================================\n"
+                    + myAgent.getAID().getName() + ": Reject_proposal ");
+            // Send the purchase order to the seller that provided the best offer
+            ACLMessage reject = new ACLMessage(ACLMessage.REJECT_PROPOSAL);
+            reject.setSender(myAgent.getAID());
+            for (int i = 0; i < sellerAgents.length; ++i) {
+                reject.addReceiver(sellerAgents[i]);
+            }
+            myAgent.send(reject);
+        }
+
+        public void acceptProposal(Agent myAgent, AID bestSeller, Parking carPark) {
+
+            System.out.println("=================================\n"
+                    + myAgent.getAID().getName() + ": Accept_Proposal " + bestSeller.getName());
+            gson = new Gson();
+            String propose = gson.toJson(carPark);
+            ACLMessage order = new ACLMessage(ACLMessage.ACCEPT_PROPOSAL);
+            order.addReceiver(bestSeller);
+            order.setContent(propose);
+            order.setConversationId("book-trade");
+            order.setReplyWith("order" + System.currentTimeMillis());
+            myAgent.send(order);
         }
 
         /**

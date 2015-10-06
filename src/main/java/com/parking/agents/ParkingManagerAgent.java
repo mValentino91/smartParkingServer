@@ -34,11 +34,12 @@ public class ParkingManagerAgent extends Agent {
 
     protected void setup() {
         //initialize agent
-        System.out.println("Hello! Im Parking Manager Agent. My id is: " + getAID().getName());
+        System.out.println("=================================\n"
+                                + "Hello! Im Parking Manager Agent. My id is: " + getAID().getName());
         persistence = PersistenceWrapper.get();
         name = getAID().getLocalName();
         parkingsList = persistence.getParkingByManager(name);
-         // Register the book-selling service in the yellow pages
+        // Register the book-selling service in the yellow pages
         // crea un descrittore dell'agente
         DFAgentDescription dfd = new DFAgentDescription();
         // salva l'ID
@@ -99,15 +100,8 @@ public class ParkingManagerAgent extends Agent {
                 ACLMessage reply = msg.createReply();
                 // richiesta di negoziazione da parte dell'utente
                 if (msg.getPerformative() == ACLMessage.CFP) {
-                     // CFP Message received. Process it
-                     /*String jsonMsg = msg.getContent();
-                     -                    RequestCFP msgOBJ = gson.fromJson(jsonMsg, RequestCFP.class);
-                     -                    destination = msgOBJ.getDestination();
-                     -                    location = msgOBJ.getLocation();*/
-                    //creare la lista delle preferenze per l'utente
-                    System.out.println(msg.getSender().getName());
-                    System.out.println(caclulateProposes());
-
+                    System.out.println("=================================\n"
+                                + myAgent.getAID().getName() + ": Nuova Richiesta Ricevuta... ");
                     proposes.put(msg.getSender().getName(), caclulateProposes());
                     if (proposes.get(msg.getSender().getName()) != null && proposes.get(msg.getSender().getName()).size() > 0) {
                         reply.setPerformative(ACLMessage.PROPOSE);
@@ -121,34 +115,40 @@ public class ParkingManagerAgent extends Agent {
                         myAgent.send(reply);
                     }
                 } else if (msg.getPerformative() == ACLMessage.ACCEPT_PROPOSAL) {
+                    System.out.println("=================================\n"
+                                + myAgent.getAID().getName() + ": Proposta accettata dall'utente.. ");
                     // ACCEPT_PROPOSAL Message received. Process it
                     String acceptedPark = msg.getContent();
                     // get object
                     Parking parking = gson.fromJson(acceptedPark, Parking.class);
-                     //risponde informando della prenotazione
+                    //risponde informando della prenotazione
                     //gestire prenotazione
                     reply.setPerformative(ACLMessage.INFORM);
                     String propose = gson.toJson(proposes.get(msg.getSender().getName()).get(0));
                     reply.setContent(propose);
                     myAgent.send(reply);
-                    //System.out.println("Agente Parkeggi " + myAgent.getAID().getName() + ": Prenotazione Effettuata per il parcheggio " + parking.getName());
+                    System.out.println("=================================\n"
+                                + myAgent.getAID().getName() + ": Prenotazione effettuata... "+parking.getName());
                     block();
                 } else if (msg.getPerformative() == ACLMessage.REJECT_PROPOSAL) {
                     if (proposes.get(msg.getSender().getName()).size() > 1) {
                         reply.setPerformative(ACLMessage.PROPOSE);
                         // Remove last parking offer by list
                         proposes.get(msg.getSender().getName()).remove(0);
-                         // build a new offer for the buyer
+                        // build a new offer for the buyer
                         // create json propose
                         String propose = gson.toJson(proposes.get(msg.getSender().getName()).get(0));
                         // prepare reply
                         reply.setContent(propose);
                         myAgent.send(reply);
                         block();
-                    } else {
+                    } else{
                         // The requested book has been sold to another buyer in the meanwhile .
+                        System.out.println("=================================\n"
+                                + "Prenotazione gia' effettuata");
                         reply.setPerformative(ACLMessage.FAILURE);
                         reply.setContent("not-available");
+                        reply.addReceiver(msg.getSender());
                         myAgent.send(reply);
                         block();
                     }
