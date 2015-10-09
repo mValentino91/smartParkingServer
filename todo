@@ -1,0 +1,8 @@
+. gestione dei cambiamenti di utilità: inserire margine di tolleranza all'interno della negoziazione, con verifica prima dell'accettazione
+. dinamicità prezzo in base ad occupazione e eventi
+. documentazione: estendere paragrafo 'Implementazione'
+. testing approfondito
+
+http://localhost:8080/SmartParkingServer/initUserAgent?requestJson=[{%22partenza%22:%20[40.851816,%2014.271955],%20%22arrivo%22:%20[40.843768,%2014.240912],%20%22prezzo%22:%200.145047,%20%22distanza%22:%200.0589623,%20%22tempo%22:%200.163915,%20%22soglia%22:%20%200.0871394}]
+
+www.coordinate-gps.it

@@ -1,0 +1,253 @@
+\documentclass[11pt,a4paper,twoside]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{mathtools,amsthm}
+\usepackage{textcomp}
+\usepackage{filecontents}
+\usepackage{libertine}
+\usepackage[libertine,bigdelims]{newtxmath}
+\usepackage{amsfonts}
+\usepackage[cal=rsfso,calscaled=1.0,bb=boondox,frak=boondox]{mathalfa}
+\usepackage{inconsolata}
+%\usepackage[p]{zlmtt}
+%\usepackage[pdftex]{hyperref}
+\usepackage[pdftex]{graphicx}
+\usepackage{url}
+\usepackage{float}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{booktabs}
+\usepackage{enumitem}
+%\usepackage[margin=10pt,font=small,labelfont=bf,labelsep=endash]{caption}
+\usepackage[font=small,labelfont=bf,labelsep=quad,justification=justified,singlelinecheck=false]{caption}
+\usepackage{subcaption}
+\usepackage{fancyhdr}
+\usepackage{listings}
+\AtBeginDocument{\numberwithin{lstlisting}{section}}
+\usepackage{listingsutf8}
+\usepackage[headheight=18pt]{geometry}
+\usepackage[final]{microtype}
+\usepackage[a-1b]{pdfx}
+
+\flushbottom
+%\raggedbottom
+
+\geometry{top=3.5cm, left=3.0cm, right=3.0cm, bottom=3.0cm}
+
+\hypersetup{
+    colorlinks, pdfstartpage=1, pdfstartview=FitV,%
+    breaklinks, pdfpagemode=UseNone, pageanchor=true, pdfpagemode=UseOutlines,%
+    plainpages=false, bookmarksnumbered, bookmarksopen=true, bookmarksopenlevel=1,%
+    hypertexnames, pdfhighlight=/O,%
+    urlcolor=RoyalBlue, linkcolor=blue, citecolor=magenta, %pagecolor=black,
+    %pdftitle={Titolo},
+    %pdfauthor={Il mio nome},
+    %pdfsubject={Soggetto},
+    %pdfkeywords={Chiave1, Chiave2},
+    %pdflang={it}
+}
+
+\begin{filecontents*}{\jobname.xmpdata}
+    \Title{Un'applicazione di Smart Parking sociale}
+    \Author{Bove L., Capezzuto L., Valentino M.}
+    \Subject{Sistemi multi-agente}
+    \Keywords{Sistemi multi-agente\sep Smart Parking}
+\end{filecontents*}
+
+\urlstyle{sf}
+
+% http://tex.stackexchange.com/a/10401
+\expandafter\def\expandafter\UrlBreaks\expandafter{\UrlBigBreaks%
+  \do\a\do\b\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j%
+  \do\k\do\l\do\m\do\n\do\o\do\p\do\q\do\r\do\s\do\t%
+  \do\u\do\v\do\w\do\x\do\y\do\z\do\A\do\B\do\C\do\D%
+  \do\E\do\F\do\G\do\H\do\I\do\J\do\K\do\L\do\M\do\N%
+  \do\O\do\P\do\Q\do\R\do\S\do\T\do\U\do\V\do\W\do\X%
+  \do\Y\do\Z}
+
+\graphicspath{{immagini/}}
+\DeclareGraphicsExtensions{.pdf,.png}
+
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+\definecolor{pred}{rgb}{0.9,0,0}
+\definecolor{pgrey}{rgb}{0.46,0.45,0.48}
+
+\lstset{
+  inputpath         = ../src/main/java/com/parking,
+  language          = Java,
+  showspaces        = false,
+  showtabs          = false,
+  breaklines        = true,
+  showstringspaces  = false,
+  breakatwhitespace = true,
+  commentstyle      = \color{pgreen},
+  keywordstyle      = \color{pblue},
+  stringstyle       = \color{pred},
+  basicstyle        = \ttfamily,
+  moredelim         = [il][\textcolor{pgrey}]{$$},
+  moredelim         = [is][\textcolor{pgrey}]{\%\%}{\%\%}
+}
+
+\renewcommand\lstlistingname{Codice}
+\renewcommand\lstlistlistingname{Elenco dei codici}
+
+\numberwithin{figure}{section}
+\numberwithin{equation}{section}
+
+\newcommand{\img}[6]{
+    \begin{figure}[#5]
+        \centerline{\includegraphics[width=#4\columnwidth]{#1}}
+        \caption{#2}
+        \label{#3}
+    \end{figure}
+}
+
+\pagestyle{fancy}
+
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+
+\fancyhead[RO,LE]{\small\thepage}
+\fancyhead[LO]{\small\rightmark}
+%\fancyhead[LO]{\small Nome Cognome}
+\fancyhead[RE]{\small Un'applicazione di Smart Parking sociale}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+
+\title{
+    Un'applicazione di Smart Parking sociale\\
+    \vspace{.5cm}
+    \large Sistemi Multi-agente\\
+    \vspace{.5cm}
+    \normalsize {\fontsize{10}{12}\selectfont A.A.} 2014/15
+    \vspace{.25cm}
+}
+
+\author{
+    Luigi \textsc{Bove}\\
+    {\fontsize{11.25}{13.5}\selectfont N}97/196
+    \and
+    Luca \textsc{Capezzuto}\\
+    {\fontsize{11.25}{13.5}\selectfont N}97/205
+    \and
+    Marco \textsc{Valentino}\\
+    {\fontsize{11.25}{13.5}\selectfont N}97/206
+}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+\newpage
+
+\section{Introduzione}
+
+Lo \emph{Smart Parking} è uno dei punti fondamentali nell'ambito delle Smart Cities in quanto, nell'obiettivo generale di migliorare la qualità della vita in città, una Smart City ha bisogno di soluzioni intelligenti e sostenibili al problema dei parcheggi.
+Cercare parcheggio infatti congestiona il traffico, aumenta l'inquinamento atmosferico, ed è anche molto frustrante per gli automobilisti, senza contare che maggiore è la densità di popolazione, maggiore è l'entità del problema \cite{1}.
+
+Nella ricerca di una soluzione, sono state avanzate diverse proposte che fanno uso di sensori e analisi dei dati, a cui il cittadino si interfaccia tramite applicazioni mobile.
+Molti degli approcci proposti interpretano lo Smart Parking come un problema di ottimizzazione dal punto di vista degli automobilisti. Tuttavia, un'applicazione di Smart City dovrebbe beneficiare anche la città stessa: oltre ad aiutare gli automobilisti, bisognerebbe anche ottimizzare lo stato dei parcheggi. Altrimenti, trovare parcheggio diviene una ``competizione'' tra automobilisti, con la conseguenza che chi ``perde'' è costretto ad effettuare un'altra ricerca, portando ad altre congestioni e altro inquinamento.
+
+In questo documento presentiamo un'applicazione che fa uso di tale approccio.
+Il progetto rappresenta lo sviluppo e l'ampliamento del prototipo presentato in \cite{2}.
+
+\section{Il contesto per un'applicazione di Smart Parking}
+
+Un sistema di Smart Parking è composto da diversi dispositivi hardware per il rilevamento del grado di occupazione dei parcheggi cittadini, e di applicazioni software per la gestione dell'allocazione dei parcheggi, con i quali gli automobilisti si interfacciano.
+Di solito tali sistemi permettono all'utente di scegliere da un insieme di opzioni \cite{3}.
+
+\img{arch}{Un tipico sistema di Smart Parking. Fonte: \cite{2}}{fig:1}{.7}{hb}
+
+Nel presente lavoro, assumeremo che le Smart Cities siano dotate di un sistema del genere, e proporremo di estenderlo con un modulo software che effettui decisioni per gli automobilisti, considerando non solo i bisogni del singolo, ma anche il beneficio sociale della città. La scelta di un parcheggio sarà il risultato di una negoziazione automatica tra due tipologie di agenti software:
+\begin{itemize}
+    \item gli \emph{User Agent} (UA), che agiscono per conto degli automobilisti;
+    \item i \emph{Parking Manager} (PM), che si occupano di gestire i parcheggi cittadini.
+\end{itemize}
+È necessario dunque che i diversi proprietari dei parcheggi in città siano favorevoli a sottoscriversi ad un \emph{sistema di parcheggio cittadino}, gestito tramite i Parking Manager, i quali potranno al contempo raccogliere informazioni riguardanti gli specifici bisogni della città, e fornirli agli uffici comunali affinché possano essere valutati.
+
+La negoziazione dovrà trovare il giusto bilancio tra i bisogni del cittadino e quelli della città. Infatti, mentre l'obiettivo del Parking Manager è allocare i parcheggi cercando di ottenere una distribuzione il più possibile uniforme, il cittadino vorrebbe parcheggiare il più vicino possibile alla sua destinazione, e al prezzo minore.
+
+\subsection{Un criterio \emph{sociale} per la selezione dei parcheggi}
+
+In molti processi decisionali, le alternative competitive e le loro caratteristiche sono note a priori ai decisori. Invece, gli automobilisti trovano i possibili parcheggi in una sequenza temporale, e l'ordine di scoperta influenza la loro decisione.
+Nel nostro lavoro, il Parking Manager propone i parcheggi in una sequenza temporale che favorisce per primi i parcheggi che più soddisfano i bisogni della città.
+
+Come abbiamo detto, l'obiettivo della negoziazione è trovare un compromesso tra automobilista e città. Questo al fine di un benessere sociale utilitaristico. In altre parole, vogliamo massimizzare il rapporto tra il benessere della società e il benessere del singolo individuo.
+Il meccanismo di negoziazione proposto si basa infatti sul concetto di \emph{ottimo sociale} \cite{4}, secondo il quale tutto ciò che migliora il benessere medio degli agenti che vivono in una società è da considerarsi benefico per la società stessa. Quindi, il benessere sociale che considereremo è la somma delle utilità individuali.
+
+\subsubsection{Modello dei prezzi}
+
+La possibilità di monitorare la situazione dei parcheggi in tempo reale consente di introdurre un innovativo sistema di prenotazione dei posti basato su prezzi dinamici, come in \cite{1}, \cite{5}.
+In questo modo, gli automobilisti ottengono un servizio migliore, e i gestori, in base a diverse strategie di prezzo, possono ottenere entrate molto più proficue.
+Ad esempio, le tariffe potrebbero essere più alte durante gli orari di punta, o nelle zone più richieste, e potrebbero esserci sconti per utenti abituali o per chi parcheggia in aree specifiche. Inoltre, in questo modo si potrebbero incoraggiare gli automobilisti a servirsi maggiormente delle strutture park-and-ride\footnote{Speciali parcheggi connessi ai trasporti pubblici che consentono di raggiungere i centri urbani lasciando il proprio mezzo e usando treni, bus o il car sharing per il resto del viaggio. In genere sono situati nelle zone periferiche e vengono molto usati dai pendolari.}, aumentando dunque l'uso dei trasporti pubblici e riducendo il traffico cittadino.
+
+Ovviamente, le tariffe andrebbero accuratamente studiate nel contesto specifico di ogni città. In questo lavoro, il Parking Manager cerca di incentivare gli automobilisti a parcheggiare lontano dalle zone altamente congestionate, o in cui ci sono eventi che aumentano il traffico, come concerti, manifestazioni sportive, lavori stradali, e così via. L'uso della negoziazione permette di considerare anche queste informazioni dinamiche.
+
+Per evitare l'agglomeramento di parcheggi in specifiche aree cittadine, il sistema di parcheggio cittadino dovrà dunque utilizzare un modello dei prezzi dinamico. Una volta che il Parking Manager individua una zona in cui si vorrebbe evitare di parcheggiare, questa viene detta \emph{zona rossa}, mentre l'area attorno viene suddivisa in diversi anelli concentrici, che vengono detti \emph{settori}, ed hanno un raggio stabilito secondo un qualche criterio. I prezzi associati ai parcheggi dipendono dal settore in cui si trovano, per cui più il settore è lontano, più il prezzo è basso. Inoltre, per incentivare il parcheggio nelle zone meno occupate, un fattore di sconto viene applicato in base al rapporto tra occupazione e capacità totale della zona.
+
+\subsubsection{Il meccanismo di negoziazione}
+
+In questo lavoro adottiamo il meccanismo di negoziazione riportato in \cite{6}, che si basa sul protocollo \textsf{FIPA Iterated Contract Net}, il quale imita un processo di negoziazione tramite reiterazione di offerte.
+Il protocollo è organizzato in turni, ciascuno composto da interazioni tra lo UA, che inizia la negoziazione, e il PM, che propone le offerte.
+
+\img{fipa}{Il protocollo d'interazione FIPA Iterated Contract Net. Fonte: \cite{7}}{fig:2}{.7}{ht}
+
+Nel primo turno di negoziazione, lo UA effettua una richiesta (\emph{call for proposal}) di parcheggio, specificando la sua destinazione, l'intervallo temporale in cui ne ha bisogno, e il livello d'importanza (\emph{peso}) circa specifici attributi del parcheggio. Il PM può respingere la richiesta, se non ci sono offerte disponibili, oppure selezionare un'offerta da una lista di quelle possibili.
+Nel secondo caso, il PM definisce l'insieme delle offerte selezionando i parcheggi in un'area centrata attorno alla destinazione dell'utente, e le cui dimensioni rispettano un qualche criterio (ad esempio, un'area piccola se l'utente vuole parcheggiare lontano dalla zona rossa, un'area più grande altrimenti). Una volta stabilito l'insieme, il PM calcola i prezzi corrispondenti alle offerte in base al modello dei prezzi descritto nella sezione precedente, poi ordina gli elementi in base a criteri interni che considerano i bisogni della città. Le offerte vengono inviate allo UA, turno dopo turno, in ordine decrescente.
+Quando riceve un'offerta, lo UA la valuta secondo il proprio criterio e decide se accettarla o rifiutarla. Nel caso in cui rifiuta, il PM invia un'altra offerta, e così via fin quando lo UA accetta o l'insieme di offerte si esaurisce. Una volta rifiutata un'offerta, questa non è più disponibile nei turni di negoziazione successivi. Questa assunzione modella la possibilità che un'offerta rifiutata possa essere riproposta ad un altro utente, o che il suo prezzo possa nel frattempo cambiare secondo l'andamento del mercato, come in \cite{8}.
+Chiaramente, è difficile per un agente valutare se accettare un'offerta per minimizzare i costi di negoziazione (con il rischio di ottenere un risultato sub-ottimo) o di continuare a valutare offerte per massimizzare la sua utilità attesa (con il rischio di aumentare il costo di negoziazione e arrivare ad un conflitto di interessi). Nel nostro approccio, questo aspetto è modellato associando allo UA una \emph{soglia di accettazione} (nell'intervallo $[0, 1]$), rappresentante l'attitudine dell'utente a raggiungere un compromesso.
+
+Sia i criteri di preferenza del PM che quelli dello UA sono espressi da funzioni basate sull'indice di utilità multi-attributo definito in \cite{9}. In particolare, per entrambi gli agenti l'utilità è definita dalla seguente somma pesata:
+\begin{equation*}
+    U_{PM/UA} (\text{offerta}_{PM} (k)) = \sum_{i=1}^{n} \big( w_i * \frac{\text{attr}_i}{\text{fatt}_i} \big)
+\end{equation*}
+
+Dove $\text{attr}_i$ indica ciascuno degli $n$ attributi considerati per il parcheggio, $\text{fatt}_i$ è il corrispondente fattore di normalizzazione, e $w_i$ è il corrispondente peso, con $\sum_{i=1}^{n} w_i = 1$.
+
+La funzione di utilità del PM dipende dalla percentuale di occupazione dei parcheggi al momento della richiesta, e dalla distanza del parcheggio dalla zona rossa, normalizzata rispetto alla massima distanza considerata dal PM, la quale determina l'area per la selezione del parcheggio.
+La funzione di utilità dello UA dipende dal prezzo del parcheggio, dalla distanza a piedi dal parcheggio alla destinazione, e dal corrispondente tempo di viaggio con i mezzi pubblici.
+I valori di questi attributi sono mostrati in ogni offerta che il PM invia allo UA. In particolare per lo UA, ogni attributo è normalizzato rispetto al costo massimo di parcheggio e alla distanza massima a piedi dal parcheggio alla destinazione, che sono entrambi specificati come requisiti dall'utente al momento della richiesta \cite{10}.
+
+\section{Implementazione}
+
+Al fine di creare una soluzione che si potesse integrare in un più complesso sistema per la gestione dei parcheggi cittadini, abbiamo implementato un servizio web multi-agente che automaticamente seleziona posti parcheggio in risposta alle richieste degli utenti. L'architettura è mostrata in figura \ref{fig:3}.
+\img{arch2}{L'architettura del servizio.}{fig:3}{.6}{ht}
+
+Il modulo per la negoziazione, comprendente sia lo UA e il PM che il protocollo di interazione, è stato implementato usando JADE \cite{11}, un framework open source per lo sviluppo di applicazioni che implementano sistemi multi-agenti. JADE è basato su Java, e supporta la comunicazione tra agenti in conformità con le specifiche FIPA\footnote{\emph{Foundation for Intelligent Physical Agents}.}. Il sistema multi-agente è composto da molteplici UA che comunicano con alcuni PM. Gli UA, insieme ai PM, sono implementati lato server, e interfacciati tramite servizi di tipo REST, in modo da ridurre il carico computazionale sui client e centralizzare la gestione dei dati, così che tramite l'esposizione di servizi web sia possibile creare diversi tipi di applicazioni che si interfacciano con l'utente. Il server back-end, basato su Apache Tomcat, è capace di comunicare con diversi servizi e fonti d'informazioni esterne:
+\begin{itemize}
+    \item Google Maps \cite{12} per il recupero della distanza a piedi e del tempo di viaggio dai parcheggi alle destinazioni;
+    \item database di parcheggi per conoscere la disponibilità dei posti;
+    \item strutture municipali per il recupero di informazioni riguardanti la viabilità stradale.
+\end{itemize}
+Il database di parcheggi viene estratto da OpenStreetMap \cite{13}, ed è implementato usando MongoDB, un database NoSQL che supporta una grande varietà di dati, in particolare quelli geografici.
+La prenotazione del parcheggio, e dunque il decremento dei posti disponibili, viene effettuata solo nei momento in cui l'utente accetta un'offerta, per non influenzare la funzione di utilità degli agenti. In questo modo si evitano alterazioni del processo di negoziazione.
+
+L'utente, tramite il proprio client\footnote{In genere un app mobile.}, dovrà fornire al server, oltre ai dati iniziali (partenza, destinazione, prezzo massimo), i pesi da dare agli attributi per la funzione di utilità della negoziazione.
+Dopodiché ci sarà una comunicazione in più fasi:
+\begin{itemize}
+    \item il client trasforma, tramite un servizio di geocoding del server, gli indirizzi di partenza e arrivo in coordinate;
+    \item il client compila un JSON per effettuare una HTTP/POST al server;
+    \item il server accetta la richiesta e avvia una negoziazione;
+    \item il client effettua un polling fino a che non ottiene i risultati della negoziazione, che poi elabora per presentarli all'utente (percorso su mappa e indicazioni).
+\end{itemize}
+Il polling avviene perché gli agenti vengono eseguiti asincronamente sul server, fino a che la negoziazione non termina e determinate strutture dati vengono modificate con i risultati.
+
+\section{Conclusioni}
+
+L'obiettivo dello Smart Parking è rendere più facile agli automobilisti trovare parcheggio, e al contempo favorire una riduzione di traffico, emissioni di CO, frustrazione e perdita di tempo, andando così a beneficiare la città intera.
+Ma per raggiungere pienamente questo obiettivo, le Smart Cities dovrebbero poter fare affidamento sull'autorità cittadina, in modo da conoscere regolamentazioni e decisioni che aiuterebbero a sviluppare servizi migliori.
+Tipicamente, queste informazioni sono molto dinamiche e influenzate da eventi imprevisti.
+Per questo motivo, abbiamo proposto un'applicazione di Smart Parking che punta ad un beneficio sociale piuttosto che solo del singolo.
+Il meccanismo implementato punta a massimizzare il benessere collettivo cercando un compromesso tra utenti e autorità cittadine, i cui interessi sono spesso in conflitto.
+Il modo classico per ottenere ciò è tramite una negoziazione, che è il punto chiave della nostra applicazione, e l'oggetto su cui si è basato questo documento.
+
+\fancyhead[LO]{Riferimenti}
+\nocite{*}
+\bibliographystyle{unsrt}
+\renewcommand\refname{Riferimenti}
+\bibliography{riferimenti}
+
+\end{document}
