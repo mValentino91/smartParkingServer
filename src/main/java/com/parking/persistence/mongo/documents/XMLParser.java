@@ -17,6 +17,8 @@
  */
 package com.parking.persistence.mongo.documents;
 
+import com.parking.negotiation.ConcreteInputCalculator;
+import com.parking.negotiation.InputCalculator;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
@@ -37,6 +39,7 @@ public class XMLParser {
     private final String filePath;
     private final String tagName;
     private final String collection;
+    private final InputCalculator calculator = new ConcreteInputCalculator();
 
     private ArrayList<? extends Collection> list;
 
@@ -116,9 +119,9 @@ public class XMLParser {
         for (int i = 0; i < nl.getLength(); i++) {
 
             int zone = 1 + (int)(Math.random() * ((4 - 1) + 1));
-            int capacity = 10 + (int)(Math.random() * ((100 - 10) + 1));
-            double price = 1 + (Math.random() * ((10 - 1) + 1));
+            int capacity = 10 + (int)(Math.random() * ((50 - 10) + 1));
             int indexmanager = (int)(Math.random() * ((2) + 1));
+            double price = calculator.getStaticPrice(zone,capacity);
             String[] pm = {"NapoliPark","ParkingPrisca","ParcheggiCampania"};
 
             // get the element
@@ -145,7 +148,7 @@ public class XMLParser {
             p.setOccupied(0);
             p.setIsFull(false);
             p.setUtility(0);
-            p.setPrice(zone);
+            p.setPrice(price);
             p.setParkingManagerId(pm[indexmanager]);
 
             // add to list

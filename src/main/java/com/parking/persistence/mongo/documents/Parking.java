@@ -15,7 +15,7 @@ public class Parking extends Collection {
     private int zone;
     private int capacity;
     private int occupied;
-    private float price;
+    private double price;
     private boolean isFull;
     private double[] location;
     private double utility;
@@ -93,14 +93,14 @@ public class Parking extends Collection {
     /**
      * @return the price
      */
-    public float getPrice() {
+    public double getPrice() {
         return price;
     }
 
     /**
      * @param price the price to set
      */
-    public void setPrice(float price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

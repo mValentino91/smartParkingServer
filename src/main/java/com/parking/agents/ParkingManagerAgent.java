@@ -3,6 +3,8 @@ package com.parking.agents;
 import com.google.gson.Gson;
 import com.parking.dbManager.PersistenceManager;
 import com.parking.dbManager.PersistenceWrapper;
+import com.parking.negotiation.ConcreteInputCalculator;
+import com.parking.negotiation.InputCalculator;
 import com.parking.negotiation.ParkingManagerUtilityCalculator;
 import com.parking.negotiation.QuickSortParking;
 import com.parking.negotiation.UtilityCalculator;
@@ -24,6 +26,7 @@ import java.util.HashMap;
 public class ParkingManagerAgent extends Agent {
 
     private PersistenceManager persistence;
+    private InputCalculator inputCalc = new ConcreteInputCalculator();
     private UtilityCalculator utilityCalculator = new ParkingManagerUtilityCalculator();
     private String name;
     private Iterable<Parking> parkingsList;
@@ -35,7 +38,7 @@ public class ParkingManagerAgent extends Agent {
     protected void setup() {
         //initialize agent
         System.out.println("=================================\n"
-                                + "Hello! Im Parking Manager Agent. My id is: " + getAID().getName());
+                + "Hello! Im Parking Manager Agent. My id is: " + getAID().getName());
         persistence = PersistenceWrapper.get();
         name = getAID().getLocalName();
         parkingsList = persistence.getParkingByManager(name);
@@ -78,8 +81,10 @@ public class ParkingManagerAgent extends Agent {
         ArrayList<Parking> results = new ArrayList<Parking>();
         for (Parking parking : parkingsList) {
             double[] params = {parking.getCapacity() - parking.getOccupied(), parking.getZone()};
+            //il parametro dell'evento è per il momento impostato a false, da pensare
+            //TODO
+            parking.setPrice(inputCalc.getDynamicPrice(parking.getZone(), parking.getOccupied(), parking.getCapacity(), false));
             parking.setUtility(utilityCalculator.calculate(params, this.weights, new double[]{parking.getCapacity(), 4}));
-
             if (parking.getUtility() > 0) {
                 results.add(parking);
             }
@@ -101,7 +106,7 @@ public class ParkingManagerAgent extends Agent {
                 // richiesta di negoziazione da parte dell'utente
                 if (msg.getPerformative() == ACLMessage.CFP) {
                     System.out.println("=================================\n"
-                                + myAgent.getAID().getName() + ": Nuova Richiesta Ricevuta... ");
+                            + myAgent.getAID().getName() + ": Nuova Richiesta Ricevuta... ");
                     proposes.put(msg.getSender().getName(), caclulateProposes());
                     if (proposes.get(msg.getSender().getName()) != null && proposes.get(msg.getSender().getName()).size() > 0) {
                         reply.setPerformative(ACLMessage.PROPOSE);
@@ -116,19 +121,31 @@ public class ParkingManagerAgent extends Agent {
                     }
                 } else if (msg.getPerformative() == ACLMessage.ACCEPT_PROPOSAL) {
                     System.out.println("=================================\n"
-                                + myAgent.getAID().getName() + ": Proposta accettata dall'utente.. ");
+                            + myAgent.getAID().getName() + ": Proposta accettata dall'utente.. ");
                     // ACCEPT_PROPOSAL Message received. Process it
                     String acceptedPark = msg.getContent();
                     // get object
                     Parking parking = gson.fromJson(acceptedPark, Parking.class);
-                    //risponde informando della prenotazione
-                    //gestire prenotazione
-                    reply.setPerformative(ACLMessage.INFORM);
-                    String propose = gson.toJson(proposes.get(msg.getSender().getName()).get(0));
-                    reply.setContent(propose);
-                    myAgent.send(reply);
-                    System.out.println("=================================\n"
-                                + myAgent.getAID().getName() + ": Prenotazione effettuata... "+parking.getName());
+                    //verifico che l'utilità corrente non sia dimezzata rispetto a quella calcolata a inizio negoziazione
+                    double[] params = {parking.getCapacity() - parking.getOccupied(), parking.getZone()};
+                    if (parking.getCapacity() - parking.getOccupied() <= 0 || parking.getUtility() / 2 >= utilityCalculator.calculate(params, weights, new double[]{parking.getCapacity(), 4})) {
+                        //rispondere con messaggio di fallimento e riprendere la negoziazione dal parcheggio successivo
+                        reply.setPerformative(ACLMessage.REFUSE);
+                        String propose = gson.toJson(proposes.get(msg.getSender().getName()).get(0));
+                        reply.setContent(propose);
+                        myAgent.send(reply);
+                        System.out.println("=================================\n"
+                                + myAgent.getAID().getName() + ": Impossibile effettuare la prenotazione... " + parking.getName());
+                    } else{
+                        //è possibile prenotare il parcheggio
+                        parking.setOccupied(parking.getOccupied() + 1);
+                        reply.setPerformative(ACLMessage.INFORM);
+                        String propose = gson.toJson(proposes.get(msg.getSender().getName()).get(0));
+                        reply.setContent(propose);
+                        myAgent.send(reply);
+                        System.out.println("=================================\n"
+                                + myAgent.getAID().getName() + ": Prenotazione effettuata... " + parking.getName());
+                    }
                     block();
                 } else if (msg.getPerformative() == ACLMessage.REJECT_PROPOSAL) {
                     if (proposes.get(msg.getSender().getName()).size() > 1) {
@@ -142,7 +159,7 @@ public class ParkingManagerAgent extends Agent {
                         reply.setContent(propose);
                         myAgent.send(reply);
                         block();
-                    } else{
+                    } else {
                         // The requested book has been sold to another buyer in the meanwhile .
                         System.out.println("=================================\n"
                                 + "Prenotazione gia' effettuata");

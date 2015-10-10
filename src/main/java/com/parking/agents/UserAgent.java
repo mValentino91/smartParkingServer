@@ -31,7 +31,7 @@ public class UserAgent extends Agent {
     //raggio massimo in cui considerare i parcheggi dal punto di partenza
     private static final double maxDistance2 = 1;
     //prezzo massimo per un parcheggio
-    private static final double maxPrice = 15;
+    private static final double maxPrice = 20;
     private static final long serialVersionUID = 1L;
     private PersistenceManager persistence;
     private Gson gson = new Gson();
@@ -177,6 +177,9 @@ public class UserAgent extends Agent {
                     result.put(myAgent.getLocalName(), carPark);
                     System.out.println("=================================\n"
                             + myAgent.getAID().getName() + ": Prenotazione avvenuta " + carPark.getName());
+                }else{
+                    //se la prenotazione non va a buon fine
+                    refuseAll(myAgent);
                 }
             }
         }
