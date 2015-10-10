@@ -25,12 +25,12 @@ import static java.lang.Math.log;
  */
 public class ConcreteInputCalculator implements InputCalculator {
 
-    private int maxPrice = 10;
+    private double maxPrice = 10.0;
 
     @Override
     public double getStaticPrice(int zone, int capacity) {
 
-        return maxPrice / (log(zone) + 1) * maxPrice / capacity;
+        return (maxPrice / (log(zone) + 1)) * (maxPrice / capacity);
 
     }
 
@@ -40,9 +40,9 @@ public class ConcreteInputCalculator implements InputCalculator {
             return -1;
         }
         if (isEvent) {
-            return maxPrice / (log(zone) + 1) * maxPrice / (capacity - occupied) + (1 + (int) (Math.random() * ((maxPrice - 1) + 1)));
+            return (maxPrice / (log(zone) + 1)) * (maxPrice / (capacity - occupied)) + (1 + (int) (Math.random() * ((maxPrice - 1) + 1)));
         } else {
-            return maxPrice / (log(zone) + 1) * maxPrice / (capacity - occupied);
+            return (maxPrice / (log(zone) + 1)) * (maxPrice / (capacity - occupied));
         }
     }
 }

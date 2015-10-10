@@ -1,6 +1,9 @@
 package com.parking.agents;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.parking.dbManager.PersistenceManager;
 import com.parking.dbManager.PersistenceWrapper;
 import java.awt.Point;
@@ -86,6 +89,10 @@ public class UserAgent extends Agent {
                 for (int i = 0; i < sellerAgents.length; ++i) {
                     cfp.addReceiver(sellerAgents[i]);
                 }
+                cfp.setContent("{\"location\":["
+                        + location[0] + "," + location[1]
+                        + "],\"destination\":["
+                        + destination[0] + "," + destination[1] + "]}");
                 cfp.setConversationId("trade");
                 cfp.setReplyWith("cfp" + System.currentTimeMillis());
                 myAgent.send(cfp);
@@ -151,7 +158,7 @@ public class UserAgent extends Agent {
                             + "Utilità: " + utility + "\n"
                             + "Manager: " + parking.getParkingManagerId() + "\n"
                             + "Prezzo: " + parking.getPrice() + "\n"
-                            + "Percentuale posti liberi: " + ((double)((parking.getCapacity() - parking.getOccupied())/ parking.getCapacity()))+ "\n"
+                            + "Percentuale posti liberi: " + ((double) ((parking.getCapacity() - parking.getOccupied()) / parking.getCapacity())) + "\n"
                             + "Zona: " + parking.getZone() + "\n"
                             + "Utilità Manager: " + parking.getUtility() + "\n"
                             + "=================================\n");
@@ -182,6 +189,9 @@ public class UserAgent extends Agent {
                     result.put(myAgent.getLocalName(), carPark);
                     System.out.println("=================================\n"
                             + myAgent.getAID().getName() + ": Prenotazione avvenuta " + carPark.getName());
+
+                    myAgent.doSuspend();
+
                 } else {
                     //se la prenotazione non va a buon fine
                     refuseAll(myAgent);
@@ -206,11 +216,8 @@ public class UserAgent extends Agent {
 
             System.out.println("=================================\n"
                     + myAgent.getAID().getName() + ": Accept_Proposal " + bestSeller.getName());
-            gson = new Gson();
-            String propose = gson.toJson(carPark);
             ACLMessage order = new ACLMessage(ACLMessage.ACCEPT_PROPOSAL);
             order.addReceiver(bestSeller);
-            order.setContent(propose);
             order.setConversationId("book-trade");
             order.setReplyWith("order" + System.currentTimeMillis());
             myAgent.send(order);

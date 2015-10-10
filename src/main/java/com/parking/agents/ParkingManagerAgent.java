@@ -1,6 +1,10 @@
 package com.parking.agents;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.parking.dbManager.PersistenceManager;
 import com.parking.dbManager.PersistenceWrapper;
 import com.parking.negotiation.ConcreteInputCalculator;
@@ -16,6 +20,8 @@ import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.domain.FIPAException;
 import jade.lang.acl.ACLMessage;
+import java.awt.Point;
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -25,6 +31,10 @@ import java.util.HashMap;
  */
 public class ParkingManagerAgent extends Agent {
 
+    //raggio massimo in cui considerare i parcheggi dal punto di destinazione
+    private static final double maxDistance = 0.01;
+    //raggio massimo in cui considerare i parcheggi dal punto di partenza
+    private static final double maxDistance2 = 1;
     private PersistenceManager persistence;
     private InputCalculator inputCalc = new ConcreteInputCalculator();
     private UtilityCalculator utilityCalculator = new ParkingManagerUtilityCalculator();
@@ -76,18 +86,26 @@ public class ParkingManagerAgent extends Agent {
         System.out.println("Seller-agent " + getAID().getName() + " terminating.");
     }
 
-    private ArrayList<Parking> caclulateProposes() {
+    private ArrayList<Parking> caclulateProposes(JsonElement json) {
         //calculate utilities
         ArrayList<Parking> results = new ArrayList<Parking>();
         for (Parking parking : parkingsList) {
-            double[] params = {parking.getCapacity() - parking.getOccupied(), parking.getZone()};
-            //il parametro dell'evento è per il momento impostato a false, da pensare
-            //TODO
-            //utilità su zona e percentuale di occupazione del parcheggio
-            parking.setPrice(inputCalc.getDynamicPrice(parking.getZone(), parking.getOccupied(), parking.getCapacity(), false));
-            parking.setUtility(utilityCalculator.calculate(params, this.weights, new double[]{parking.getCapacity(), 4}));
-            if (parking.getUtility() > 0) {
-                results.add(parking);
+            JsonArray loc = json.getAsJsonObject().get("location").getAsJsonArray();
+            JsonArray dest = json.getAsJsonObject().get("destination").getAsJsonArray();
+            Point.Double dest1 = new Point2D.Double(dest.get(0).getAsDouble(), dest.get(1).getAsDouble());
+            Point.Double loc1 = new Point2D.Double(loc.get(0).getAsDouble(), loc.get(1).getAsDouble());
+            double distance = dest1.distance(parking.getLocation()[0], parking.getLocation()[1]);
+            double distance1 = loc1.distance(parking.getLocation()[0], parking.getLocation()[1]);
+            if (distance <= maxDistance && distance1 <= maxDistance2) {
+                double[] params = {parking.getCapacity() - parking.getOccupied(), parking.getZone()};
+                //il parametro dell'evento è per il momento impostato a false, da pensare
+                //TODO
+                //utilità su zona e percentuale di occupazione del parcheggio
+                parking.setPrice(inputCalc.getDynamicPrice(parking.getZone(), parking.getOccupied(), parking.getCapacity(), false));
+                parking.setUtility(utilityCalculator.calculate(params, this.weights, new double[]{parking.getCapacity(), 4}));
+                if (parking.getUtility() > 0) {
+                    results.add(parking);
+                }
             }
         }
         QuickSortParking q = new QuickSortParking();
@@ -108,7 +126,10 @@ public class ParkingManagerAgent extends Agent {
                 if (msg.getPerformative() == ACLMessage.CFP) {
                     System.out.println("=================================\n"
                             + myAgent.getAID().getName() + ": Nuova Richiesta Ricevuta... ");
-                    proposes.put(msg.getSender().getName(), caclulateProposes());
+                    JsonParser parser = new JsonParser();
+                    JsonElement json = parser.parse(msg.getContent());
+                    System.out.println(gson.toJson(json));
+                    proposes.put(msg.getSender().getName(), caclulateProposes(json));
                     if (proposes.get(msg.getSender().getName()) != null && proposes.get(msg.getSender().getName()).size() > 0) {
                         reply.setPerformative(ACLMessage.PROPOSE);
                         String propose = gson.toJson(proposes.get(msg.getSender().getName()).get(0));
@@ -135,7 +156,7 @@ public class ParkingManagerAgent extends Agent {
                         myAgent.send(reply);
                         System.out.println("=================================\n"
                                 + myAgent.getAID().getName() + ": Impossibile effettuare la prenotazione... " + parking.getName());
-                    } else{
+                    } else {
                         //è possibile prenotare il parcheggio
                         parking.setOccupied(parking.getOccupied() + 1);
                         reply.setPerformative(ACLMessage.INFORM);
