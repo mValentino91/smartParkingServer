@@ -95,11 +95,11 @@ public class UserAgent extends Agent {
             public boolean done() {
                 boolean temp = true;
                 addBehaviour(new RequestPerformer());
-                //					ACLMessage reply = myAgent.receive();
-                //					if (reply != null && reply.getPerformative() == ACLMessage.PROPOSE) {
-                //						temp = true;
-                //						addBehaviour(new RequestPerformer());
-                //					}
+                ACLMessage reply = myAgent.receive();
+                if (reply != null && reply.getPerformative() == ACLMessage.PROPOSE) {
+                    temp = true;
+                    addBehaviour(new RequestPerformer());
+                }
                 return temp;
             }
 
@@ -140,21 +140,26 @@ public class UserAgent extends Agent {
                 // Reply received
                 if (reply.getPerformative() == ACLMessage.PROPOSE) {
 
-                    System.out.println("=================================\n"
-                            + myAgent.getAID().getName() + ": Proposta Ricevuta ");
                     // This is an offer. Process it
                     String acceptedPark = reply.getContent();
                     Parking parking = gson.fromJson(acceptedPark, Parking.class);
                     double utility = calculateUtility(parking);
+                    System.out.println("\n=================================\n"
+                            + myAgent.getAID().getName() + " Proposta Ricevuta - Parcheggio:\n "
+                            + "Nome:" + parking.getName() + "\n"
+                            + "Soglia: " + threshold + "\n"
+                            + "Utilità: " + utility + "\n"
+                            + "Manager: " + parking.getParkingManagerId() + "\n"
+                            + "Prezzo: " + parking.getPrice() + "\n"
+                            + "Percentuale posti liberi: " + ((double)((parking.getCapacity() - parking.getOccupied())/ parking.getCapacity()))+ "\n"
+                            + "Zona: " + parking.getZone() + "\n"
+                            + "Utilità Manager: " + parking.getUtility() + "\n"
+                            + "=================================\n");
                     // Calculate Utility for UA
                     if (utility >= threshold && utility > bestUtility) {
                         carPark = parking;
                         bestSeller = reply.getSender();
                         bestUtility = utility;
-                        System.out.println("=================================\n"
-                                + myAgent.getAID().getName() + " Proposta Ragionevole - Parcheggio: "
-                                + carPark.getName() + "\n"
-                                + "Utilità: " + utility);
                     }
                     repliesCnt++;
                     if (repliesCnt >= sellerAgents.length) {
@@ -177,7 +182,7 @@ public class UserAgent extends Agent {
                     result.put(myAgent.getLocalName(), carPark);
                     System.out.println("=================================\n"
                             + myAgent.getAID().getName() + ": Prenotazione avvenuta " + carPark.getName());
-                }else{
+                } else {
                     //se la prenotazione non va a buon fine
                     refuseAll(myAgent);
                 }

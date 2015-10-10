@@ -83,6 +83,7 @@ public class ParkingManagerAgent extends Agent {
             double[] params = {parking.getCapacity() - parking.getOccupied(), parking.getZone()};
             //il parametro dell'evento è per il momento impostato a false, da pensare
             //TODO
+            //utilità su zona e percentuale di occupazione del parcheggio
             parking.setPrice(inputCalc.getDynamicPrice(parking.getZone(), parking.getOccupied(), parking.getCapacity(), false));
             parking.setUtility(utilityCalculator.calculate(params, this.weights, new double[]{parking.getCapacity(), 4}));
             if (parking.getUtility() > 0) {
@@ -122,10 +123,8 @@ public class ParkingManagerAgent extends Agent {
                 } else if (msg.getPerformative() == ACLMessage.ACCEPT_PROPOSAL) {
                     System.out.println("=================================\n"
                             + myAgent.getAID().getName() + ": Proposta accettata dall'utente.. ");
-                    // ACCEPT_PROPOSAL Message received. Process it
-                    String acceptedPark = msg.getContent();
                     // get object
-                    Parking parking = gson.fromJson(acceptedPark, Parking.class);
+                    Parking parking = proposes.get(msg.getSender().getName()).get(0);
                     //verifico che l'utilità corrente non sia dimezzata rispetto a quella calcolata a inizio negoziazione
                     double[] params = {parking.getCapacity() - parking.getOccupied(), parking.getZone()};
                     if (parking.getCapacity() - parking.getOccupied() <= 0 || parking.getUtility() / 2 >= utilityCalculator.calculate(params, weights, new double[]{parking.getCapacity(), 4})) {
