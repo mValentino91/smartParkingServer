@@ -83,6 +83,36 @@ public class InitController {
         return gson.toJson(response);
     }
 
+    @RequestMapping(value = "/testUserAgent")
+    public @ResponseBody
+    String testUserAgent(HttpServletRequest request) throws InterruptedException {
+        String requestJson = request.getParameter("requestJson");
+        JsonParser parser = new JsonParser();
+        JsonElement json = parser.parse(requestJson);
+        JsonElement obj = json.getAsJsonArray().get(0);
+        JsonElement partenza = obj.getAsJsonObject().get("partenza").getAsJsonArray();
+        JsonElement destinazione = obj.getAsJsonObject().get("arrivo").getAsJsonArray();
+        double location[] = {partenza.getAsJsonArray().get(0).getAsDouble(), partenza.getAsJsonArray().get(1).getAsDouble()};
+        double destination[] = {destinazione.getAsJsonArray().get(0).getAsDouble(), destinazione.getAsJsonArray().get(1).getAsDouble()};
+        double weights[] = {
+            obj.getAsJsonObject().get("prezzo").getAsDouble(),
+            obj.getAsJsonObject().get("distanza").getAsDouble(),
+            obj.getAsJsonObject().get("tempo").getAsDouble()
+        };
+        int res = 0;
+        double treshold = obj.getAsJsonObject().get("soglia").getAsDouble();
+        for (int j = 0; j < 400; j++) {
+            res = AgentsManager.startUserAgent("id"+j, location, destination, weights, treshold);
+            Thread.sleep(400);
+        }
+        //create json response
+        JsonObject response = new JsonObject();
+        JsonObject code = new JsonObject();
+        code.addProperty("code", res);
+        response.add("response", code);
+        return gson.toJson(response);
+    }
+
     @RequestMapping(value = "/getState")
     public @ResponseBody
     String getState(HttpServletRequest request) {
@@ -95,14 +125,14 @@ public class InitController {
         HttpSession session = request.getSession();
         ServletContext sc = session.getServletContext();
         XMLParser parser = new XMLParser(sc.getRealPath("/") + "dist" + File.separator + "xmls" + File.separator + "carparks.xml", "place", "parking");
-        
+
         ArrayList<Parking> list = parser.getList();
         for (Parking parking : list) {
             persistence.saveParking(parking);
         }
         return gson.toJson(persistence.getAllParking());
     }
-    
+
     @RequestMapping(value = "/parkingManager")
     public @ResponseBody
     String parkingManager(HttpServletRequest request) {
@@ -113,11 +143,11 @@ public class InitController {
         p2.setName("ParkingPrisca");
         ParkingManager p3 = new ParkingManager();
         p3.setName("ParcheggiCampania");
-        
+
         persistence.saveParkingManager(p1);
         persistence.saveParkingManager(p2);
         persistence.saveParkingManager(p3);
-       
+
         return gson.toJson(persistence.getAllParkingManager());
     }
 }

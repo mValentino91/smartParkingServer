@@ -56,7 +56,7 @@ public class AgentsManager {
                 }
             }
             //creazione e avvio di un nuovo user agent
-            System.out.println("Launching the rma agent on the main container ...");
+            //System.out.println("Launching the rma agent on the main container ...");
             AgentsManager.setUserAgent(sessionId, AgentsManager.getMainContainer().createNewAgent(sessionId, "com.parking.agents.UserAgent",
                     new Object[]{location, destination, weights, treshold, results}));
             AgentsManager.getUserAgent(sessionId).start();

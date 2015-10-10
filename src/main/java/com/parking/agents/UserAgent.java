@@ -62,12 +62,30 @@ public class UserAgent extends Agent {
             threshold = (Double) args[3];
             result = (Map<String, Parking>) args[4];
         }
+        // Register the book-selling service in the yellow pages
+        // crea un descrittore dell'agente
+        DFAgentDescription dfd = new DFAgentDescription();
+        // salva l'ID
+        dfd.setName(getAID());
+        // crea un descrittore del servizio
+        ServiceDescription sd = new ServiceDescription();
+        // definisci tipo e nome del servizio
+        sd.setType("buyer");
+        sd.setName("JADE-book-trading");
+        // aggiungi al decrittore del agente il descrittore del servizio
+        dfd.addServices(sd);
+        try {
+            // registra il descrittore dell'agente
+            DFService.register(this, dfd);
+        } catch (FIPAException fe) {
+            fe.printStackTrace();
+        }
         addBehaviour(new SimpleBehaviour() {
             private static final long serialVersionUID = 1L;
 
             public void action() {
-                System.out.println("=================================\n"
-                        + myAgent.getAID().getName() + ": Inizio Negoziazione");
+                /*System.out.println("=================================\n"
+                        + myAgent.getAID().getName() + ": Inizio Negoziazione");*/
                 DFAgentDescription template = new DFAgentDescription();
                 ServiceDescription sd = new ServiceDescription();
                 sd.setType("selling");
@@ -111,7 +129,6 @@ public class UserAgent extends Agent {
             }
 
         });
-
     }
 
     // Put agent clean-up operations here
@@ -151,17 +168,6 @@ public class UserAgent extends Agent {
                     String acceptedPark = reply.getContent();
                     Parking parking = gson.fromJson(acceptedPark, Parking.class);
                     double utility = calculateUtility(parking);
-                    System.out.println("\n=================================\n"
-                            + myAgent.getAID().getName() + " Proposta Ricevuta - Parcheggio:\n "
-                            + "Nome:" + parking.getName() + "\n"
-                            + "Soglia: " + threshold + "\n"
-                            + "Utilità: " + utility + "\n"
-                            + "Manager: " + parking.getParkingManagerId() + "\n"
-                            + "Prezzo: " + parking.getPrice() + "\n"
-                            + "Percentuale posti liberi: " + ((double) ((parking.getCapacity() - parking.getOccupied()) / parking.getCapacity())) + "\n"
-                            + "Zona: " + parking.getZone() + "\n"
-                            + "Utilità Manager: " + parking.getUtility() + "\n"
-                            + "=================================\n");
                     // Calculate Utility for UA
                     if (utility >= threshold && utility > bestUtility) {
                         carPark = parking;
@@ -184,14 +190,22 @@ public class UserAgent extends Agent {
                     // create json propose
                     gson = new Gson();
                     propose = gson.toJson(carPark);
-                    System.out.println("=================================\n"
-                            + myAgent.getAID().getName() + ": Conferma Prenotazione Ricevuta... ");
+                    /*System.out.println("=================================\n"
+                            + myAgent.getAID().getName() + ": Conferma Prenotazione Ricevuta... ");*/
                     result.put(myAgent.getLocalName(), carPark);
-                    System.out.println("=================================\n"
-                            + myAgent.getAID().getName() + ": Prenotazione avvenuta " + carPark.getName());
-
-                    myAgent.doSuspend();
-
+                    System.out.println("\n=================================\n"
+                            + myAgent.getAID().getName() + " Proposta prenotato - Parcheggio:\n"
+                            + "Nome:" + carPark.getName() + "\n"
+                            + "Soglia: " + threshold + "\n"
+                            + "Utilità: " + bestUtility + "\n"
+                            + "Manager: " + carPark.getParkingManagerId() + "\n"
+                            + "Prezzo: " + carPark.getPrice() + "\n"
+                            + "Capienza: " + carPark.getCapacity() + "\n"
+                            + "Posti liberi: " + (carPark.getCapacity() - carPark.getOccupied()) + "\n"
+                            + "Zona: " + carPark.getZone() + "\n"
+                            + "Utilità Manager: " + carPark.getUtility() + "\n"
+                            + "=================================\n");
+                    myAgent.doDelete();
                 } else {
                     //se la prenotazione non va a buon fine
                     refuseAll(myAgent);
@@ -201,8 +215,8 @@ public class UserAgent extends Agent {
 
         public void refuseAll(Agent myAgent) {
 
-            System.out.println("=================================\n"
-                    + myAgent.getAID().getName() + ": Reject_proposal ");
+            /*System.out.println("=================================\n"
+                    + myAgent.getAID().getName() + ": Reject_proposal ");*/
             // Send the purchase order to the seller that provided the best offer
             ACLMessage reject = new ACLMessage(ACLMessage.REJECT_PROPOSAL);
             reject.setSender(myAgent.getAID());
@@ -214,8 +228,8 @@ public class UserAgent extends Agent {
 
         public void acceptProposal(Agent myAgent, AID bestSeller, Parking carPark) {
 
-            System.out.println("=================================\n"
-                    + myAgent.getAID().getName() + ": Accept_Proposal " + bestSeller.getName());
+            /*System.out.println("=================================\n"
+                    + myAgent.getAID().getName() + ": Accept_Proposal " + bestSeller.getName());*/
             ACLMessage order = new ACLMessage(ACLMessage.ACCEPT_PROPOSAL);
             order.addReceiver(bestSeller);
             order.setConversationId("book-trade");

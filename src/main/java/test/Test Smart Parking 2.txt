@@ -1,0 +1,3120 @@
+Numero Agenti: 400
+prezzo:0.5,distanza:0.5,soglia:0.5,tempo:0,partenza:[40.8515849,14.2302292],arrivo:[40.8515849,14.2302292]
+
+=================================
+Hello! Im Parking Manager Agent. My id is: NapoliPark@192.168.0.101:1200/JADE
+=================================
+Hello! Im Parking Manager Agent. My id is: ParcheggiCampania@192.168.0.101:1200/JADE
+=================================
+Hello! Im Parking Manager Agent. My id is: ParkingPrisca@192.168.0.101:1200/JADE
+=================================
+
+Hello! Im User Agent. My id is: id0@192.168.0.101:1200/JADE
+
+=================================
+id0@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Carrefour, Via Giuseppe Orsi, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.8906965623686608
+Manager: ParkingPrisca
+Prezzo: 1.1622081903426935
+Capienza: 41
+Posti liberi: 41
+Zona: 3
+Utilità Manager: 0.875
+=================================
+
+User Agent id0@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id1@192.168.0.101:1200/JADE
+
+=================================
+id1@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Carrefour, Via Giuseppe Orsi, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.8899701822496966
+Manager: ParkingPrisca
+Prezzo: 1.1912633951012608
+Capienza: 41
+Posti liberi: 40
+Zona: 3
+Utilità Manager: 0.8628048780487805
+=================================
+
+User Agent id1@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id2@192.168.0.101:1200/JADE
+
+=================================
+id2@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Carrefour, Via Giuseppe Orsi, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.8892065518682215
+Manager: ParkingPrisca
+Prezzo: 1.2218086103602674
+Capienza: 41
+Posti liberi: 39
+Zona: 3
+Utilità Manager: 0.850609756097561
+=================================
+
+User Agent id2@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id3@192.168.0.101:1200/JADE
+
+=================================
+id3@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Carrefour, Via Giuseppe Orsi, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.8884027304140371
+Manager: ParkingPrisca
+Prezzo: 1.2539614685276428
+Capienza: 41
+Posti liberi: 38
+Zona: 3
+Utilità Manager: 0.8384146341463414
+=================================
+
+User Agent id3@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id4@192.168.0.101:1200/JADE
+
+=================================
+id4@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Carrefour, Via Giuseppe Orsi, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.8875554591515185
+Manager: ParkingPrisca
+Prezzo: 1.2878523190283901
+Capienza: 41
+Posti liberi: 37
+Zona: 3
+Utilità Manager: 0.8262195121951219
+=================================
+
+User Agent id4@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id5@192.168.0.101:1200/JADE
+
+=================================
+id5@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Carrefour, Via Giuseppe Orsi, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.8866611172633042
+Manager: ParkingPrisca
+Prezzo: 1.3236259945569564
+Capienza: 41
+Posti liberi: 36
+Zona: 3
+Utilità Manager: 0.8140243902439024
+=================================
+
+User Agent id5@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id6@192.168.0.101:1200/JADE
+
+=================================
+id6@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Carrefour, Via Giuseppe Orsi, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.8857156701243349
+Manager: ParkingPrisca
+Prezzo: 1.3614438801157265
+Capienza: 41
+Posti liberi: 35
+Zona: 3
+Utilità Manager: 0.8018292682926829
+=================================
+
+User Agent id6@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id7@192.168.0.101:1200/JADE
+
+=================================
+id7@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Carrefour, Via Giuseppe Orsi, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.8847146084477793
+Manager: ParkingPrisca
+Prezzo: 1.401486347177954
+Capienza: 41
+Posti liberi: 34
+Zona: 3
+Utilità Manager: 0.7896341463414633
+=================================
+
+User Agent id7@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id8@192.168.0.101:1200/JADE
+
+=================================
+id8@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Carrefour, Via Giuseppe Orsi, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.8836528763665839
+Manager: ParkingPrisca
+Prezzo: 1.4439556304257706
+Capienza: 41
+Posti liberi: 33
+Zona: 3
+Utilità Manager: 0.7774390243902439
+=================================
+
+User Agent id8@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id9@192.168.0.101:1200/JADE
+
+=================================
+id9@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Carrefour, Via Giuseppe Orsi, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.8825247860303138
+Manager: ParkingPrisca
+Prezzo: 1.489079243876576
+Capienza: 41
+Posti liberi: 32
+Zona: 3
+Utilità Manager: 0.7652439024390244
+=================================
+
+User Agent id9@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id10@192.168.0.101:1200/JADE
+
+=================================
+id10@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Carrefour, Via Giuseppe Orsi, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.8813239156723487
+Manager: ParkingPrisca
+Prezzo: 1.5371140581951752
+Capienza: 41
+Posti liberi: 31
+Zona: 3
+Utilità Manager: 0.7530487804878049
+=================================
+
+User Agent id10@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id11@192.168.0.101:1200/JADE
+
+=================================
+id11@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Carrefour, Via Giuseppe Orsi, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.8800429872905193
+Manager: ParkingPrisca
+Prezzo: 1.5883511934683476
+Capienza: 41
+Posti liberi: 30
+Zona: 3
+Utilità Manager: 0.7408536585365854
+=================================
+
+User Agent id11@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id12@192.168.0.101:1200/JADE
+
+=================================
+id12@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Carrefour, Via Giuseppe Orsi, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.878673719020288
+Manager: ParkingPrisca
+Prezzo: 1.6431219242776012
+Capienza: 41
+Posti liberi: 29
+Zona: 3
+Utilità Manager: 0.7286585365853658
+=================================
+
+User Agent id12@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id13@192.168.0.101:1200/JADE
+
+=================================
+id13@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Carrefour, Via Giuseppe Orsi, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.8772066458736116
+Manager: ParkingPrisca
+Prezzo: 1.7018048501446583
+Capienza: 41
+Posti liberi: 28
+Zona: 3
+Utilità Manager: 0.7164634146341464
+=================================
+
+User Agent id13@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id14@192.168.0.101:1200/JADE
+
+=================================
+id14@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Carrefour, Via Giuseppe Orsi, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.8756309006419962
+Manager: ParkingPrisca
+Prezzo: 1.7648346594092752
+Capienza: 41
+Posti liberi: 27
+Zona: 3
+Utilità Manager: 0.7042682926829269
+=================================
+
+User Agent id14@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id15@192.168.0.101:1200/JADE
+
+=================================
+id15@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Carrefour, Via Giuseppe Orsi, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.8739339442387181
+Manager: ParkingPrisca
+Prezzo: 1.8327129155404014
+Capienza: 41
+Posti liberi: 26
+Zona: 3
+Utilità Manager: 0.6920731707317074
+=================================
+
+User Agent id15@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id16@192.168.0.101:1200/JADE
+
+=================================
+id16@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Carrefour, Via Giuseppe Orsi, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.8721012313231777
+Manager: ParkingPrisca
+Prezzo: 1.9060214321620172
+Capienza: 41
+Posti liberi: 25
+Zona: 3
+Utilità Manager: 0.6798780487804879
+=================================
+
+User Agent id16@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id17@192.168.0.101:1200/JADE
+
+=================================
+id17@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Carrefour, Via Giuseppe Orsi, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.8701157923313423
+Manager: ParkingPrisca
+Prezzo: 1.9854389918354347
+Capienza: 41
+Posti liberi: 24
+Zona: 3
+Utilità Manager: 0.6676829268292683
+=================================
+
+User Agent id17@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id18@192.168.0.101:1200/JADE
+
+=================================
+id18@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Carrefour, Via Giuseppe Orsi, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.8679577064706515
+Manager: ParkingPrisca
+Prezzo: 2.0717624262630623
+Capienza: 41
+Posti liberi: 23
+Zona: 3
+Utilità Manager: 0.6554878048780488
+=================================
+
+User Agent id18@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id19@192.168.0.101:1200/JADE
+
+=================================
+id19@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Carrefour, Via Giuseppe Orsi, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.8656034309862617
+Manager: ParkingPrisca
+Prezzo: 2.165933445638656
+Capienza: 41
+Posti liberi: 22
+Zona: 3
+Utilità Manager: 0.6432926829268293
+=================================
+
+User Agent id19@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id20@192.168.0.101:1200/JADE
+
+=================================
+id20@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Carrefour, Via Giuseppe Orsi, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.8630249387890727
+Manager: ParkingPrisca
+Prezzo: 2.269073133526211
+Capienza: 41
+Posti liberi: 21
+Zona: 3
+Utilità Manager: 0.6310975609756098
+=================================
+
+User Agent id20@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id21@192.168.0.101:1200/JADE
+
+=================================
+id21@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Parco Montedonzelli, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.6463346191725478
+Manager: ParcheggiCampania
+Prezzo: 1.5371140581951752
+Capienza: 31
+Posti liberi: 31
+Zona: 3
+Utilità Manager: 0.875
+=================================
+
+User Agent id21@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id22@192.168.0.101:1200/JADE
+
+=================================
+id22@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Parco Montedonzelli, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.6450536907907184
+Manager: ParcheggiCampania
+Prezzo: 1.5883511934683476
+Capienza: 31
+Posti liberi: 30
+Zona: 3
+Utilità Manager: 0.8588709677419355
+=================================
+
+User Agent id22@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id23@192.168.0.101:1200/JADE
+
+=================================
+id23@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Parco Montedonzelli, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.6436844225204871
+Manager: ParcheggiCampania
+Prezzo: 1.6431219242776012
+Capienza: 31
+Posti liberi: 29
+Zona: 3
+Utilità Manager: 0.842741935483871
+=================================
+
+User Agent id23@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id24@192.168.0.101:1200/JADE
+
+=================================
+id24@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Parco Montedonzelli, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.6422173493738107
+Manager: ParcheggiCampania
+Prezzo: 1.7018048501446583
+Capienza: 31
+Posti liberi: 28
+Zona: 3
+Utilità Manager: 0.8266129032258065
+=================================
+
+User Agent id24@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id25@192.168.0.101:1200/JADE
+
+=================================
+id25@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Parco Montedonzelli, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.6406416041421953
+Manager: ParcheggiCampania
+Prezzo: 1.7648346594092752
+Capienza: 31
+Posti liberi: 27
+Zona: 3
+Utilità Manager: 0.810483870967742
+=================================
+
+User Agent id25@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id26@192.168.0.101:1200/JADE
+
+=================================
+id26@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Parco Montedonzelli, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.6389446477389171
+Manager: ParcheggiCampania
+Prezzo: 1.8327129155404014
+Capienza: 31
+Posti liberi: 26
+Zona: 3
+Utilità Manager: 0.7943548387096775
+=================================
+
+User Agent id26@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id27@192.168.0.101:1200/JADE
+
+=================================
+id27@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Parco Montedonzelli, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.6371119348233767
+Manager: ParcheggiCampania
+Prezzo: 1.9060214321620172
+Capienza: 31
+Posti liberi: 25
+Zona: 3
+Utilità Manager: 0.7782258064516129
+=================================
+
+User Agent id27@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id28@192.168.0.101:1200/JADE
+
+=================================
+id28@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Parco Montedonzelli, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.6351264958315413
+Manager: ParcheggiCampania
+Prezzo: 1.9854389918354347
+Capienza: 31
+Posti liberi: 24
+Zona: 3
+Utilità Manager: 0.7620967741935484
+=================================
+
+User Agent id28@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id29@192.168.0.101:1200/JADE
+
+=================================
+id29@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Carrefour, Via Antonio Solario, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.8769549772604914
+Manager: ParcheggiCampania
+Prezzo: 4.921800909580344
+Capienza: 12
+Posti liberi: 12
+Zona: 2
+Utilità Manager: 0.75
+=================================
+
+User Agent id29@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id30@192.168.0.101:1200/JADE
+
+=================================
+id30@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Parco Montedonzelli, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.6329684099708506
+Manager: ParcheggiCampania
+Prezzo: 2.0717624262630623
+Capienza: 31
+Posti liberi: 23
+Zona: 3
+Utilità Manager: 0.7459677419354839
+=================================
+
+User Agent id30@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id31@192.168.0.101:1200/JADE
+
+=================================
+id31@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Parco Montedonzelli, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.6306141344864608
+Manager: ParcheggiCampania
+Prezzo: 2.165933445638656
+Capienza: 31
+Posti liberi: 22
+Zona: 3
+Utilità Manager: 0.7298387096774194
+=================================
+
+User Agent id31@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id32@192.168.0.101:1200/JADE
+
+=================================
+id32@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Parco Montedonzelli, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.6280356422892718
+Manager: ParcheggiCampania
+Prezzo: 2.269073133526211
+Capienza: 31
+Posti liberi: 21
+Zona: 3
+Utilità Manager: 0.7137096774193548
+=================================
+
+User Agent id32@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id33@192.168.0.101:1200/JADE
+
+=================================
+id33@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Carrefour, Via Antonio Solario, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.8657690661023543
+Manager: ParcheggiCampania
+Prezzo: 5.369237355905829
+Capienza: 12
+Posti liberi: 11
+Zona: 2
+Utilità Manager: 0.7083333333333333
+=================================
+
+User Agent id33@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id34@192.168.0.101:1200/JADE
+
+=================================
+id34@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Parco Montedonzelli, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.6251993008723641
+Manager: ParcheggiCampania
+Prezzo: 2.3825267902025216
+Capienza: 31
+Posti liberi: 20
+Zona: 3
+Utilità Manager: 0.6975806451612903
+=================================
+
+User Agent id34@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id35@192.168.0.101:1200/JADE
+
+=================================
+id35@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Parco Montedonzelli, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.622064397201045
+Manager: ParcheggiCampania
+Prezzo: 2.5079229370552856
+Capienza: 31
+Posti liberi: 19
+Zona: 3
+Utilità Manager: 0.6814516129032258
+=================================
+
+User Agent id35@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id36@192.168.0.101:1200/JADE
+
+=================================
+id36@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Carrefour, Via Antonio Solario, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.8523459727125897
+Manager: ParcheggiCampania
+Prezzo: 5.906161091496412
+Capienza: 12
+Posti liberi: 10
+Zona: 2
+Utilità Manager: 0.6666666666666667
+=================================
+
+User Agent id36@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id37@192.168.0.101:1200/JADE
+
+=================================
+id37@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Parco Montedonzelli, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.6185811708995793
+Manager: ParcheggiCampania
+Prezzo: 2.647251989113913
+Capienza: 31
+Posti liberi: 18
+Zona: 3
+Utilità Manager: 0.6653225806451613
+=================================
+
+User Agent id37@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id38@192.168.0.101:1200/JADE
+
+=================================
+id38@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Parco Montedonzelli, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.6146881532685294
+Manager: ParcheggiCampania
+Prezzo: 2.802972694355908
+Capienza: 31
+Posti liberi: 17
+Zona: 3
+Utilità Manager: 0.6491935483870968
+=================================
+
+User Agent id38@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id39@192.168.0.101:1200/JADE
+
+=================================
+id39@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Parco Montedonzelli, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.6103085084335983
+Manager: ParcheggiCampania
+Prezzo: 2.978158487753152
+Capienza: 31
+Posti liberi: 16
+Zona: 3
+Utilità Manager: 0.6330645161290323
+=================================
+
+User Agent id39@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id40@192.168.0.101:1200/JADE
+
+=================================
+id40@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Carrefour, Via Antonio Solario, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.8359399696806552
+Manager: ParcheggiCampania
+Prezzo: 6.562401212773792
+Capienza: 12
+Posti liberi: 9
+Zona: 2
+Utilità Manager: 0.625
+=================================
+
+User Agent id40@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id41@192.168.0.101:1200/JADE
+
+=================================
+id41@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Francesco Solimena, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.6070623548796397
+Manager: NapoliPark
+Prezzo: 1.489079243876576
+Capienza: 32
+Posti liberi: 32
+Zona: 3
+Utilità Manager: 0.875
+=================================
+
+User Agent id41@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id42@192.168.0.101:1200/JADE
+
+=================================
+id42@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Francesco Solimena, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.6058614845216745
+Manager: NapoliPark
+Prezzo: 1.5371140581951752
+Capienza: 32
+Posti liberi: 31
+Zona: 3
+Utilità Manager: 0.859375
+=================================
+
+User Agent id42@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id43@192.168.0.101:1200/JADE
+=================================
+Hello! Im User Agent. My id is: id44@192.168.0.101:1200/JADE
+
+=================================
+id44@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Parco Montedonzelli, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.6053449109540098
+Manager: ParcheggiCampania
+Prezzo: 3.1767023869366953
+Capienza: 31
+Posti liberi: 15
+Zona: 3
+Utilità Manager: 0.6169354838709677
+=================================
+
+User Agent id44@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id45@192.168.0.101:1200/JADE
+
+=================================
+id45@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Francesco Solimena, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.6045805561398452
+Manager: NapoliPark
+Prezzo: 1.5883511934683476
+Capienza: 32
+Posti liberi: 30
+Zona: 3
+Utilità Manager: 0.84375
+=================================
+
+User Agent id45@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id46@192.168.0.101:1200/JADE
+
+=================================
+id46@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Francesco Solimena, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.6032112878696139
+Manager: NapoliPark
+Prezzo: 1.6431219242776012
+Capienza: 32
+Posti liberi: 29
+Zona: 3
+Utilità Manager: 0.828125
+=================================
+
+User Agent id46@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id47@192.168.0.101:1200/JADE
+
+=================================
+id47@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Francesco Solimena, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.6017442147229375
+Manager: NapoliPark
+Prezzo: 1.7018048501446583
+Capienza: 32
+Posti liberi: 28
+Zona: 3
+Utilità Manager: 0.8125
+=================================
+
+User Agent id47@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id48@192.168.0.101:1200/JADE
+
+=================================
+id48@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Francesco Solimena, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.6001684694913221
+Manager: NapoliPark
+Prezzo: 1.7648346594092752
+Capienza: 32
+Posti liberi: 27
+Zona: 3
+Utilità Manager: 0.796875
+=================================
+
+User Agent id48@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id49@192.168.0.101:1200/JADE
+
+=================================
+id49@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Parco Montedonzelli, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.5996722281201943
+Manager: ParcheggiCampania
+Prezzo: 3.4036097002893166
+Capienza: 31
+Posti liberi: 14
+Zona: 3
+Utilità Manager: 0.6008064516129032
+=================================
+
+User Agent id49@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id50@192.168.0.101:1200/JADE
+
+=================================
+id50@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Francesco Solimena, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5984715130880439
+Manager: NapoliPark
+Prezzo: 1.8327129155404014
+Capienza: 32
+Posti liberi: 26
+Zona: 3
+Utilità Manager: 0.78125
+=================================
+
+User Agent id50@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id51@192.168.0.101:1200/JADE
+
+=================================
+id51@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Francesco Solimena, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5966388001725036
+Manager: NapoliPark
+Prezzo: 1.9060214321620172
+Capienza: 32
+Posti liberi: 25
+Zona: 3
+Utilità Manager: 0.765625
+=================================
+
+User Agent id51@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id52@192.168.0.101:1200/JADE
+
+=================================
+id52@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Parco Montedonzelli, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.593126824850407
+Manager: ParcheggiCampania
+Prezzo: 3.6654258310808028
+Capienza: 31
+Posti liberi: 13
+Zona: 3
+Utilità Manager: 0.5846774193548387
+=================================
+
+User Agent id52@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id53@192.168.0.101:1200/JADE
+
+=================================
+id53@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Carrefour, Via Antonio Solario, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.8154324658907371
+Manager: ParcheggiCampania
+Prezzo: 7.382701364370515
+Capienza: 12
+Posti liberi: 8
+Zona: 2
+Utilità Manager: 0.5833333333333333
+=================================
+
+User Agent id53@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id54@192.168.0.101:1200/JADE
+
+=================================
+id54@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Parco Montedonzelli, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.5854905210356554
+Manager: ParcheggiCampania
+Prezzo: 3.9708779836708694
+Capienza: 31
+Posti liberi: 12
+Zona: 3
+Utilità Manager: 0.5685483870967742
+=================================
+
+User Agent id54@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id55@192.168.0.101:1200/JADE
+
+=================================
+id55@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Enrico Alvino, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5812002447025432
+Manager: ParkingPrisca
+Prezzo: 2.5
+Capienza: 40
+Posti liberi: 40
+Zona: 1
+Utilità Manager: 0.625
+=================================
+
+User Agent id55@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id56@192.168.0.101:1200/JADE
+
+=================================
+id56@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Carrefour, Via Giuseppe Orsi, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.860188597372165
+Manager: ParkingPrisca
+Prezzo: 2.3825267902025216
+Capienza: 41
+Posti liberi: 20
+Zona: 3
+Utilità Manager: 0.6189024390243902
+=================================
+
+User Agent id56@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id57@192.168.0.101:1200/JADE
+
+=================================
+id57@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Enrico Alvino, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5795976805999792
+Manager: ParkingPrisca
+Prezzo: 2.564102564102564
+Capienza: 40
+Posti liberi: 39
+Zona: 1
+Utilità Manager: 0.6125
+=================================
+
+User Agent id57@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id58@192.168.0.101:1200/JADE
+
+=================================
+id58@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Carrefour, Via Giuseppe Orsi, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.8570536937008459
+Manager: ParkingPrisca
+Prezzo: 2.5079229370552856
+Capienza: 41
+Posti liberi: 19
+Zona: 3
+Utilità Manager: 0.6067073170731707
+=================================
+
+User Agent id58@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id59@192.168.0.101:1200/JADE
+
+=================================
+id59@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Enrico Alvino, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5779107710183327
+Manager: ParkingPrisca
+Prezzo: 2.631578947368421
+Capienza: 40
+Posti liberi: 38
+Zona: 1
+Utilità Manager: 0.6
+=================================
+
+User Agent id59@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id60@192.168.0.101:1200/JADE
+
+=================================
+id60@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Carrefour, Via Giuseppe Orsi, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.8535704673993803
+Manager: ParkingPrisca
+Prezzo: 2.647251989113913
+Capienza: 41
+Posti liberi: 18
+Zona: 3
+Utilità Manager: 0.5945121951219512
+=================================
+
+User Agent id60@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id61@192.168.0.101:1200/JADE
+
+=================================
+id61@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Parco Montedonzelli, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.5764657983454944
+Manager: ParcheggiCampania
+Prezzo: 4.331866891277312
+Capienza: 31
+Posti liberi: 11
+Zona: 3
+Utilità Manager: 0.5524193548387097
+=================================
+
+User Agent id61@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id62@192.168.0.101:1200/JADE
+
+=================================
+id62@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Carrefour, Via Antonio Solario, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.7890656753036995
+Manager: ParcheggiCampania
+Prezzo: 8.437372987852017
+Capienza: 12
+Posti liberi: 7
+Zona: 2
+Utilità Manager: 0.5416666666666667
+=================================
+
+User Agent id62@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id63@192.168.0.101:1200/JADE
+
+=================================
+id63@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Enrico Alvino, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5761326771349756
+Manager: ParkingPrisca
+Prezzo: 2.7027027027027026
+Capienza: 40
+Posti liberi: 37
+Zona: 1
+Utilità Manager: 0.5875
+=================================
+
+User Agent id63@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id64@192.168.0.101:1200/JADE
+
+=================================
+id64@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Carrefour, Via Giuseppe Orsi, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.8496774497683304
+Manager: ParkingPrisca
+Prezzo: 2.802972694355908
+Capienza: 41
+Posti liberi: 17
+Zona: 3
+Utilità Manager: 0.5823170731707317
+=================================
+
+User Agent id64@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id65@192.168.0.101:1200/JADE
+
+=================================
+id65@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Enrico Alvino, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5742558002580986
+Manager: ParkingPrisca
+Prezzo: 2.7777777777777777
+Capienza: 40
+Posti liberi: 36
+Zona: 1
+Utilità Manager: 0.575
+=================================
+
+User Agent id65@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id66@192.168.0.101:1200/JADE
+
+=================================
+id66@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Carrefour, Via Giuseppe Orsi, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.8452978049333992
+Manager: ParkingPrisca
+Prezzo: 2.978158487753152
+Capienza: 41
+Posti liberi: 16
+Zona: 3
+Utilità Manager: 0.5701219512195121
+=================================
+
+User Agent id66@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id67@192.168.0.101:1200/JADE
+
+=================================
+id67@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Enrico Alvino, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5722716732739717
+Manager: ParkingPrisca
+Prezzo: 2.8571428571428568
+Capienza: 40
+Posti liberi: 35
+Zona: 1
+Utilità Manager: 0.5625
+=================================
+
+User Agent id67@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id68@192.168.0.101:1200/JADE
+
+=================================
+id68@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Carrefour, Via Giuseppe Orsi, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.8403342074538107
+Manager: ParkingPrisca
+Prezzo: 3.1767023869366953
+Capienza: 41
+Posti liberi: 15
+Zona: 3
+Utilità Manager: 0.5579268292682926
+=================================
+
+User Agent id68@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id69@192.168.0.101:1200/JADE
+
+=================================
+id69@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Enrico Alvino, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5701708329378372
+Manager: ParkingPrisca
+Prezzo: 2.9411764705882355
+Capienza: 40
+Posti liberi: 34
+Zona: 1
+Utilità Manager: 0.55
+=================================
+
+User Agent id69@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id70@192.168.0.101:1200/JADE
+
+=================================
+id70@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Carrefour, Via Giuseppe Orsi, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.8346615246199952
+Manager: ParkingPrisca
+Prezzo: 3.4036097002893166
+Capienza: 41
+Posti liberi: 14
+Zona: 3
+Utilità Manager: 0.5457317073170732
+=================================
+
+User Agent id70@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id71@192.168.0.101:1200/JADE
+
+=================================
+id71@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Enrico Alvino, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5679426689449674
+Manager: ParkingPrisca
+Prezzo: 3.0303030303030303
+Capienza: 40
+Posti liberi: 33
+Zona: 1
+Utilità Manager: 0.5375
+=================================
+
+User Agent id71@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id72@192.168.0.101:1200/JADE
+
+=================================
+id72@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Carrefour, Via Giuseppe Orsi, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.828116121350208
+Manager: ParkingPrisca
+Prezzo: 3.6654258310808028
+Capienza: 41
+Posti liberi: 13
+Zona: 3
+Utilità Manager: 0.5335365853658537
+=================================
+
+User Agent id72@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id73@192.168.0.101:1200/JADE
+
+=================================
+id73@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Parco Montedonzelli, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.565636131117301
+Manager: ParcheggiCampania
+Prezzo: 4.765053580405043
+Capienza: 31
+Posti liberi: 10
+Zona: 3
+Utilità Manager: 0.5362903225806451
+=================================
+
+User Agent id73@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id74@192.168.0.101:1200/JADE
+
+=================================
+id74@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Enrico Alvino, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5655752447025432
+Manager: ParkingPrisca
+Prezzo: 3.125
+Capienza: 40
+Posti liberi: 32
+Zona: 1
+Utilità Manager: 0.525
+=================================
+
+User Agent id74@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id75@192.168.0.101:1200/JADE
+
+=================================
+id75@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Carrefour, Via Giuseppe Orsi, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.8204798175354564
+Manager: ParkingPrisca
+Prezzo: 3.9708779836708694
+Capienza: 41
+Posti liberi: 12
+Zona: 3
+Utilità Manager: 0.5213414634146342
+=================================
+
+User Agent id75@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id76@192.168.0.101:1200/JADE
+
+=================================
+id76@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Enrico Alvino, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5630550834122205
+Manager: ParkingPrisca
+Prezzo: 3.225806451612903
+Capienza: 40
+Posti liberi: 31
+Zona: 1
+Utilità Manager: 0.5125
+=================================
+
+User Agent id76@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id77@192.168.0.101:1200/JADE
+
+=================================
+id77@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Carrefour, Via Giuseppe Orsi, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.8114550948452953
+Manager: ParkingPrisca
+Prezzo: 4.331866891277312
+Capienza: 41
+Posti liberi: 11
+Zona: 3
+Utilità Manager: 0.5091463414634146
+=================================
+
+User Agent id77@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id78@192.168.0.101:1200/JADE
+
+=================================
+id78@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Enrico Alvino, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5603669113692098
+Manager: ParkingPrisca
+Prezzo: 3.333333333333333
+Capienza: 40
+Posti liberi: 30
+Zona: 1
+Utilità Manager: 0.5
+=================================
+
+User Agent id78@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id79@192.168.0.101:1200/JADE
+
+=================================
+id79@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Carrefour, Via Giuseppe Orsi, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.8006254276171021
+Manager: ParkingPrisca
+Prezzo: 4.765053580405043
+Capienza: 41
+Posti liberi: 10
+Zona: 3
+Utilità Manager: 0.4969512195121951
+=================================
+
+User Agent id79@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id80@192.168.0.101:1200/JADE
+
+=================================
+id80@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Enrico Alvino, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5574933481508191
+Manager: ParkingPrisca
+Prezzo: 3.4482758620689657
+Capienza: 40
+Posti liberi: 29
+Zona: 1
+Utilità Manager: 0.4875
+=================================
+
+User Agent id80@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id81@192.168.0.101:1200/JADE
+
+=================================
+id81@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Carrefour, Via Giuseppe Orsi, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.7873891676715324
+Manager: ParkingPrisca
+Prezzo: 5.294503978227826
+Capienza: 41
+Posti liberi: 9
+Zona: 3
+Utilità Manager: 0.4847560975609756
+=================================
+
+User Agent id81@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id82@192.168.0.101:1200/JADE
+
+=================================
+id82@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Enrico Alvino, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5544145304168289
+Manager: ParkingPrisca
+Prezzo: 3.5714285714285716
+Capienza: 40
+Posti liberi: 28
+Zona: 1
+Utilità Manager: 0.475
+=================================
+
+User Agent id82@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id83@192.168.0.101:1200/JADE
+
+=================================
+id83@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Carrefour, Via Giuseppe Orsi, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.7708438427395705
+Manager: ParkingPrisca
+Prezzo: 5.956316975506304
+Capienza: 41
+Posti liberi: 8
+Zona: 3
+Utilità Manager: 0.4725609756097561
+=================================
+
+User Agent id83@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id84@192.168.0.101:1200/JADE
+
+=================================
+id84@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Parco Montedonzelli, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.5523998711717315
+Manager: ParcheggiCampania
+Prezzo: 5.294503978227826
+Capienza: 31
+Posti liberi: 9
+Zona: 3
+Utilità Manager: 0.5201612903225806
+=================================
+
+User Agent id84@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id85@192.168.0.101:1200/JADE
+
+=================================
+id85@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Enrico Alvino, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5511076521099506
+Manager: ParkingPrisca
+Prezzo: 3.7037037037037033
+Capienza: 40
+Posti liberi: 27
+Zona: 1
+Utilità Manager: 0.4625
+=================================
+
+User Agent id85@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id86@192.168.0.101:1200/JADE
+
+=================================
+id86@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Carrefour, Via Giuseppe Orsi, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.7495712821127622
+Manager: ParkingPrisca
+Prezzo: 6.807219400578633
+Capienza: 41
+Posti liberi: 7
+Zona: 3
+Utilità Manager: 0.4603658536585366
+=================================
+
+User Agent id86@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id87@192.168.0.101:1200/JADE
+
+=================================
+id87@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Enrico Alvino, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.547546398548697
+Manager: ParkingPrisca
+Prezzo: 3.8461538461538463
+Capienza: 40
+Posti liberi: 26
+Zona: 1
+Utilità Manager: 0.45
+=================================
+
+User Agent id87@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id88@192.168.0.101:1200/JADE
+
+=================================
+id88@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Carrefour, Via Giuseppe Orsi, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.7212078679436846
+Manager: ParkingPrisca
+Prezzo: 7.941755967341739
+Capienza: 41
+Posti liberi: 6
+Zona: 3
+Utilità Manager: 0.4481707317073171
+=================================
+
+User Agent id88@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id89@192.168.0.101:1200/JADE
+
+=================================
+id89@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Enrico Alvino, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5437002447025432
+Manager: ParkingPrisca
+Prezzo: 4.0
+Capienza: 40
+Posti liberi: 25
+Zona: 1
+Utilità Manager: 0.4375
+=================================
+
+User Agent id89@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id90@192.168.0.101:1200/JADE
+
+=================================
+id90@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Carrefour, Via Giuseppe Orsi, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.681499088106976
+Manager: ParkingPrisca
+Prezzo: 9.530107160810086
+Capienza: 41
+Posti liberi: 5
+Zona: 3
+Utilità Manager: 0.43597560975609756
+=================================
+
+User Agent id90@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id91@192.168.0.101:1200/JADE
+
+=================================
+id91@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Enrico Alvino, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5395335780358765
+Manager: ParkingPrisca
+Prezzo: 4.166666666666667
+Capienza: 40
+Posti liberi: 24
+Zona: 1
+Utilità Manager: 0.425
+=================================
+
+User Agent id91@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id92@192.168.0.101:1200/JADE
+
+=================================
+id92@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Carrefour, Via Giuseppe Orsi, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.6219359183519129
+Manager: ParkingPrisca
+Prezzo: 11.912633951012609
+Capienza: 41
+Posti liberi: 4
+Zona: 3
+Utilità Manager: 0.42378048780487804
+=================================
+
+User Agent id92@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id93@192.168.0.101:1200/JADE
+
+=================================
+id93@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Parco Montedonzelli, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.5358545462397696
+Manager: ParcheggiCampania
+Prezzo: 5.956316975506304
+Capienza: 31
+Posti liberi: 8
+Zona: 3
+Utilità Manager: 0.5040322580645161
+=================================
+
+User Agent id93@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id94@192.168.0.101:1200/JADE
+
+=================================
+id94@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Carrefour, Via Antonio Solario, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.7539099545209829
+Manager: ParcheggiCampania
+Prezzo: 9.843601819160687
+Capienza: 12
+Posti liberi: 6
+Zona: 2
+Utilità Manager: 0.5
+=================================
+
+User Agent id94@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id95@192.168.0.101:1200/JADE
+
+=================================
+id95@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Enrico Alvino, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5350045925286302
+Manager: ParkingPrisca
+Prezzo: 4.3478260869565215
+Capienza: 40
+Posti liberi: 23
+Zona: 1
+Utilità Manager: 0.4125
+=================================
+
+User Agent id95@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id96@192.168.0.101:1200/JADE
+
+=================================
+id96@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Autovomero, Via Gianlorenzo Bernini, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5271211749589059
+Manager: NapoliPark
+Prezzo: 1.4405270954869298
+Capienza: 41
+Posti liberi: 41
+Zona: 2
+Utilità Manager: 0.75
+=================================
+
+User Agent id96@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id97@192.168.0.101:1200/JADE
+
+=================================
+id97@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Francesco Solimena, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5946533611806681
+Manager: NapoliPark
+Prezzo: 1.9854389918354347
+Capienza: 32
+Posti liberi: 24
+Zona: 3
+Utilità Manager: 0.75
+=================================
+
+User Agent id97@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id98@192.168.0.101:1200/JADE
+
+=================================
+id98@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Salita Arenella, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.8371766317961182
+Manager: NapoliPark
+Prezzo: 2.953080545748206
+Capienza: 20
+Posti liberi: 20
+Zona: 2
+Utilità Manager: 0.75
+=================================
+
+User Agent id98@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id99@192.168.0.101:1200/JADE
+
+=================================
+id99@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Autovomero, Via Gianlorenzo Bernini, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5262208455242265
+Manager: NapoliPark
+Prezzo: 1.476540272874103
+Capienza: 41
+Posti liberi: 40
+Zona: 2
+Utilità Manager: 0.7378048780487805
+=================================
+
+User Agent id99@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id100@192.168.0.101:1200/JADE
+
+=================================
+id100@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Francesco Solimena, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5924952753199774
+Manager: NapoliPark
+Prezzo: 2.0717624262630623
+Capienza: 32
+Posti liberi: 23
+Zona: 3
+Utilità Manager: 0.734375
+=================================
+
+User Agent id100@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id101@192.168.0.101:1200/JADE
+
+=================================
+id101@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Autovomero, Via Gianlorenzo Bernini, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5252743453493073
+Manager: NapoliPark
+Prezzo: 1.5144002798708749
+Capienza: 41
+Posti liberi: 39
+Zona: 2
+Utilità Manager: 0.725609756097561
+=================================
+
+User Agent id101@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id102@192.168.0.101:1200/JADE
+
+=================================
+id102@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Salita Arenella, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.8332909994990811
+Manager: NapoliPark
+Prezzo: 3.1085058376296906
+Capienza: 20
+Posti liberi: 19
+Zona: 2
+Utilità Manager: 0.725
+=================================
+
+User Agent id102@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id103@192.168.0.101:1200/JADE
+
+=================================
+id103@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Francesco Solimena, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5901409998355875
+Manager: NapoliPark
+Prezzo: 2.165933445638656
+Capienza: 32
+Posti liberi: 22
+Zona: 3
+Utilità Manager: 0.71875
+=================================
+
+User Agent id103@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id104@192.168.0.101:1200/JADE
+
+=================================
+id104@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Autovomero, Via Gianlorenzo Bernini, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5242780293757079
+Manager: NapoliPark
+Prezzo: 1.5542529188148453
+Capienza: 41
+Posti liberi: 38
+Zona: 2
+Utilità Manager: 0.7134146341463414
+=================================
+
+User Agent id104@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id105@192.168.0.101:1200/JADE
+
+=================================
+id105@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Francesco Solimena, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5875625076383986
+Manager: NapoliPark
+Prezzo: 2.269073133526211
+Capienza: 32
+Posti liberi: 21
+Zona: 3
+Utilità Manager: 0.703125
+=================================
+
+User Agent id105@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id106@192.168.0.101:1200/JADE
+
+=================================
+id106@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Autovomero, Via Gianlorenzo Bernini, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5232278584846168
+Manager: NapoliPark
+Prezzo: 1.5962597544584898
+Capienza: 41
+Posti liberi: 37
+Zona: 2
+Utilità Manager: 0.7012195121951219
+=================================
+
+User Agent id106@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id107@192.168.0.101:1200/JADE
+
+=================================
+id107@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Salita Arenella, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.828973630280151
+Manager: NapoliPark
+Prezzo: 3.281200606386896
+Capienza: 20
+Posti liberi: 18
+Zona: 2
+Utilità Manager: 0.7
+=================================
+
+User Agent id107@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id108@192.168.0.101:1200/JADE
+
+=================================
+id108@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Carrefour, Via Giuseppe Orsi, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.5226639687601412
+Manager: ParkingPrisca
+Prezzo: 15.883511934683478
+Capienza: 41
+Posti liberi: 3
+Zona: 3
+Utilità Manager: 0.4115853658536585
+=================================
+
+User Agent id108@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id109@192.168.0.101:1200/JADE
+
+=================================
+id109@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Enrico Alvino, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5300638810661795
+Manager: ParkingPrisca
+Prezzo: 4.545454545454545
+Capienza: 40
+Posti liberi: 22
+Zona: 1
+Utilità Manager: 0.4
+=================================
+
+User Agent id109@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id110@192.168.0.101:1200/JADE
+
+=================================
+id110@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Autovomero, Via Gianlorenzo Bernini, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5221193447662429
+Manager: NapoliPark
+Prezzo: 1.640600303193448
+Capienza: 41
+Posti liberi: 36
+Zona: 2
+Utilità Manager: 0.6890243902439024
+=================================
+
+User Agent id110@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id111@192.168.0.101:1200/JADE
+
+=================================
+id111@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Francesco Solimena, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5847261662214909
+Manager: NapoliPark
+Prezzo: 2.3825267902025216
+Capienza: 32
+Posti liberi: 20
+Zona: 3
+Utilità Manager: 0.6875
+=================================
+
+User Agent id111@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id112@192.168.0.101:1200/JADE
+
+=================================
+id112@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Autovomero, Via Gianlorenzo Bernini, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.520947487406819
+Manager: NapoliPark
+Prezzo: 1.6874745975704033
+Capienza: 41
+Posti liberi: 35
+Zona: 2
+Utilità Manager: 0.6768292682926829
+=================================
+
+User Agent id112@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id113@192.168.0.101:1200/JADE
+
+=================================
+id113@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Salita Arenella, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.8241483352707586
+Manager: NapoliPark
+Prezzo: 3.4742124067625957
+Capienza: 20
+Posti liberi: 17
+Zona: 2
+Utilità Manager: 0.675
+=================================
+
+User Agent id113@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id114@192.168.0.101:1200/JADE
+
+=================================
+id114@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Francesco Solimena, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5815912625501718
+Manager: NapoliPark
+Prezzo: 2.5079229370552856
+Capienza: 32
+Posti liberi: 19
+Zona: 3
+Utilità Manager: 0.671875
+=================================
+
+User Agent id114@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id115@192.168.0.101:1200/JADE
+
+=================================
+id115@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Autovomero, Via Gianlorenzo Bernini, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5197066972615466
+Manager: NapoliPark
+Prezzo: 1.7371062033812978
+Capienza: 41
+Posti liberi: 34
+Zona: 2
+Utilità Manager: 0.6646341463414633
+=================================
+
+User Agent id115@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id116@192.168.0.101:1200/JADE
+
+=================================
+id116@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Francesco Solimena, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5781080362487061
+Manager: NapoliPark
+Prezzo: 2.647251989113913
+Capienza: 32
+Posti liberi: 18
+Zona: 3
+Utilità Manager: 0.65625
+=================================
+
+User Agent id116@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id117@192.168.0.101:1200/JADE
+
+=================================
+id117@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Autovomero, Via Gianlorenzo Bernini, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5183907077135306
+Manager: NapoliPark
+Prezzo: 1.7897457853019432
+Capienza: 41
+Posti liberi: 33
+Zona: 2
+Utilità Manager: 0.6524390243902439
+=================================
+
+User Agent id117@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id118@192.168.0.101:1200/JADE
+
+=================================
+id118@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Salita Arenella, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.8187198783851919
+Manager: NapoliPark
+Prezzo: 3.6913506821852575
+Capienza: 20
+Posti liberi: 16
+Zona: 2
+Utilità Manager: 0.65
+=================================
+
+User Agent id118@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id119@192.168.0.101:1200/JADE
+
+=================================
+id119@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Francesco Solimena, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5742150186176562
+Manager: NapoliPark
+Prezzo: 2.802972694355908
+Capienza: 32
+Posti liberi: 17
+Zona: 3
+Utilità Manager: 0.640625
+=================================
+
+User Agent id119@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id120@192.168.0.101:1200/JADE
+
+=================================
+id120@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Autovomero, Via Gianlorenzo Bernini, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5169924688187634
+Manager: NapoliPark
+Prezzo: 1.8456753410926288
+Capienza: 41
+Posti liberi: 32
+Zona: 2
+Utilità Manager: 0.6402439024390244
+=================================
+
+User Agent id120@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id121@192.168.0.101:1200/JADE
+
+=================================
+id121@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Autovomero, Via Gianlorenzo Bernini, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5155040209630435
+Manager: NapoliPark
+Prezzo: 1.9052132553214232
+Capienza: 41
+Posti liberi: 31
+Zona: 2
+Utilità Manager: 0.6280487804878049
+=================================
+
+User Agent id121@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id122@192.168.0.101:1200/JADE
+
+=================================
+id122@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Francesco Solimena, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5698353737827251
+Manager: NapoliPark
+Prezzo: 2.978158487753152
+Capienza: 32
+Posti liberi: 16
+Zona: 3
+Utilità Manager: 0.625
+=================================
+
+User Agent id122@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id123@192.168.0.101:1200/JADE
+
+=================================
+id123@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Salita Arenella, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.8125676272482165
+Manager: NapoliPark
+Prezzo: 3.9374407276642747
+Capienza: 20
+Posti liberi: 15
+Zona: 2
+Utilità Manager: 0.625
+=================================
+
+User Agent id123@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id124@192.168.0.101:1200/JADE
+
+=================================
+id124@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Parco Montedonzelli, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.5145819856129613
+Manager: ParcheggiCampania
+Prezzo: 6.807219400578633
+Capienza: 31
+Posti liberi: 7
+Zona: 3
+Utilità Manager: 0.4879032258064516
+=================================
+
+User Agent id124@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id125@192.168.0.101:1200/JADE
+
+=================================
+id125@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Autovomero, Via Gianlorenzo Bernini, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5139163432502757
+Manager: NapoliPark
+Prezzo: 1.9687203638321373
+Capienza: 41
+Posti liberi: 30
+Zona: 2
+Utilità Manager: 0.6158536585365854
+=================================
+
+User Agent id125@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id126@192.168.0.101:1200/JADE
+
+=================================
+id126@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Francesco Solimena, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5648717763031366
+Manager: NapoliPark
+Prezzo: 3.1767023869366953
+Capienza: 32
+Posti liberi: 15
+Zona: 3
+Utilità Manager: 0.609375
+=================================
+
+User Agent id126@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id127@192.168.0.101:1200/JADE
+
+=================================
+id127@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Autovomero, Via Gianlorenzo Bernini, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5122191705228342
+Manager: NapoliPark
+Prezzo: 2.0366072729297975
+Capienza: 41
+Posti liberi: 29
+Zona: 2
+Utilità Manager: 0.6036585365853658
+=================================
+
+User Agent id127@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id128@192.168.0.101:1200/JADE
+
+=================================
+id128@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Salita Arenella, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.8055364830916732
+Manager: NapoliPark
+Prezzo: 4.2186864939260085
+Capienza: 20
+Posti liberi: 14
+Zona: 2
+Utilità Manager: 0.6
+=================================
+
+User Agent id128@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id129@192.168.0.101:1200/JADE
+
+=================================
+id129@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Francesco Solimena, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5591990934693211
+Manager: NapoliPark
+Prezzo: 3.4036097002893166
+Capienza: 32
+Posti liberi: 14
+Zona: 3
+Utilità Manager: 0.59375
+=================================
+
+User Agent id129@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id130@192.168.0.101:1200/JADE
+
+=================================
+id130@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Autovomero, Via Gianlorenzo Bernini, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.510400771172004
+Manager: NapoliPark
+Prezzo: 2.1093432469630042
+Capienza: 41
+Posti liberi: 28
+Zona: 2
+Utilità Manager: 0.5914634146341464
+=================================
+
+User Agent id130@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id131@192.168.0.101:1200/JADE
+
+=================================
+id131@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Autovomero, Via Gianlorenzo Bernini, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5084476755729641
+Manager: NapoliPark
+Prezzo: 2.187467070924597
+Capienza: 41
+Posti liberi: 27
+Zona: 2
+Utilità Manager: 0.5792682926829269
+=================================
+
+User Agent id131@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id132@192.168.0.101:1200/JADE
+
+=================================
+id132@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Francesco Solimena, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5526536901995338
+Manager: NapoliPark
+Prezzo: 3.6654258310808028
+Capienza: 32
+Posti liberi: 13
+Zona: 3
+Utilità Manager: 0.578125
+=================================
+
+User Agent id132@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id133@192.168.0.101:1200/JADE
+
+=================================
+id133@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Salita Arenella, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.7974236244495079
+Manager: NapoliPark
+Prezzo: 4.543200839612625
+Capienza: 20
+Posti liberi: 13
+Zona: 2
+Utilità Manager: 0.575
+=================================
+
+User Agent id133@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id134@192.168.0.101:1200/JADE
+
+=================================
+id134@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Autovomero, Via Gianlorenzo Bernini, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5063443418509213
+Manager: NapoliPark
+Prezzo: 2.2716004198063127
+Capienza: 41
+Posti liberi: 26
+Zona: 2
+Utilità Manager: 0.5670731707317074
+=================================
+
+User Agent id134@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id135@192.168.0.101:1200/JADE
+
+=================================
+id135@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Francesco Solimena, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5450173863847823
+Manager: NapoliPark
+Prezzo: 3.9708779836708694
+Capienza: 32
+Posti liberi: 12
+Zona: 3
+Utilità Manager: 0.5625
+=================================
+
+User Agent id135@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id136@192.168.0.101:1200/JADE
+
+=================================
+id136@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Autovomero, Via Gianlorenzo Bernini, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.504072741431115
+Manager: NapoliPark
+Prezzo: 2.362464436598565
+Capienza: 41
+Posti liberi: 25
+Zona: 2
+Utilità Manager: 0.5548780487804879
+=================================
+
+User Agent id136@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id137@192.168.0.101:1200/JADE
+
+=================================
+id137@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Salita Arenella, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.7879586227003148
+Manager: NapoliPark
+Prezzo: 4.921800909580344
+Capienza: 20
+Posti liberi: 12
+Zona: 2
+Utilità Manager: 0.55
+=================================
+
+User Agent id137@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id138@192.168.0.101:1200/JADE
+
+=================================
+id138@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Francesco Solimena, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5359926636946212
+Manager: NapoliPark
+Prezzo: 4.331866891277312
+Capienza: 32
+Posti liberi: 11
+Zona: 3
+Utilità Manager: 0.546875
+=================================
+
+User Agent id138@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id139@192.168.0.101:1200/JADE
+
+=================================
+id139@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Autovomero, Via Gianlorenzo Bernini, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5016118409763248
+Manager: NapoliPark
+Prezzo: 2.460900454790172
+Capienza: 41
+Posti liberi: 24
+Zona: 2
+Utilità Manager: 0.5426829268292683
+=================================
+
+User Agent id139@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id140@192.168.0.101:1200/JADE
+
+=================================
+id140@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Francesco Solimena, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.525162996466428
+Manager: NapoliPark
+Prezzo: 4.765053580405043
+Capienza: 32
+Posti liberi: 10
+Zona: 3
+Utilità Manager: 0.53125
+=================================
+
+User Agent id140@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id141@192.168.0.101:1200/JADE
+
+=================================
+id141@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Autovomero, Via Gianlorenzo Bernini, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.4989369491776398
+Manager: NapoliPark
+Prezzo: 2.5678961267375704
+Capienza: 41
+Posti liberi: 23
+Zona: 2
+Utilità Manager: 0.5304878048780488
+=================================
+
+User Agent id141@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id142@192.168.0.101:1200/JADE
+
+=================================
+id142@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Salita Arenella, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.7767727115421776
+Manager: NapoliPark
+Prezzo: 5.369237355905829
+Capienza: 20
+Posti liberi: 11
+Zona: 2
+Utilità Manager: 0.525
+=================================
+
+User Agent id142@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id143@192.168.0.101:1200/JADE
+
+=================================
+id143@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Autovomero, Via Gianlorenzo Bernini, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.4960188853972562
+Manager: NapoliPark
+Prezzo: 2.6846186779529146
+Capienza: 41
+Posti liberi: 22
+Zona: 2
+Utilità Manager: 0.5182926829268293
+=================================
+
+User Agent id143@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id144@192.168.0.101:1200/JADE
+
+=================================
+id144@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Francesco Solimena, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5119267365208583
+Manager: NapoliPark
+Prezzo: 5.294503978227826
+Capienza: 32
+Posti liberi: 9
+Zona: 3
+Utilità Manager: 0.515625
+=================================
+
+User Agent id144@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id145@192.168.0.101:1200/JADE
+
+=================================
+id145@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Autovomero, Via Gianlorenzo Bernini, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.49282291078064555
+Manager: NapoliPark
+Prezzo: 2.812457662617339
+Capienza: 41
+Posti liberi: 21
+Zona: 2
+Utilità Manager: 0.5060975609756098
+=================================
+
+User Agent id145@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id146@192.168.0.101:1200/JADE
+
+=================================
+id146@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Francesco Solimena, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.49538141158889637
+Manager: NapoliPark
+Prezzo: 5.956316975506304
+Capienza: 32
+Posti liberi: 8
+Zona: 3
+Utilità Manager: 0.5
+=================================
+
+User Agent id146@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id147@192.168.0.101:1200/JADE
+
+=================================
+id147@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Salita Arenella, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.7633496181524131
+Manager: NapoliPark
+Prezzo: 5.906161091496412
+Capienza: 20
+Posti liberi: 10
+Zona: 2
+Utilità Manager: 0.5
+=================================
+
+User Agent id147@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id148@192.168.0.101:1200/JADE
+
+=================================
+id148@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Autovomero, Via Gianlorenzo Bernini, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.48930733870237386
+Manager: NapoliPark
+Prezzo: 2.953080545748206
+Capienza: 41
+Posti liberi: 20
+Zona: 2
+Utilità Manager: 0.49390243902439024
+=================================
+
+User Agent id148@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id149@192.168.0.101:1200/JADE
+
+=================================
+id149@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Parco Montedonzelli, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.4862185714438837
+Manager: ParcheggiCampania
+Prezzo: 7.941755967341739
+Capienza: 31
+Posti liberi: 6
+Zona: 3
+Utilità Manager: 0.4717741935483871
+=================================
+
+User Agent id149@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id150@192.168.0.101:1200/JADE
+
+=================================
+id150@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Carrefour, Via Antonio Solario, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.7046919454251794
+Manager: ParcheggiCampania
+Prezzo: 11.812322182992824
+Capienza: 12
+Posti liberi: 5
+Zona: 2
+Utilità Manager: 0.45833333333333337
+=================================
+
+User Agent id150@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id151@192.168.0.101:1200/JADE
+
+=================================
+id151@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Francesco Solimena, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.47410885096208816
+Manager: NapoliPark
+Prezzo: 6.807219400578633
+Capienza: 32
+Posti liberi: 7
+Zona: 3
+Utilità Manager: 0.484375
+=================================
+
+User Agent id151@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id152@192.168.0.101:1200/JADE
+
+=================================
+id152@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Autovomero, Via Gianlorenzo Bernini, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.48542170640533683
+Manager: NapoliPark
+Prezzo: 3.1085058376296906
+Capienza: 41
+Posti liberi: 19
+Zona: 2
+Utilità Manager: 0.4817073170731707
+=================================
+
+User Agent id152@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id153@192.168.0.101:1200/JADE
+
+=================================
+id153@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Salita Arenella, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.7469436151204787
+Manager: NapoliPark
+Prezzo: 6.562401212773792
+Capienza: 20
+Posti liberi: 9
+Zona: 2
+Utilità Manager: 0.475
+=================================
+
+User Agent id153@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id154@192.168.0.101:1200/JADE
+
+=================================
+id154@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Autovomero, Via Gianlorenzo Bernini, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.48110433718640666
+Manager: NapoliPark
+Prezzo: 3.281200606386896
+Capienza: 41
+Posti liberi: 18
+Zona: 2
+Utilità Manager: 0.4695121951219512
+=================================
+
+User Agent id154@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id155@192.168.0.101:1200/JADE
+
+=================================
+id155@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Parco Montedonzelli, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.44650979160717497
+Manager: ParcheggiCampania
+Prezzo: 9.530107160810086
+Capienza: 31
+Posti liberi: 5
+Zona: 3
+Utilità Manager: 0.45564516129032256
+=================================
+
+User Agent id155@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id156@192.168.0.101:1200/JADE
+
+=================================
+id156@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Francesco Solimena, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.44574543679301054
+Manager: NapoliPark
+Prezzo: 7.941755967341739
+Capienza: 32
+Posti liberi: 6
+Zona: 3
+Utilità Manager: 0.46875
+=================================
+
+User Agent id156@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id157@192.168.0.101:1200/JADE
+
+=================================
+id157@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Autovomero, Via Gianlorenzo Bernini, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.47627904217701417
+Manager: NapoliPark
+Prezzo: 3.4742124067625957
+Capienza: 41
+Posti liberi: 17
+Zona: 2
+Utilità Manager: 0.45731707317073167
+=================================
+
+User Agent id157@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id158@192.168.0.101:1200/JADE
+
+=================================
+id158@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Francesco Solimena, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.4060366569563018
+Manager: NapoliPark
+Prezzo: 9.530107160810086
+Capienza: 32
+Posti liberi: 5
+Zona: 3
+Utilità Manager: 0.453125
+=================================
+
+User Agent id158@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id159@192.168.0.101:1200/JADE
+
+=================================
+id159@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Salita Arenella, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.7264361113305606
+Manager: NapoliPark
+Prezzo: 7.382701364370515
+Capienza: 20
+Posti liberi: 8
+Zona: 2
+Utilità Manager: 0.45
+=================================
+
+User Agent id159@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id160@192.168.0.101:1200/JADE
+
+=================================
+id160@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Autovomero, Via Gianlorenzo Bernini, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.4708505852914476
+Manager: NapoliPark
+Prezzo: 3.6913506821852575
+Capienza: 41
+Posti liberi: 16
+Zona: 2
+Utilità Manager: 0.4451219512195122
+=================================
+
+User Agent id160@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id161@192.168.0.101:1200/JADE
+
+=================================
+id161@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Carrefour, Via Antonio Solario, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.6308649317814743
+Manager: ParcheggiCampania
+Prezzo: 14.76540272874103
+Capienza: 12
+Posti liberi: 4
+Zona: 2
+Utilità Manager: 0.41666666666666663
+=================================
+
+User Agent id161@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id162@192.168.0.101:1200/JADE
+
+=================================
+id162@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Enrico Alvino, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5246526256549241
+Manager: ParkingPrisca
+Prezzo: 4.761904761904762
+Capienza: 40
+Posti liberi: 21
+Zona: 1
+Utilità Manager: 0.3875
+=================================
+
+User Agent id162@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id163@192.168.0.101:1200/JADE
+
+=================================
+id163@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Enrico Alvino, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5187002447025432
+Manager: ParkingPrisca
+Prezzo: 5.0
+Capienza: 40
+Posti liberi: 20
+Zona: 1
+Utilità Manager: 0.375
+=================================
+
+User Agent id163@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id164@192.168.0.101:1200/JADE
+
+=================================
+id164@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Enrico Alvino, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.512121297334122
+Manager: ParkingPrisca
+Prezzo: 5.263157894736842
+Capienza: 40
+Posti liberi: 19
+Zona: 1
+Utilità Manager: 0.3625
+=================================
+
+User Agent id164@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id165@192.168.0.101:1200/JADE
+
+=================================
+id165@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Carrefour, Via Antonio Solario, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.5078199090419656
+Manager: ParcheggiCampania
+Prezzo: 19.687203638321375
+Capienza: 12
+Posti liberi: 3
+Zona: 2
+Utilità Manager: 0.375
+=================================
+
+User Agent id165@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id166@192.168.0.101:1200/JADE
+
+=================================
+id166@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Enrico Alvino, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.5048113558136542
+Manager: ParkingPrisca
+Prezzo: 5.555555555555555
+Capienza: 40
+Posti liberi: 18
+Zona: 1
+Utilità Manager: 0.35
+=================================
+
+User Agent id166@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id167@192.168.0.101:1200/JADE
+
+=================================
+id167@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Enrico Alvino, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.49664142117313137
+Manager: ParkingPrisca
+Prezzo: 5.882352941176471
+Capienza: 40
+Posti liberi: 17
+Zona: 1
+Utilità Manager: 0.3375
+=================================
+
+User Agent id167@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id168@192.168.0.101:1200/JADE
+
+=================================
+id168@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Enrico Alvino, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.48745024470254317
+Manager: ParkingPrisca
+Prezzo: 6.25
+Capienza: 40
+Posti liberi: 16
+Zona: 1
+Utilità Manager: 0.325
+=================================
+
+User Agent id168@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id169@192.168.0.101:1200/JADE
+
+=================================
+id169@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Enrico Alvino, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.47703357803587654
+Manager: ParkingPrisca
+Prezzo: 6.666666666666666
+Capienza: 40
+Posti liberi: 15
+Zona: 1
+Utilità Manager: 0.3125
+=================================
+
+User Agent id169@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id170@192.168.0.101:1200/JADE
+
+=================================
+id170@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Enrico Alvino, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.4651288161311146
+Manager: ParkingPrisca
+Prezzo: 7.142857142857143
+Capienza: 40
+Posti liberi: 14
+Zona: 1
+Utilità Manager: 0.3
+=================================
+
+User Agent id170@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id171@192.168.0.101:1200/JADE
+
+=================================
+id171@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Autovomero, Via Gianlorenzo Bernini, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.4646983341544722
+Manager: NapoliPark
+Prezzo: 3.9374407276642747
+Capienza: 41
+Posti liberi: 15
+Zona: 2
+Utilità Manager: 0.4329268292682927
+=================================
+
+User Agent id171@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id172@192.168.0.101:1200/JADE
+
+=================================
+id172@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Salita Arenella, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.700069320743523
+Manager: NapoliPark
+Prezzo: 8.437372987852017
+Capienza: 20
+Posti liberi: 7
+Zona: 2
+Utilità Manager: 0.425
+=================================
+
+User Agent id172@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id173@192.168.0.101:1200/JADE
+
+=================================
+id173@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Autovomero, Via Gianlorenzo Bernini, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.4576671899979289
+Manager: NapoliPark
+Prezzo: 4.2186864939260085
+Capienza: 41
+Posti liberi: 14
+Zona: 2
+Utilità Manager: 0.4207317073170732
+=================================
+
+User Agent id173@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id174@192.168.0.101:1200/JADE
+
+=================================
+id174@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Enrico Alvino, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.4513925523948508
+Manager: ParkingPrisca
+Prezzo: 7.6923076923076925
+Capienza: 40
+Posti liberi: 13
+Zona: 1
+Utilità Manager: 0.2875
+=================================
+
+User Agent id174@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id175@192.168.0.101:1200/JADE
+
+=================================
+id175@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Autovomero, Via Gianlorenzo Bernini, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.44955433135576345
+Manager: NapoliPark
+Prezzo: 4.543200839612625
+Capienza: 41
+Posti liberi: 13
+Zona: 2
+Utilità Manager: 0.4085365853658537
+=================================
+
+User Agent id175@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id176@192.168.0.101:1200/JADE
+
+=================================
+id176@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Salita Arenella, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.6649135999608062
+Manager: NapoliPark
+Prezzo: 9.843601819160687
+Capienza: 20
+Posti liberi: 6
+Zona: 2
+Utilità Manager: 0.4
+=================================
+
+User Agent id176@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id177@192.168.0.101:1200/JADE
+
+=================================
+id177@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Autovomero, Via Gianlorenzo Bernini, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.44008932960657043
+Manager: NapoliPark
+Prezzo: 4.921800909580344
+Capienza: 41
+Posti liberi: 12
+Zona: 2
+Utilità Manager: 0.39634146341463417
+=================================
+
+User Agent id177@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id178@192.168.0.101:1200/JADE
+
+=================================
+id178@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Enrico Alvino, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.4353669113692098
+Manager: ParkingPrisca
+Prezzo: 8.333333333333334
+Capienza: 40
+Posti liberi: 12
+Zona: 1
+Utilità Manager: 0.275
+=================================
+
+User Agent id178@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id179@192.168.0.101:1200/JADE
+
+=================================
+id179@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Autovomero, Via Gianlorenzo Bernini, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.4289034184484333
+Manager: NapoliPark
+Prezzo: 5.369237355905829
+Capienza: 41
+Posti liberi: 11
+Zona: 2
+Utilità Manager: 0.38414634146341464
+=================================
+
+User Agent id179@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id180@192.168.0.101:1200/JADE
+
+=================================
+id180@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Salita Arenella, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità: 0.6156955908650028
+Manager: NapoliPark
+Prezzo: 11.812322182992824
+Capienza: 20
+Posti liberi: 5
+Zona: 2
+Utilità Manager: 0.375
+=================================
+
+User Agent id180@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id181@192.168.0.101:1200/JADE
+
+=================================
+id181@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Via Enrico Alvino, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.41642751742981593
+Manager: ParkingPrisca
+Prezzo: 9.09090909090909
+Capienza: 40
+Posti liberi: 11
+Zona: 1
+Utilità Manager: 0.2625
+=================================
+
+User Agent id181@192.168.0.101:1200/JADE terminating.
+=================================
+Hello! Im User Agent. My id is: id182@192.168.0.101:1200/JADE
+
+=================================
+id182@192.168.0.101:1200/JADE Proposta prenotato - Parcheggio:
+Nome:Autovomero, Via Gianlorenzo Bernini, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità: 0.4154803250586688
+Manager: NapoliPark
+Prezzo: 5.906161091496412
+Capienza: 41
+Posti liberi: 10
+Zona: 2
+Utilità Manager: 0.3719512195121951
+=================================
+
+User Agent id182@192.168.0.101:1200/JADE terminating.
+=================================
+
+User Agent id183@192.168.0.101:1200/JADE terminating.
+User Agent id187@192.168.0.101:1200/JADE terminating.
+User Agent id191@192.168.0.101:1200/JADE terminating.
+User Agent id185@192.168.0.101:1200/JADE terminating.
+User Agent id192@192.168.0.101:1200/JADE terminating.
+User Agent id189@192.168.0.101:1200/JADE terminating.
+User Agent id184@192.168.0.101:1200/JADE terminating.
+User Agent id188@192.168.0.101:1200/JADE terminating.
+User Agent id190@192.168.0.101:1200/JADE terminating.
+User Agent id186@192.168.0.101:1200/JADE terminating.
+User Agent id43@192.168.0.101:1200/JADE terminating.
+User Agent id193@192.168.0.101:1200/JADE terminating.

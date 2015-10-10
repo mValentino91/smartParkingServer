@@ -124,11 +124,10 @@ public class ParkingManagerAgent extends Agent {
                 ACLMessage reply = msg.createReply();
                 // richiesta di negoziazione da parte dell'utente
                 if (msg.getPerformative() == ACLMessage.CFP) {
-                    System.out.println("=================================\n"
-                            + myAgent.getAID().getName() + ": Nuova Richiesta Ricevuta... ");
+                    /*System.out.println("=================================\n"
+                            + myAgent.getAID().getName() + ": Nuova Richiesta Ricevuta... ");*/
                     JsonParser parser = new JsonParser();
                     JsonElement json = parser.parse(msg.getContent());
-                    System.out.println(gson.toJson(json));
                     proposes.put(msg.getSender().getName(), caclulateProposes(json));
                     if (proposes.get(msg.getSender().getName()) != null && proposes.get(msg.getSender().getName()).size() > 0) {
                         reply.setPerformative(ACLMessage.PROPOSE);
@@ -142,8 +141,8 @@ public class ParkingManagerAgent extends Agent {
                         myAgent.send(reply);
                     }
                 } else if (msg.getPerformative() == ACLMessage.ACCEPT_PROPOSAL) {
-                    System.out.println("=================================\n"
-                            + myAgent.getAID().getName() + ": Proposta accettata dall'utente.. ");
+                    /*System.out.println("=================================\n"
+                            + myAgent.getAID().getName() + ": Proposta accettata dall'utente.. ");*/
                     // get object
                     Parking parking = proposes.get(msg.getSender().getName()).get(0);
                     //verifico che l'utilità corrente non sia dimezzata rispetto a quella calcolata a inizio negoziazione
@@ -163,8 +162,8 @@ public class ParkingManagerAgent extends Agent {
                         String propose = gson.toJson(proposes.get(msg.getSender().getName()).get(0));
                         reply.setContent(propose);
                         myAgent.send(reply);
-                        System.out.println("=================================\n"
-                                + myAgent.getAID().getName() + ": Prenotazione effettuata... " + parking.getName());
+                        /*System.out.println("=================================\n"
+                                + myAgent.getAID().getName() + ": Prenotazione effettuata... " + parking.getName());*/
                     }
                     block();
                 } else if (msg.getPerformative() == ACLMessage.REJECT_PROPOSAL) {
