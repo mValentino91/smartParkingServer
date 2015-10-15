@@ -1,0 +1,86 @@
+Parcheggi coinvolti nella negoziazione ordinati al tempo dell'ultima offerta.
+
+=================================
+Nome:Carrefour, Via Giuseppe Orsi, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità User: 0.5226639687601412
+Manager: ParkingPrisca
+Prezzo: 15.883511934683478
+Capienza: 41
+Posti liberi: 3
+Percentuale Riempimento: 92,6%
+Zona: 3
+Utilità Manager: 0.4115853658536585
+=================================
+=================================
+Nome:Parco Montedonzelli, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità	User: 0.44650979160717497
+Manager: ParcheggiCampania
+Prezzo: 9.530107160810086
+Capienza: 31
+Posti liberi: 5
+Percentuale Riempimento: 83,8%
+Zona: 3
+Utilità Manager: 0.45564516129032256
+=================================
+=================================
+Nome:Via Francesco Solimena, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità User: 0.4060366569563018
+Manager: NapoliPark
+Prezzo: 9.530107160810086
+Capienza: 32
+Posti liberi: 5
+Percentuale Riempimento: 84,3%
+Zona: 3
+Utilità Manager: 0.453125
+=================================
+=================================
+Nome:Carrefour, Via Antonio Solario, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità User: 0.5078199090419656
+Manager: ParcheggiCampania
+Prezzo: 19.687203638321375
+Capienza: 12
+Posti liberi: 3
+Percentuale Riempimento: 75%
+Zona: 2
+Utilità Manager: 0.375
+=================================
+=================================
+Nome:Salita Arenella, Soccavo, Naples, NA, Campania, 80128, Italia
+Soglia: 0.4
+Utilità User: 0.6156955908650028
+Manager: NapoliPark
+Prezzo: 11.812322182992824
+Capienza: 20
+Posti liberi: 5
+Percentuale Riempimento: 75%
+Zona: 2
+Utilità Manager: 0.375
+=================================
+=================================
+Nome:Via Enrico Alvino, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità User: 0.41642751742981593
+Manager: ParkingPrisca
+Prezzo: 9.09090909090909
+Capienza: 40
+Posti liberi: 11
+Percentuale Riempimento: 72,5%
+Zona: 1
+Utilità Manager: 0.2625
+=================================
+=================================
+Nome:Autovomero, Via Gianlorenzo Bernini, Soccavo, Naples, NA, Campania, 80100, Italia
+Soglia: 0.4
+Utilità User: 0.4154803250586688
+Manager: NapoliPark
+Prezzo: 5.906161091496412
+Capienza: 41
+Posti liberi: 10
+Percentuale Riempimento: 75,6%
+Zona: 2
+Utilità Manager: 0.3719512195121951
+=================================

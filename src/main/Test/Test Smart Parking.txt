@@ -1,5 +1,8 @@
-Numero Agenti: 400
+guardare 147, casi iniziali e casi finali.
+
 prezzo:0.5,distanza:0.5,soglia:0.5,tempo:0,partenza:[40.8515849,14.2302292],arrivo:[40.8515849,14.2302292]
+Numero Agenti Lanciati: 400
+Negoziazioni Completate: 182
 
 =================================
 Hello! Im Parking Manager Agent. My id is: NapoliPark@192.168.0.101:1200/JADE
