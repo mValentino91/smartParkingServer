@@ -15,13 +15,13 @@
 %\usepackage[pdftex]{hyperref}
 \usepackage[pdftex]{graphicx}
 \usepackage{url}
-\usepackage{float}
 \usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
 \usepackage{booktabs}
 \usepackage{enumitem}
 %\usepackage[margin=10pt,font=small,labelfont=bf,labelsep=endash]{caption}
 \usepackage[font=small,labelfont=bf,labelsep=quad,justification=justified,singlelinecheck=false]{caption}
 \usepackage{subcaption}
+\usepackage{float}
 \usepackage{fancyhdr}
 \usepackage{listings}
 \AtBeginDocument{\numberwithin{lstlisting}{section}}
@@ -95,6 +95,11 @@
 
 \numberwithin{figure}{section}
 \numberwithin{equation}{section}
+
+\makeatletter
+\newcommand*\bigcdot{\mathpalette\bigcdot@{.75}}
+\newcommand*\bigcdot@[2]{\mathbin{\vcenter{\hbox{\scalebox{#2}{$\m@th#1\bullet$}}}}}
+\makeatother
 
 \newcommand{\img}[6]{
     \begin{figure}[#5]
@@ -273,6 +278,49 @@ Una caratteristica fondamentale del meccanismo di negoziazione implementato è l
 Inoltre, per effetto dell'asincronicità del sistema può capitare che durante una negoziazione i valori di utilità dei parcheggi cambino, perché ad esempio nel frattempo sono stati allocati dei posti nella stessa zona. Per evitare che l'utente si ritrovi ad accettare una proposta che non corrisponde più alla sua utilità attesa, viene usato il valore \texttt{soglia} come margine di tolleranza. Dunque, al termine di una negoziazione, se il parcheggio selezionato ha ancora un'utilità maggiore o uguale di \texttt{soglia}, allora viene accettato. Altrimenti, lo UA rifiuta tutte le proposte dei PM, ed un nuovo turno di negoziazione viene avviato.
 
 \subsection{Caso di test: numerose richieste, stessa destinazione}
+
+Il nostro scenario di riferimento consiste in un elevato numero di utenti che effettuano la stessa richiesta nello stesso periodo di tempo, in modo da verificare in che modo l'allocazione dei parcheggi viene distribuita tra le zone. L'obiettivo è evitare il più possibile la zona rossa, così da limitare la congestione del traffico. Il raggio delle zone può essere impostato dal PM in base a diversi fattori, come la viabilità corrente, il numero dei parcheggi disponibili, e così via. 
+Nel nostro test, ogni raggio di zona è circa $1$ km più grande rispetto al precedente.
+L'esperimento simula $200$ richieste effettuate in sequenza nell'arco di $2$ minuti, per lo stesso parcheggio a Napoli, quartiere Vomero. Ogni richiesta ha valori di \texttt{prezzo}, \texttt{distanza} e \texttt{soglia} posti a $0.5$, \texttt{tempo} posto a $0$, \texttt{partenza} uguale a \texttt{arrivo}.
+Le negoziazioni che vanno a buon fine sono le prime $182$, in quanto per i rimanenti agenti le utilità scendono al di sotto della soglia di accettazione.
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{lllll}
+    \arrayrulecolor{gray}
+    \toprule
+    & Prezzo & Utilità PM & Utilità UA & Benessere sociale \\
+    \midrule
+    zona $1$ & $6.5$ & $0.444$ & $0.531$ & $0.975$ \\
+    zona $2$ & $4.7$ & $0.561$ & $0.618$ & $1.180$ \\
+    zona $3$ & $3.4$ & $0.656$ & $0.685$ & $1.340$ \\
+    \midrule
+    totale & $4.9$ & $0.553$ & $0.611$ & $1.165$ \\
+    \bottomrule
+    \end{tabular}
+    \label{tab:1}
+    \caption{Valori medi delle negoziazioni.}
+\end{table}
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{llll}
+    \arrayrulecolor{gray}
+    \toprule
+    Parcheggio & Manager & Riempimento ($\%$) & Zona \\ 
+    \midrule
+    Carrefour, Via Giuseppe Orsi & \textsf{ParkingPrisca} & 92.6 & $3$ \\
+    Via Francesco Solimena & \textsf{NapoliPark} & 84.3 & $3$ \\
+    Parco Montedonzelli & \textsf{ParcheggiCampania} & 83.8 & $3$ \\
+    Autovomero, Via Gianlorenzo Bernini & \textsf{NapoliPark} & 75.6 & $2$ \\
+    Carrefour, Via Antonio Solario & \textsf{ParcheggiCampania} & 75 & $2$ \\ 
+    Salita Arenella & \textsf{NapoliPark} & 75 & $2$ \\ 
+    Via Enrico Alvino & \textsf{ParkingPrisca} & 72.5 & $1$ \\
+    \bottomrule
+    \end{tabular}
+    \label{tab:2}
+    \caption{Parcheggi coinvolti nelle negoziazioni.}
+\end{table}
 
 \section{Conclusioni}
 
