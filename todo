@@ -1,8 +1,13 @@
-. gestione dei cambiamenti di utilità: inserire margine di tolleranza all'interno della negoziazione, con verifica prima dell'accettazione
-. dinamicità prezzo in base ad occupazione e eventi
-. documentazione: estendere paragrafo 'Implementazione'
-. testing approfondito
-
 http://localhost:8080/SmartParkingServer/initUserAgent?requestJson=[{%22partenza%22:%20[40.851816,%2014.271955],%20%22arrivo%22:%20[40.843768,%2014.240912],%20%22prezzo%22:%200.145047,%20%22distanza%22:%200.0589623,%20%22tempo%22:%200.163915,%20%22soglia%22:%20%200.0871394}]
 
-www.coordinate-gps.it
+test:
+
+1. mostrare discesa utilita UA e PM
+2. quando non soddisfa più la soglia, cambia parcheggio
+3. le zone all'inizio sono in genere distanti, poi man mano che si riempiono i parcheggi si avvicinano alla zona rossa
+4. quando l'utilità scende al di sotto della soglia, tutti gli UA rifiutano 
+
+distribuzione prenotazioni, si evince che:
+
+1. la zona 1 è quella che si riempie di meno (vengono preferite prima le zone più distanti)
+2. i parcheggi vengono distribuiti uniformemente tra le zone
