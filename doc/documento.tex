@@ -219,7 +219,7 @@ I valori di questi attributi sono mostrati in ogni offerta che il PM invia allo 
 \section{Implementazione}
 
 Al fine di creare una soluzione che si potesse integrare in un più complesso sistema per la gestione dei parcheggi cittadini, abbiamo implementato un servizio web multi-agente che automaticamente seleziona posti parcheggio in risposta alle richieste degli utenti. L'architettura è mostrata in figura \ref{fig:3}.
-\img{arch2}{L'architettura del servizio.}{fig:3}{.6}{ht}
+\img{arch2}{L'architettura del servizio.}{fig:3}{.62}{ht}
 
 Il modulo per la negoziazione, comprendente sia lo UA e il PM che il protocollo di interazione, è stato implementato usando JADE \cite{11}, un framework open source per lo sviluppo di applicazioni che implementano sistemi multi-agenti. JADE è basato su Java, e supporta la comunicazione tra agenti in conformità con le specifiche FIPA\footnote{\emph{Foundation for Intelligent Physical Agents}.}. Il sistema multi-agente è composto da molteplici UA che comunicano con alcuni PM. Gli UA, insieme ai PM, sono implementati lato server, e interfacciati tramite servizi di tipo REST, in modo da ridurre il carico computazionale sui client e centralizzare la gestione dei dati, così che tramite l'esposizione di servizi web sia possibile creare diversi tipi di applicazioni che si interfacciano con l'utente. Il server back-end, basato su Apache Tomcat, è capace di comunicare con diversi servizi e fonti d'informazioni esterne:
 \begin{itemize}
@@ -227,7 +227,7 @@ Il modulo per la negoziazione, comprendente sia lo UA e il PM che il protocollo 
     \item database di parcheggi per conoscere la disponibilità dei posti;
     \item strutture municipali per il recupero di informazioni riguardanti la viabilità stradale.
 \end{itemize}
-Il database di parcheggi viene estratto da OpenStreetMap \cite{13}, ed è implementato usando MongoDB, un database NoSQL che supporta una grande varietà di dati, in particolare quelli geografici.
+Il database di parcheggi viene estratto da OpenStreetMap \cite{13}, ed è implementato usando MongoDB, una soluzione NoSQL che supporta una grande varietà di dati, in particolare quelli geografici.
 La prenotazione del parcheggio, e dunque il decremento dei posti disponibili, viene effettuata solo nei momento in cui l'utente accetta un'offerta, per non influenzare la funzione di utilità degli agenti. In questo modo si evitano alterazioni del processo di negoziazione.
 
 L'utente, tramite il proprio client\footnote{In genere un'applicazione mobile.}, dovrà fornire al server, oltre ai dati iniziali (partenza, destinazione, prezzo massimo), i pesi da dare agli attributi per la funzione di utilità della negoziazione.
@@ -247,7 +247,7 @@ La figura \ref{fig:4} mostra come avviene la comunicazione tra server e client.
 \begin{enumerate}
     \item \texttt{initEnvironment}, avvio dell'ambiente JADE;
     \item \texttt{parsingXML}, recupero dei dati XML sui parcheggi, trasformazione in JSON e inserimento in MongoDB: eseguita una prima volta, questa operazione diventa opzionale;
-    \item \texttt{parkingManager}, instanziazione dei Parking Manager, nella nostra implementazione sono tre: \textsf{NapoliPark}, \textsf{ParkingPrisca}, \textsf{ParcheggiCampania}.
+    \item \texttt{parkingManager}, instanziazione dei Parking Manager, il cui numero dipende dalla mole di connessioni attese.
 \end{enumerate}
 A questo punto, un client può instanziare uno User Agent invocando il servizio \texttt{initUserAgent}. La richiesta necessita di un JSON in input comprendente: partenza, destinazione, prezzo massimo, distanza massima a piedi dal parcheggio alla destinazione, tempo massimo di percorrenza, e soglia di accettazione. Il risultato sarà un URL del genere:
 
@@ -275,21 +275,26 @@ Effettuata la richiesta, il server risponderà al client con l'identificativo de
 
 Una caratteristica fondamentale del meccanismo di negoziazione implementato è la dinamicità dei prezzi. A seconda del numero di zona, che va da $1$ (zona rossa), a $4$ (parcheggi più distanti), oltre che dell'occupazione dei parcheggi e dell'eventuale presenza di eventi, più l'utente è meno disposto a parcheggiare lontano dalla zona rossa, più il prezzo lieviterà.
 
-Inoltre, per effetto dell'asincronicità del sistema può capitare che durante una negoziazione i valori di utilità dei parcheggi cambino, perché ad esempio nel frattempo sono stati allocati dei posti nella stessa zona. Per evitare che l'utente si ritrovi ad accettare una proposta che non corrisponde più alla sua utilità attesa, viene usato il valore \texttt{soglia} come margine di tolleranza. Dunque, al termine di una negoziazione, se il parcheggio selezionato ha ancora un'utilità maggiore o uguale di \texttt{soglia}, allora viene accettato. Altrimenti, lo UA rifiuta tutte le proposte dei PM, ed un nuovo turno di negoziazione viene avviato.
+Inoltre, per effetto dell'asincronismo del sistema può capitare che durante una negoziazione i valori di utilità dei parcheggi cambino, perché ad esempio nel frattempo sono stati allocati dei posti nella stessa zona. Per evitare che l'utente si ritrovi ad accettare una proposta che non corrisponde più alla sua utilità attesa, viene usato il valore \texttt{soglia} come margine di tolleranza. Dunque, al termine di una negoziazione, se il parcheggio selezionato ha ancora un'utilità maggiore o uguale di \texttt{soglia}, allora viene accettato. Altrimenti, lo UA rifiuta tutte le proposte dei PM, ed un nuovo turno di negoziazione viene avviato.
 
 \subsection{Caso di test: numerose richieste, stessa destinazione}
 
-Il nostro scenario di riferimento consiste in un elevato numero di utenti che effettuano la stessa richiesta nello stesso periodo di tempo, in modo da verificare in che modo l'allocazione dei parcheggi viene distribuita tra le zone. L'obiettivo è evitare il più possibile la zona rossa, così da limitare la congestione del traffico. Il raggio delle zone può essere impostato dal PM in base a diversi fattori, come la viabilità corrente, il numero dei parcheggi disponibili, e così via. 
-Nel nostro test, ogni raggio di zona è circa $1$ km più grande rispetto al precedente.
+Il nostro scenario di riferimento consiste in un elevato numero di utenti che effettuano la stessa richiesta nello stesso periodo di tempo. Poiché vogliamo verificare come l'allocazione dei parcheggi viene distribuita tra le zone, non considereremo i fattori di distanza e tempo di percorrenza tra partenza e destinazione. L'obiettivo è evitare il più possibile la zona rossa, così da limitare la congestione del traffico. Il raggio delle zone può essere impostato in base a diversi fattori, come la viabilità corrente, il numero dei parcheggi disponibili, e così via;
+nel nostro test, ogni raggio di zona è circa $1$ km più grande rispetto al precedente.
 L'esperimento simula $200$ richieste effettuate in sequenza nell'arco di $2$ minuti, per lo stesso parcheggio a Napoli, quartiere Vomero. Ogni richiesta ha valori di \texttt{prezzo}, \texttt{distanza} e \texttt{soglia} posti a $0.5$, \texttt{tempo} posto a $0$, \texttt{partenza} uguale a \texttt{arrivo}.
+I Parking Manager sono tre: \textsf{NapoliPark}, \textsf{ParkingPrisca}, \textsf{ParcheggiCampania}.
 Le negoziazioni che vanno a buon fine sono le prime $182$, in quanto per i rimanenti agenti le utilità scendono al di sotto della soglia di accettazione.
+
+La tabella \ref{tab:1} mostra i valori medi ottenuti durante le negoziazioni.
+Come si vede, più il parcheggio selezionato è lontano dalla zona rossa, più le utilità degli agenti crescono, e di conseguenza anche il benessere sociale, ovvero la somma delle utilità individuali, cresce.
+Ovviamente, il prezzo decresce all'aumentare del numero di zona.
 
 \begin{table}[ht]
     \centering
     \begin{tabular}{lllll}
     \arrayrulecolor{gray}
     \toprule
-    & Prezzo & Utilità PM & Utilità UA & Benessere sociale \\
+    & Prezzo (€) & Utilità PM & Utilità UA & Benessere sociale \\
     \midrule
     zona $1$ & $6.5$ & $0.444$ & $0.531$ & $0.975$ \\
     zona $2$ & $4.7$ & $0.561$ & $0.618$ & $1.180$ \\
@@ -298,30 +303,35 @@ Le negoziazioni che vanno a buon fine sono le prime $182$, in quanto per i riman
     totale & $4.9$ & $0.553$ & $0.611$ & $1.165$ \\
     \bottomrule
     \end{tabular}
+    \caption{Valori medi del test.}
     \label{tab:1}
-    \caption{Valori medi delle negoziazioni.}
 \end{table}
+
+In tabella \ref{tab:2} è invece mostrata la distribuzione delle allocazioni.
+Le concentrazioni maggiori si trovano nelle zone più distanti. Questo avviene perché più ci si vuole avvicinare alla zona rossa, più è difficile trovare un compromesso tra gli agenti. All'inizio i parcheggi vengono allocati il più possibile lontani dalla zona rossa, e solo man mano che si riempiono (e quindi la loro utilità cala) vengono scartati in favore di zone più vicine.
+
+Possiamo dunque constatare che i parcheggi vengono scelti in accordo con il nostro obiettivo.
 
 \begin{table}[ht]
     \centering
     \begin{tabular}{llll}
     \arrayrulecolor{gray}
     \toprule
-    Parcheggio & Manager & Riempimento ($\%$) & Zona \\ 
+    Parcheggio & Manager & Riempimento ($\%$) & Zona \\
     \midrule
     Carrefour, Via Giuseppe Orsi & \textsf{ParkingPrisca} & 92.6 & $3$ \\
     Via Francesco Solimena & \textsf{NapoliPark} & 84.3 & $3$ \\
     Parco Montedonzelli & \textsf{ParcheggiCampania} & 83.8 & $3$ \\
     Autovomero, Via Gianlorenzo Bernini & \textsf{NapoliPark} & 75.6 & $2$ \\
-    Carrefour, Via Antonio Solario & \textsf{ParcheggiCampania} & 75 & $2$ \\ 
-    Salita Arenella & \textsf{NapoliPark} & 75 & $2$ \\ 
+    Carrefour, Via Antonio Solario & \textsf{ParcheggiCampania} & 75 & $2$ \\
+    Salita Arenella & \textsf{NapoliPark} & 75 & $2$ \\
     Via Enrico Alvino & \textsf{ParkingPrisca} & 72.5 & $1$ \\
     \bottomrule
     \end{tabular}
+    \caption{Parcheggi coinvolti nel test.}
     \label{tab:2}
-    \caption{Parcheggi coinvolti nelle negoziazioni.}
 \end{table}
-
+\vspace{-.4cm}
 \section{Conclusioni}
 
 L'obiettivo dello Smart Parking è rendere più facile agli automobilisti trovare parcheggio, e al contempo favorire una riduzione di traffico, emissioni di CO, frustrazione e perdita di tempo, andando così a beneficiare la città intera.
@@ -331,7 +341,7 @@ Per questo motivo, abbiamo proposto un'applicazione di Smart Parking che punta a
 Il meccanismo implementato punta a massimizzare il benessere collettivo cercando un compromesso tra utenti e autorità cittadine, i cui interessi sono spesso in conflitto.
 Il modo classico per ottenere ciò è tramite una negoziazione, che è il punto chiave della nostra applicazione, e l'oggetto su cui si è basato questo documento.
 
-\fancyhead[LO]{Riferimenti}
+%\fancyhead[LO]{Riferimenti}
 \nocite{*}
 \bibliographystyle{unsrt}
 \renewcommand\refname{Riferimenti}
