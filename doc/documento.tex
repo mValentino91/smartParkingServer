@@ -15,13 +15,13 @@
 %\usepackage[pdftex]{hyperref}
 \usepackage[pdftex]{graphicx}
 \usepackage{url}
-\usepackage{float}
 \usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
 \usepackage{booktabs}
 \usepackage{enumitem}
 %\usepackage[margin=10pt,font=small,labelfont=bf,labelsep=endash]{caption}
 \usepackage[font=small,labelfont=bf,labelsep=quad,justification=justified,singlelinecheck=false]{caption}
 \usepackage{subcaption}
+\usepackage{float}
 \usepackage{fancyhdr}
 \usepackage{listings}
 \AtBeginDocument{\numberwithin{lstlisting}{section}}
@@ -96,6 +96,11 @@
 \numberwithin{figure}{section}
 \numberwithin{equation}{section}
 
+\makeatletter
+\newcommand*\bigcdot{\mathpalette\bigcdot@{.75}}
+\newcommand*\bigcdot@[2]{\mathbin{\vcenter{\hbox{\scalebox{#2}{$\m@th#1\bullet$}}}}}
+\makeatother
+
 \newcommand{\img}[6]{
     \begin{figure}[#5]
         \centerline{\includegraphics[width=#4\columnwidth]{#1}}
@@ -154,7 +159,7 @@ Molti degli approcci proposti interpretano lo Smart Parking come un problema di 
 In questo documento presentiamo un'applicazione che fa uso di tale approccio.
 Il progetto rappresenta lo sviluppo e l'ampliamento del prototipo presentato in \cite{2}.
 
-\section{Il contesto per un'applicazione di Smart Parking}
+\section{Il contesto di un'applicazione di Smart Parking}
 
 Un sistema di Smart Parking è composto da diversi dispositivi hardware per il rilevamento del grado di occupazione dei parcheggi cittadini, e di applicazioni software per la gestione dell'allocazione dei parcheggi, con i quali gli automobilisti si interfacciano.
 Di solito tali sistemi permettono all'utente di scegliere da un insieme di opzioni \cite{3}.
@@ -193,7 +198,7 @@ Per evitare l'agglomeramento di parcheggi in specifiche aree cittadine, il siste
 In questo lavoro adottiamo il meccanismo di negoziazione riportato in \cite{6}, che si basa sul protocollo \textsf{FIPA Iterated Contract Net}, il quale imita un processo di negoziazione tramite reiterazione di offerte.
 Il protocollo è organizzato in turni, ciascuno composto da interazioni tra lo UA, che inizia la negoziazione, e il PM, che propone le offerte.
 
-\img{fipa}{Il protocollo d'interazione FIPA Iterated Contract Net. Fonte: \cite{7}}{fig:2}{.7}{ht}
+\img{fipa}{Il protocollo d'interazione \textsf{FIPA Iterated Contract Net}. Fonte: \cite{7}}{fig:2}{.7}{ht}
 
 Nel primo turno di negoziazione, lo UA effettua una richiesta (\emph{call for proposal}) di parcheggio, specificando la sua destinazione, l'intervallo temporale in cui ne ha bisogno, e il livello d'importanza (\emph{peso}) circa specifici attributi del parcheggio. Il PM può respingere la richiesta, se non ci sono offerte disponibili, oppure selezionare un'offerta da una lista di quelle possibili.
 Nel secondo caso, il PM definisce l'insieme delle offerte selezionando i parcheggi in un'area centrata attorno alla destinazione dell'utente, e le cui dimensioni rispettano un qualche criterio (ad esempio, un'area piccola se l'utente vuole parcheggiare lontano dalla zona rossa, un'area più grande altrimenti). Una volta stabilito l'insieme, il PM calcola i prezzi corrispondenti alle offerte in base al modello dei prezzi descritto nella sezione precedente, poi ordina gli elementi in base a criteri interni che considerano i bisogni della città. Le offerte vengono inviate allo UA, turno dopo turno, in ordine decrescente.
@@ -214,7 +219,7 @@ I valori di questi attributi sono mostrati in ogni offerta che il PM invia allo 
 \section{Implementazione}
 
 Al fine di creare una soluzione che si potesse integrare in un più complesso sistema per la gestione dei parcheggi cittadini, abbiamo implementato un servizio web multi-agente che automaticamente seleziona posti parcheggio in risposta alle richieste degli utenti. L'architettura è mostrata in figura \ref{fig:3}.
-\img{arch2}{L'architettura del servizio.}{fig:3}{.6}{ht}
+\img{arch2}{L'architettura del servizio.}{fig:3}{.62}{ht}
 
 Il modulo per la negoziazione, comprendente sia lo UA e il PM che il protocollo di interazione, è stato implementato usando JADE \cite{11}, un framework open source per lo sviluppo di applicazioni che implementano sistemi multi-agenti. JADE è basato su Java, e supporta la comunicazione tra agenti in conformità con le specifiche FIPA\footnote{\emph{Foundation for Intelligent Physical Agents}.}. Il sistema multi-agente è composto da molteplici UA che comunicano con alcuni PM. Gli UA, insieme ai PM, sono implementati lato server, e interfacciati tramite servizi di tipo REST, in modo da ridurre il carico computazionale sui client e centralizzare la gestione dei dati, così che tramite l'esposizione di servizi web sia possibile creare diversi tipi di applicazioni che si interfacciano con l'utente. Il server back-end, basato su Apache Tomcat, è capace di comunicare con diversi servizi e fonti d'informazioni esterne:
 \begin{itemize}
@@ -222,19 +227,111 @@ Il modulo per la negoziazione, comprendente sia lo UA e il PM che il protocollo 
     \item database di parcheggi per conoscere la disponibilità dei posti;
     \item strutture municipali per il recupero di informazioni riguardanti la viabilità stradale.
 \end{itemize}
-Il database di parcheggi viene estratto da OpenStreetMap \cite{13}, ed è implementato usando MongoDB, un database NoSQL che supporta una grande varietà di dati, in particolare quelli geografici.
+Il database di parcheggi viene estratto da OpenStreetMap \cite{13}, ed è implementato usando MongoDB, una soluzione NoSQL che supporta una grande varietà di dati, in particolare quelli geografici.
 La prenotazione del parcheggio, e dunque il decremento dei posti disponibili, viene effettuata solo nei momento in cui l'utente accetta un'offerta, per non influenzare la funzione di utilità degli agenti. In questo modo si evitano alterazioni del processo di negoziazione.
 
-L'utente, tramite il proprio client\footnote{In genere un app mobile.}, dovrà fornire al server, oltre ai dati iniziali (partenza, destinazione, prezzo massimo), i pesi da dare agli attributi per la funzione di utilità della negoziazione.
+L'utente, tramite il proprio client\footnote{In genere un'applicazione mobile.}, dovrà fornire al server, oltre ai dati iniziali (partenza, destinazione, prezzo massimo), i pesi da dare agli attributi per la funzione di utilità della negoziazione.
 Dopodiché ci sarà una comunicazione in più fasi:
 \begin{itemize}
-    \item il client trasforma, tramite un servizio di geocoding del server, gli indirizzi di partenza e arrivo in coordinate;
-    \item il client compila un JSON per effettuare una HTTP/POST al server;
+    \item il client trasforma, tramite un servizio di geocoding, gli indirizzi di partenza e arrivo in coordinate;
+    \item il client compila un JSON per effettuare una HTTP/GET al server;
     \item il server accetta la richiesta e avvia una negoziazione;
     \item il client effettua un polling fino a che non ottiene i risultati della negoziazione, che poi elabora per presentarli all'utente (percorso su mappa e indicazioni).
 \end{itemize}
 Il polling avviene perché gli agenti vengono eseguiti asincronamente sul server, fino a che la negoziazione non termina e determinate strutture dati vengono modificate con i risultati.
+La figura \ref{fig:4} mostra come avviene la comunicazione tra server e client.
 
+\img{workflow}{Comunicazione tra client e server.}{fig:4}{.85}{ht}
+
+\noindent Per prima cosa, il server viene inizializzato tramite tre operazioni:
+\begin{enumerate}
+    \item \texttt{initEnvironment}, avvio dell'ambiente JADE;
+    \item \texttt{parsingXML}, recupero dei dati XML sui parcheggi, trasformazione in JSON e inserimento in MongoDB: eseguita una prima volta, questa operazione diventa opzionale;
+    \item \texttt{parkingManager}, instanziazione dei Parking Manager, il cui numero dipende dalla mole di connessioni attese.
+\end{enumerate}
+A questo punto, un client può instanziare uno User Agent invocando il servizio \texttt{initUserAgent}. La richiesta necessita di un JSON in input comprendente: partenza, destinazione, prezzo massimo, distanza massima a piedi dal parcheggio alla destinazione, tempo massimo di percorrenza, e soglia di accettazione. Il risultato sarà un URL del genere:
+
+\begin{verbatim}
+http://$HOST/SmartParkingServer/initUserAgent?requestJson=$JSON
+\end{verbatim}
+Dove \texttt{\$HOST} sarà l'indirizzo web su cui risiederà il server, e \texttt{\$JSON} avrà una forma di questo tipo:
+
+\begin{verbatim}
+[{
+        ''partenza'': [40.851816, 14.271955],
+        ''arrivo''  : [40.843768, 14.240912],
+        ''prezzo''  : 0.145047,
+        ''distanza'': 0.0589623,
+        ''tempo''   : 0.163915,
+        ''soglia''  : 0.0871394
+}]
+\end{verbatim}
+
+Sia \texttt{partenza} che \texttt{arrivo} sono \textsf{JsonArray} di coordinate.
+Si noti che lo stesso \texttt{\$JSON} è in realtà un \textsf{JsonArray}: questo per consentire in implementazioni future la possibilità di introdurre un modulo per effettuare prenotazioni molteplici, e gestire una lista di ``preferiti'' per ogni utente (ad esempio: parcheggio per il lavoro, parcheggio per andare allo stadio, e così via).
+Nell'implementazione corrente, viene considerato solo il primo \textsf{Json}.
+
+Effettuata la richiesta, il server risponderà al client con l'identificativo della negoziazione così avviata. Il client userà questo identificativo come input a \texttt{getState} per effettuare il polling sullo stato della negoziazione.
+
+Una caratteristica fondamentale del meccanismo di negoziazione implementato è la dinamicità dei prezzi. A seconda del numero di zona, che va da $1$ (zona rossa), a $4$ (parcheggi più distanti), oltre che dell'occupazione dei parcheggi e dell'eventuale presenza di eventi, più l'utente è meno disposto a parcheggiare lontano dalla zona rossa, più il prezzo lieviterà.
+
+Inoltre, per effetto dell'asincronismo del sistema può capitare che durante una negoziazione i valori di utilità dei parcheggi cambino, perché ad esempio nel frattempo sono stati allocati dei posti nella stessa zona. Per evitare che l'utente si ritrovi ad accettare una proposta che non corrisponde più alla sua utilità attesa, viene usato il valore \texttt{soglia} come margine di tolleranza. Dunque, al termine di una negoziazione, se il parcheggio selezionato ha ancora un'utilità maggiore o uguale di \texttt{soglia}, allora viene accettato. Altrimenti, lo UA rifiuta tutte le proposte dei PM, ed un nuovo turno di negoziazione viene avviato.
+
+\subsection{Caso di test: numerose richieste, stessa destinazione}
+
+Il nostro scenario di riferimento consiste in un elevato numero di utenti che effettuano la stessa richiesta nello stesso periodo di tempo. Poiché vogliamo verificare come l'allocazione dei parcheggi viene distribuita tra le zone, non considereremo i fattori di distanza e tempo di percorrenza tra partenza e destinazione. L'obiettivo è evitare il più possibile la zona rossa, così da limitare la congestione del traffico. Il raggio delle zone può essere impostato in base a diversi fattori, come la viabilità corrente, il numero dei parcheggi disponibili, e così via;
+nel nostro test, ogni raggio di zona è circa $1$ km più grande rispetto al precedente.
+L'esperimento simula $200$ richieste effettuate in sequenza nell'arco di $2$ minuti, per lo stesso parcheggio a Napoli, quartiere Vomero. Ogni richiesta ha valori di \texttt{prezzo}, \texttt{distanza} e \texttt{soglia} posti a $0.5$, \texttt{tempo} posto a $0$, \texttt{partenza} uguale a \texttt{arrivo}.
+I Parking Manager sono tre: \textsf{NapoliPark}, \textsf{ParkingPrisca}, \textsf{ParcheggiCampania}.
+Le negoziazioni che vanno a buon fine sono le prime $182$, in quanto per i rimanenti agenti le utilità scendono al di sotto della soglia di accettazione.
+
+La tabella \ref{tab:1} mostra i valori medi ottenuti durante le negoziazioni.
+Come si vede, più il parcheggio selezionato è lontano dalla zona rossa, più le utilità degli agenti crescono, e di conseguenza anche il benessere sociale, ovvero la somma delle utilità individuali, cresce.
+Ovviamente, il prezzo decresce all'aumentare del numero di zona.
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{lllll}
+    \arrayrulecolor{gray}
+    \toprule
+    & Prezzo (€) & Utilità PM & Utilità UA & Benessere sociale \\
+    \midrule
+    zona $1$ & $6.5$ & $0.444$ & $0.531$ & $0.975$ \\
+    zona $2$ & $4.7$ & $0.561$ & $0.618$ & $1.180$ \\
+    zona $3$ & $3.4$ & $0.656$ & $0.685$ & $1.340$ \\
+    \midrule
+    totale & $4.9$ & $0.553$ & $0.611$ & $1.165$ \\
+    \bottomrule
+    \end{tabular}
+    \caption{Valori medi del test.}
+    \label{tab:1}
+\end{table}
+
+In tabella \ref{tab:2} è invece mostrata la distribuzione delle allocazioni.
+Le concentrazioni maggiori si trovano nelle zone più distanti. Questo avviene perché più ci si vuole avvicinare alla zona rossa, più è difficile trovare un compromesso tra gli agenti. All'inizio i parcheggi vengono allocati il più possibile lontani dalla zona rossa, e solo man mano che si riempiono (e quindi la loro utilità cala) vengono scartati in favore di zone più vicine.
+
+Possiamo dunque constatare che i parcheggi vengono scelti in accordo con il nostro obiettivo.
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{llll}
+    \arrayrulecolor{gray}
+    \toprule
+    Parcheggio & Manager & Riempimento ($\%$) & Zona \\
+    \midrule
+    Carrefour, Via Giuseppe Orsi & \textsf{ParkingPrisca} & 92.6 & $3$ \\
+    Via Francesco Solimena & \textsf{NapoliPark} & 84.3 & $3$ \\
+    Parco Montedonzelli & \textsf{ParcheggiCampania} & 83.8 & $3$ \\
+    Autovomero, Via Gianlorenzo Bernini & \textsf{NapoliPark} & 75.6 & $2$ \\
+    Carrefour, Via Antonio Solario & \textsf{ParcheggiCampania} & 75 & $2$ \\
+    Salita Arenella & \textsf{NapoliPark} & 75 & $2$ \\
+    Via Enrico Alvino & \textsf{ParkingPrisca} & 72.5 & $1$ \\
+    \bottomrule
+    \end{tabular}
+    \caption{Parcheggi coinvolti nel test.}
+    \label{tab:2}
+\end{table}
+\vspace{-.4cm}
 \section{Conclusioni}
 
 L'obiettivo dello Smart Parking è rendere più facile agli automobilisti trovare parcheggio, e al contempo favorire una riduzione di traffico, emissioni di CO, frustrazione e perdita di tempo, andando così a beneficiare la città intera.
@@ -244,7 +341,7 @@ Per questo motivo, abbiamo proposto un'applicazione di Smart Parking che punta a
 Il meccanismo implementato punta a massimizzare il benessere collettivo cercando un compromesso tra utenti e autorità cittadine, i cui interessi sono spesso in conflitto.
 Il modo classico per ottenere ciò è tramite una negoziazione, che è il punto chiave della nostra applicazione, e l'oggetto su cui si è basato questo documento.
 
-\fancyhead[LO]{Riferimenti}
+%\fancyhead[LO]{Riferimenti}
 \nocite{*}
 \bibliographystyle{unsrt}
 \renewcommand\refname{Riferimenti}
