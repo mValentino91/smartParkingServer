@@ -30,9 +30,9 @@ import java.util.Map;
 public class UserAgent extends Agent {
 
     //raggio massimo in cui considerare i parcheggi dal punto di destinazione
-    private static final double maxDistance = 0.01;
+    private static final double maxDistance = 0.02;
     //raggio massimo in cui considerare i parcheggi dal punto di partenza
-    private static final double maxDistance2 = 1;
+    private static final double maxDistance2 = 0.1;
     //prezzo massimo per un parcheggio
     private static final double maxPrice = 20;
     private static final long serialVersionUID = 1L;

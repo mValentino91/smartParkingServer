@@ -34,6 +34,7 @@
                 markers[<%=i%>] = new google.maps.Marker({
                     position: new google.maps.LatLng(${poi.location[0]}, ${poi.location[1]}),
                     title: "${poi.name}",
+                    icon: "./dist/img/${poi.zone}.png",
                     map: map});
 
                 <%i++;%>

@@ -20,6 +20,8 @@ package com.parking.controller;
 import com.google.gson.Gson;
 import com.parking.dbManager.PersistenceManager;
 import com.parking.persistence.mongo.documents.Parking;
+import java.awt.Point;
+import java.awt.geom.Point2D;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -46,9 +48,36 @@ public class MapController {
              @RequestParam(value = "lat1") String lat1,
              @RequestParam(value = "lon1") String lon1*/) {
         //Creo la view che sarà mostrata all'utente
-        
+
         ModelAndView model = new ModelAndView("mapParcheggi");
         Iterable<Parking> poiList = persistence.getAllParking();
+        //aggiungo la lista al model
+        model.addObject("poiList", poiList);
+
+        return model;
+    }
+
+    @RequestMapping("/ChangeCenter")
+    public ModelAndView changeZone(@RequestParam(value = "lat") float lat, @RequestParam(value = "lon") float lon) {
+
+        Iterable<Parking> poiList = persistence.getAllParking();
+        Point.Double center = new Point2D.Double(lat, lon);
+
+        for (Parking parking : poiList) {
+            double distance = center.distance(parking.getLocation()[0], parking.getLocation()[1]);
+            if (distance < 0.005) {
+                parking.setZone(1);
+            } else if (distance < 0.01) {
+                parking.setZone(2);
+            } else if (distance < 0.08) {
+                parking.setZone(3);
+            } else {
+                parking.setZone(4);
+            }
+            persistence.saveParking(parking);
+        }
+        //Creo la view che sarà mostrata all'utente
+        ModelAndView model = new ModelAndView("mapParcheggi");
         //aggiungo la lista al model
         model.addObject("poiList", poiList);
 

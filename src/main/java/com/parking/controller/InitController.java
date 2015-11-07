@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -102,7 +103,7 @@ public class InitController {
         int res = 0;
         double treshold = obj.getAsJsonObject().get("soglia").getAsDouble();
         for (int j = 0; j < 400; j++) {
-            res = AgentsManager.startUserAgent("id"+j, location, destination, weights, treshold);
+            res = AgentsManager.startUserAgent("id" + j, location, destination, weights, treshold);
             Thread.sleep(400);
         }
         //create json response
@@ -121,10 +122,10 @@ public class InitController {
 
     @RequestMapping(value = "/parsingXML")
     public @ResponseBody
-    String parsing(HttpServletRequest request) {
+    String parsing(HttpServletRequest request, @RequestParam(value = "lat") float lat, @RequestParam(value = "lon") float lon) {
         HttpSession session = request.getSession();
         ServletContext sc = session.getServletContext();
-        XMLParser parser = new XMLParser(sc.getRealPath("/") + "dist" + File.separator + "xmls" + File.separator + "carparks.xml", "place", "parking");
+        XMLParser parser = new XMLParser(sc.getRealPath("/") + "dist" + File.separator + "xmls" + File.separator + "carparks.xml", "place", "parking", lat, lon);
 
         ArrayList<Parking> list = parser.getList();
         for (Parking parking : list) {

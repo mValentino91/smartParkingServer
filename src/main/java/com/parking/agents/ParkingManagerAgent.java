@@ -32,7 +32,7 @@ import java.util.HashMap;
 public class ParkingManagerAgent extends Agent {
 
     //raggio massimo in cui considerare i parcheggi dal punto di destinazione
-    private static final double maxDistance = 0.01;
+    private static final double maxDistance = 0.02;
     //raggio massimo in cui considerare i parcheggi dal punto di partenza
     private static final double maxDistance2 = 1;
     private PersistenceManager persistence;

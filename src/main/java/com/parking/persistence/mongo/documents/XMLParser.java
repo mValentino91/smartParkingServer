@@ -19,6 +19,8 @@ package com.parking.persistence.mongo.documents;
 
 import com.parking.negotiation.ConcreteInputCalculator;
 import com.parking.negotiation.InputCalculator;
+import java.awt.Point;
+import java.awt.geom.Point2D;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
@@ -39,6 +41,8 @@ public class XMLParser {
     private final String filePath;
     private final String tagName;
     private final String collection;
+    private float lat;
+    private float lon;
     private final InputCalculator calculator = new ConcreteInputCalculator();
 
     private ArrayList<? extends Collection> list;
@@ -52,11 +56,13 @@ public class XMLParser {
      * nominatim.openstreetmap)
      * @param collection - "parking" or "parkingManager"
      */
-    public XMLParser(String filePath, String tagName, String collection) {
+    public XMLParser(String filePath, String tagName, String collection, float lat, float lon) {
 
         this.filePath = filePath;
         this.tagName = tagName;
         this.collection = collection;
+        this.lat = lat;
+        this.lon = lon;
 
         Document dom = getXMLFile();
 
@@ -118,11 +124,11 @@ public class XMLParser {
 
         for (int i = 0; i < nl.getLength(); i++) {
 
-            int zone = 1 + (int)(Math.random() * ((4 - 1) + 1));
-            int capacity = 10 + (int)(Math.random() * ((50 - 10) + 1));
-            int indexmanager = (int)(Math.random() * ((2) + 1));
-            double price = calculator.getStaticPrice(zone,capacity);
-            String[] pm = {"NapoliPark","ParkingPrisca","ParcheggiCampania"};
+            int zone = 1 + (int) (Math.random() * ((4 - 1) + 1));
+            int capacity = 10 + (int) (Math.random() * ((50 - 10) + 1));
+            int indexmanager = (int) (Math.random() * ((2) + 1));
+            double price = calculator.getStaticPrice(zone, capacity);
+            String[] pm = {"NapoliPark", "ParkingPrisca", "ParcheggiCampania"};
 
             // get the element
             Element el = (Element) nl.item(i);
@@ -143,7 +149,18 @@ public class XMLParser {
                 p.setName(str[0]);
             }
 
-            p.setZone(zone);
+            Point.Double center = new Point2D.Double(lat, lon);
+            double distance = center.distance(p.getLocation()[0], p.getLocation()[1]);
+            if (distance < 0.005) {
+                p.setZone(1);
+            } else if (distance < 0.01) {
+                p.setZone(2);
+            } else if (distance < 0.018) {
+                p.setZone(3);
+            } else {
+                p.setZone(4);
+            }
+
             p.setCapacity(capacity);
             p.setOccupied(0);
             p.setIsFull(false);
