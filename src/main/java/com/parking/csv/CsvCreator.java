@@ -17,13 +17,12 @@
  */
 package com.parking.csv;
 
-import static java.lang.System.*;
-import java.io.File;
 import com.opencsv.*;
-
-import java.io.FileReader;
+import com.parking.dbManager.PersistenceWrapper;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import org.aspectj.weaver.patterns.PerSingleton;
 
 /**
  *
@@ -33,6 +32,7 @@ public class CsvCreator {
 
     private String path;
     private CSVWriter writer;
+    private ArrayList<String> list = new ArrayList<String>();
 
     public CsvCreator(String path, String name) {
         this.path = path;
@@ -47,13 +47,18 @@ public class CsvCreator {
 
         //Create carattere di tabulazione "," pippo va a capo!
         //String[] record = "first#second#third\npippo"
-        String[] record = test.split("#");
-        //Write the record to file
-        writer.writeNext(record);
+        list.add(test);
+        System.out.println("\nWrite: "+PersistenceWrapper.numAgents+"\n");
+        
     }
 
     public void close() {
+        System.out.println("\nClose: "+PersistenceWrapper.numAgents+"\n");
         try {
+            for (String string : list) {
+                String[] record = string.split("#");
+                writer.writeNext(record);
+            }      
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();

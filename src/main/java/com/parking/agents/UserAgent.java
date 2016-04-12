@@ -50,7 +50,7 @@ public class UserAgent extends Agent {
 
     //method to initialize agent
     protected void setup() {
-
+        PersistenceWrapper.numAgents--;
         System.out.println("=================================\n"
                 + "Hello! Im User Agent. My id is: " + getAID().getName());
         persistence = PersistenceWrapper.get();
@@ -210,7 +210,6 @@ public class UserAgent extends Agent {
                     CsvCreator csv = PersistenceWrapper.getCsvCreator();
                     if (PersistenceWrapper.numAgents > 1) {
                         csv.writeTest(myAgent.getAID().getName() + "#" + threshold + "#" + bestUtility + "#" + carPark.getZone() + "#" + carPark.getParkingManagerId() + "#"+ carPark.getUtility() + "\n");
-                        PersistenceWrapper.numAgents--;
                     } else {
                         csv.close();
                     }
