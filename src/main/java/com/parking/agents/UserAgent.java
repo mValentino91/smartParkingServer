@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.parking.csv.CsvCreator;
 import com.parking.dbManager.PersistenceManager;
 import com.parking.dbManager.PersistenceWrapper;
 import java.awt.Point;
@@ -85,7 +86,7 @@ public class UserAgent extends Agent {
 
             public void action() {
                 /*System.out.println("=================================\n"
-                        + myAgent.getAID().getName() + ": Inizio Negoziazione");*/
+                 + myAgent.getAID().getName() + ": Inizio Negoziazione");*/
                 DFAgentDescription template = new DFAgentDescription();
                 ServiceDescription sd = new ServiceDescription();
                 sd.setType("selling");
@@ -191,7 +192,7 @@ public class UserAgent extends Agent {
                     gson = new Gson();
                     propose = gson.toJson(carPark);
                     /*System.out.println("=================================\n"
-                            + myAgent.getAID().getName() + ": Conferma Prenotazione Ricevuta... ");*/
+                     + myAgent.getAID().getName() + ": Conferma Prenotazione Ricevuta... ");*/
                     result.put(myAgent.getLocalName(), carPark);
                     System.out.println("\n=================================\n"
                             + myAgent.getAID().getName() + " Proposta prenotato - Parcheggio:\n"
@@ -205,6 +206,14 @@ public class UserAgent extends Agent {
                             + "Zona: " + carPark.getZone() + "\n"
                             + "Utilità Manager: " + carPark.getUtility() + "\n"
                             + "=================================\n");
+
+                    CsvCreator csv = PersistenceWrapper.getCsvCreator();
+                    if (PersistenceWrapper.numAgents > 1) {
+                        csv.writeTest(myAgent.getAID().getName() + "#" + threshold + "#" + bestUtility + "#" + carPark.getZone() + "#" + carPark.getParkingManagerId() + "#"+ carPark.getUtility() + "\n");
+                        PersistenceWrapper.numAgents--;
+                    } else {
+                        csv.close();
+                    }
                     myAgent.doDelete();
                 } else {
                     //se la prenotazione non va a buon fine
@@ -216,7 +225,7 @@ public class UserAgent extends Agent {
         public void refuseAll(Agent myAgent) {
 
             /*System.out.println("=================================\n"
-                    + myAgent.getAID().getName() + ": Reject_proposal ");*/
+             + myAgent.getAID().getName() + ": Reject_proposal ");*/
             // Send the purchase order to the seller that provided the best offer
             ACLMessage reject = new ACLMessage(ACLMessage.REJECT_PROPOSAL);
             reject.setSender(myAgent.getAID());
@@ -229,7 +238,7 @@ public class UserAgent extends Agent {
         public void acceptProposal(Agent myAgent, AID bestSeller, Parking carPark) {
 
             /*System.out.println("=================================\n"
-                    + myAgent.getAID().getName() + ": Accept_Proposal " + bestSeller.getName());*/
+             + myAgent.getAID().getName() + ": Accept_Proposal " + bestSeller.getName());*/
             ACLMessage order = new ACLMessage(ACLMessage.ACCEPT_PROPOSAL);
             order.addReceiver(bestSeller);
             order.setConversationId("book-trade");

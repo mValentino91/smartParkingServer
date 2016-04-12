@@ -23,6 +23,11 @@
         </repository>
     </repositories>
     <dependencies>
+        <dependency>
+            <groupId>com.opencsv</groupId>
+            <artifactId>opencsv</artifactId>
+            <version>3.7</version>
+        </dependency>
         <dependency>  
             <groupId>com.tilab.jade</groupId> 
             <artifactId>jade</artifactId> 

@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.parking.csv.CsvCreator;
 import com.parking.dbManager.PersistenceManager;
 import com.parking.dbManager.PersistenceWrapper;
 import com.parking.managers.AgentsManager;
@@ -32,17 +33,23 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @Scope("application")
 public class InitController {
-
+    
     @Autowired
     private PersistenceManager persistence;
-
+    private CsvCreator csv;
+    
     private Gson gson = new Gson();
-
+    
     @RequestMapping(value = "/initEnvironment")
     public @ResponseBody
     String init(HttpServletRequest request) {
-        //recuperare valori dei pesi
+        //set persistence manager
         PersistenceWrapper.set(persistence);
+        // set csvCreator
+        HttpSession session = request.getSession();
+        ServletContext sc = session.getServletContext();
+        CsvCreator csv = new CsvCreator(sc.getRealPath("/") + "dist" + File.separator, "test.csv");
+        PersistenceWrapper.setCsvCreator(csv);
         try {
             AgentsManager.startEnvironment();
         } catch (ControllerException ex) {
@@ -57,7 +64,7 @@ public class InitController {
          }*/
         return "inizializzazione avvenuta con successo!";
     }
-
+    
     @RequestMapping(value = "/initUserAgent")
     public @ResponseBody
     String initUserAgent(HttpServletRequest request) {
@@ -83,7 +90,7 @@ public class InitController {
         response.add("response", code);
         return gson.toJson(response);
     }
-
+    
     @RequestMapping(value = "/testUserAgent")
     public @ResponseBody
     String testUserAgent(HttpServletRequest request) throws InterruptedException {
@@ -102,7 +109,8 @@ public class InitController {
         };
         int res = 0;
         double treshold = obj.getAsJsonObject().get("soglia").getAsDouble();
-        for (int j = 0; j < 400; j++) {
+        PersistenceWrapper.numAgents = 150;
+        for (int j = 0; j < 150; j++) {
             res = AgentsManager.startUserAgent("id" + j, location, destination, weights, treshold);
             Thread.sleep(400);
         }
@@ -113,42 +121,43 @@ public class InitController {
         response.add("response", code);
         return gson.toJson(response);
     }
-
+    
     @RequestMapping(value = "/getState")
     public @ResponseBody
     String getState(HttpServletRequest request) {
         return gson.toJson(AgentsManager.getNegotiationState(request.getSession().getId()));
     }
-
+    
     @RequestMapping(value = "/parsingXML")
     public @ResponseBody
     String parsing(HttpServletRequest request, @RequestParam(value = "lat") float lat, @RequestParam(value = "lon") float lon) {
         HttpSession session = request.getSession();
         ServletContext sc = session.getServletContext();
         XMLParser parser = new XMLParser(sc.getRealPath("/") + "dist" + File.separator + "xmls" + File.separator + "carparks.xml", "place", "parking", lat, lon);
-
+        
         ArrayList<Parking> list = parser.getList();
         for (Parking parking : list) {
             persistence.saveParking(parking);
         }
         return gson.toJson(persistence.getAllParking());
     }
-
+    
     @RequestMapping(value = "/parkingManager")
     public @ResponseBody
     String parkingManager(HttpServletRequest request) {
-
+        
         ParkingManager p1 = new ParkingManager();
         p1.setName("NapoliPark");
         ParkingManager p2 = new ParkingManager();
         p2.setName("ParkingPrisca");
         ParkingManager p3 = new ParkingManager();
         p3.setName("ParcheggiCampania");
-
+        
         persistence.saveParkingManager(p1);
         persistence.saveParkingManager(p2);
         persistence.saveParkingManager(p3);
-
+        
         return gson.toJson(persistence.getAllParkingManager());
     }
+    
 }
