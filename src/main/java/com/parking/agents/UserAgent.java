@@ -208,11 +208,7 @@ public class UserAgent extends Agent {
                             + "=================================\n");
 
                     CsvCreator csv = PersistenceWrapper.getCsvCreator();
-                    if (PersistenceWrapper.numAgents > 1) {
-                        csv.writeTest(myAgent.getAID().getName() + "#" + threshold + "#" + bestUtility + "#" + carPark.getZone() + "#" + carPark.getParkingManagerId() + "#"+ carPark.getUtility() + "\n");
-                    } else {
-                        csv.close();
-                    }
+                    csv.writeTest(myAgent.getAID().getName() + "#" + threshold + "#" + bestUtility + "#" + carPark.getZone() + "#" + carPark.getParkingManagerId() + "#" + carPark.getUtility() + "#" + carPark.getCapacity() + "#" + (carPark.getOccupied() + 1) + "#" + carPark.getName());
                     myAgent.doDelete();
                 } else {
                     //se la prenotazione non va a buon fine

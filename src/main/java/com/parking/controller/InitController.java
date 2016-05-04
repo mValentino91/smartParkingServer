@@ -33,13 +33,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @Scope("application")
 public class InitController {
-    
+
     @Autowired
     private PersistenceManager persistence;
     private CsvCreator csv;
-    
+
     private Gson gson = new Gson();
-    
+
     @RequestMapping(value = "/initEnvironment")
     public @ResponseBody
     String init(HttpServletRequest request) {
@@ -64,7 +64,7 @@ public class InitController {
          }*/
         return "inizializzazione avvenuta con successo!";
     }
-    
+
     @RequestMapping(value = "/initUserAgent")
     public @ResponseBody
     String initUserAgent(HttpServletRequest request) {
@@ -90,7 +90,7 @@ public class InitController {
         response.add("response", code);
         return gson.toJson(response);
     }
-    
+
     @RequestMapping(value = "/testUserAgent")
     public @ResponseBody
     String testUserAgent(HttpServletRequest request) throws InterruptedException {
@@ -109,8 +109,8 @@ public class InitController {
         };
         int res = 0;
         double treshold = obj.getAsJsonObject().get("soglia").getAsDouble();
-        PersistenceWrapper.numAgents = 150;
-        for (int j = 0; j < 150; j++) {
+        PersistenceWrapper.numAgents = 250;
+        for (int j = 0; j < 250; j++) {
             res = AgentsManager.startUserAgent("id" + j, location, destination, weights, treshold);
             Thread.sleep(400);
         }
@@ -121,43 +121,81 @@ public class InitController {
         response.add("response", code);
         return gson.toJson(response);
     }
-    
+
     @RequestMapping(value = "/getState")
     public @ResponseBody
     String getState(HttpServletRequest request) {
         return gson.toJson(AgentsManager.getNegotiationState(request.getSession().getId()));
     }
-    
+
     @RequestMapping(value = "/parsingXML")
     public @ResponseBody
     String parsing(HttpServletRequest request, @RequestParam(value = "lat") float lat, @RequestParam(value = "lon") float lon) {
         HttpSession session = request.getSession();
         ServletContext sc = session.getServletContext();
         XMLParser parser = new XMLParser(sc.getRealPath("/") + "dist" + File.separator + "xmls" + File.separator + "carparks.xml", "place", "parking", lat, lon);
-        
+
         ArrayList<Parking> list = parser.getList();
         for (Parking parking : list) {
             persistence.saveParking(parking);
         }
         return gson.toJson(persistence.getAllParking());
     }
-    
+
     @RequestMapping(value = "/parkingManager")
     public @ResponseBody
     String parkingManager(HttpServletRequest request) {
-        
+
         ParkingManager p1 = new ParkingManager();
         p1.setName("NapoliPark");
         ParkingManager p2 = new ParkingManager();
         p2.setName("ParkingPrisca");
         ParkingManager p3 = new ParkingManager();
         p3.setName("ParcheggiCampania");
-        
+
         persistence.saveParkingManager(p1);
         persistence.saveParkingManager(p2);
         persistence.saveParkingManager(p3);
-        
+
         return gson.toJson(persistence.getAllParkingManager());
     }
-    
+
+    @RequestMapping(value = "/getTest")
+    public @ResponseBody
+    String closeTest(HttpServletRequest request) {
+
+        CsvCreator csv = PersistenceWrapper.getCsvCreator();
+        csv.close();
+        return "<a href='./dist/test.csv'>Link to test</a>";
+    }
+
+    @RequestMapping(value = "/MixedTest")
+    public @ResponseBody
+    String mixedTestUserAgent(HttpServletRequest request) throws InterruptedException {
+        String requestJson = request.getParameter("requestJson");
+        JsonParser parser = new JsonParser();
+        JsonElement json = parser.parse(requestJson);
+        JsonElement obj = json.getAsJsonArray().get(0);
+        JsonElement partenza = obj.getAsJsonObject().get("partenza").getAsJsonArray();
+        JsonElement destinazione = obj.getAsJsonObject().get("arrivo").getAsJsonArray();
+        double location[] = {partenza.getAsJsonArray().get(0).getAsDouble(), partenza.getAsJsonArray().get(1).getAsDouble()};
+        double destination[] = {destinazione.getAsJsonArray().get(0).getAsDouble(), destinazione.getAsJsonArray().get(1).getAsDouble()};
+        double weights[][] = {{0.7, 0.2, 0.1}, {0.6, 0.2, 0.2}, {0.4, 0.4, 0.2}, {0.3, 0.4, 0.3}};
+        int res = 0;
+        double treshold = obj.getAsJsonObject().get("soglia").getAsDouble();
+        PersistenceWrapper.numAgents = 250;
+        for (int j = 0; j < 250; j++) {
+            int indexWeights = (int) (Math.random() * ((3) + 1));
+            System.out.println("Indice Parametri scelto: " + indexWeights);
+            res = AgentsManager.startUserAgent("id" + j, location, destination, weights[indexWeights], treshold);
+            Thread.sleep(400);
+        }
+        //create json response
+        JsonObject response = new JsonObject();
+        JsonObject code = new JsonObject();
+        code.addProperty("code", res);
+        response.add("response", code);
+        return gson.toJson(response);
+    }
+
 }
