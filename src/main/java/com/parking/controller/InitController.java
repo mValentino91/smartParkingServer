@@ -14,6 +14,7 @@ import com.parking.persistence.mongo.documents.XMLParser;
 import jade.wrapper.ControllerException;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletContext;
@@ -147,15 +148,21 @@ public class InitController {
     String parkingManager(HttpServletRequest request) {
 
         ParkingManager p1 = new ParkingManager();
-        p1.setName("NapoliPark");
+        p1.setName("parking1");
         ParkingManager p2 = new ParkingManager();
-        p2.setName("ParkingPrisca");
+        p2.setName("parking2");
         ParkingManager p3 = new ParkingManager();
-        p3.setName("ParcheggiCampania");
+        p3.setName("parking3");
+        ParkingManager p4 = new ParkingManager();
+        p4.setName("parking4");
+        ParkingManager p5 = new ParkingManager();
+        p5.setName("parking5");
 
         persistence.saveParkingManager(p1);
         persistence.saveParkingManager(p2);
         persistence.saveParkingManager(p3);
+        persistence.saveParkingManager(p4);
+        persistence.saveParkingManager(p5);
 
         return gson.toJson(persistence.getAllParkingManager());
     }
@@ -180,12 +187,12 @@ public class InitController {
         JsonElement destinazione = obj.getAsJsonObject().get("arrivo").getAsJsonArray();
         double location[] = {partenza.getAsJsonArray().get(0).getAsDouble(), partenza.getAsJsonArray().get(1).getAsDouble()};
         double destination[] = {destinazione.getAsJsonArray().get(0).getAsDouble(), destinazione.getAsJsonArray().get(1).getAsDouble()};
-        double weights[][] = {{0.7, 0.2, 0.1}, {0.6, 0.2, 0.2}, {0.4, 0.4, 0.2}, {0.3, 0.4, 0.3}};
+        double weights[][] = {{0.7, 0.2, 0.1}, {0.6, 0.2, 0.2}, {0.5, 0.3, 0.2}, {0.4, 0.4, 0.2}, {0.3, 0.4, 0.3}};
         int res = 0;
         double treshold = obj.getAsJsonObject().get("soglia").getAsDouble();
-        PersistenceWrapper.numAgents = 250;
-        for (int j = 0; j < 250; j++) {
-            int indexWeights = (int) (Math.random() * ((3) + 1));
+        PersistenceWrapper.numAgents = 300;
+        for (int j = 0; j < 300; j++) {
+            int indexWeights = (int) (Math.random() * ((4) + 1));
             System.out.println("Indice Parametri scelto: " + indexWeights);
             res = AgentsManager.startUserAgent("id" + j, location, destination, weights[indexWeights], treshold);
             Thread.sleep(400);

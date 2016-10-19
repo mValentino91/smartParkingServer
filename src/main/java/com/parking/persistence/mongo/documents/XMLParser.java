@@ -44,6 +44,12 @@ public class XMLParser {
     private float lat;
     private float lon;
     private final InputCalculator calculator = new ConcreteInputCalculator();
+    private int indexZone1 = 0;
+    private int indexZone2 = 0;
+    private int indexZone3 = 0;
+    private int indexZone4 = 0;
+    private int numParkingManagers = 5;
+    private int capacity = 25;
 
     private ArrayList<? extends Collection> list;
 
@@ -124,11 +130,12 @@ public class XMLParser {
 
         for (int i = 0; i < nl.getLength(); i++) {
 
-            int zone = 1 + (int) (Math.random() * ((4 - 1) + 1));
-            int capacity = 10 + (int) (Math.random() * ((50 - 10) + 1));
-            int indexmanager = (int) (Math.random() * ((2) + 1));
-            double price = calculator.getStaticPrice(zone, capacity);
-            String[] pm = {"NapoliPark", "ParkingPrisca", "ParcheggiCampania"};
+            //int zone = 1 + (int) (Math.random() * ((4 - 1) + 1));
+            //int capacity = 10 + (int) (Math.random() * ((50 - 10) + 1));
+            //int indexmanager = (int) (Math.random() * ((4) + 1));
+            //int indexmanager = 0;
+            //double price = calculator.getStaticPrice(zone, capacity);
+            //String[] pm = {"NapoliPark", "ParkingPrisca", "ParcheggiCampania"};
 
             // get the element
             Element el = (Element) nl.item(i);
@@ -151,22 +158,37 @@ public class XMLParser {
 
             Point.Double center = new Point2D.Double(lat, lon);
             double distance = center.distance(p.getLocation()[0], p.getLocation()[1]);
+
+            String[] pm = {"parking1", "parking2", "parking3", "parking4", "parking5"}; //Single Parking Manager
+            //distribuzione uniforme dei parkeggi ai parking managers
             if (distance < 0.005) {
                 p.setZone(1);
+                p.setParkingManagerId(pm[indexZone1 % numParkingManagers]);
+                System.out.println(indexZone1);
+                indexZone1++;
             } else if (distance < 0.01) {
                 p.setZone(2);
+                p.setParkingManagerId(pm[indexZone2 % numParkingManagers]);
+                indexZone2++;
+                System.out.println(indexZone2);
             } else if (distance < 0.018) {
                 p.setZone(3);
+                p.setParkingManagerId(pm[indexZone3 % numParkingManagers]);
+                indexZone3++;
+                System.out.println(indexZone3);
             } else {
                 p.setZone(4);
+                p.setParkingManagerId(pm[indexZone4 % numParkingManagers]);
+                indexZone4++;
+                System.out.println(indexZone4);
             }
 
             p.setCapacity(capacity);
             p.setOccupied(0);
             p.setIsFull(false);
             p.setUtility(0);
-            p.setPrice(price);
-            p.setParkingManagerId(pm[indexmanager]);
+            p.setPrice(calculator.getStaticPrice(p.getZone(), capacity));
+            //p.setParkingManagerId(pm[indexmanager]);
 
             // add to list
             list.add(i, p);
