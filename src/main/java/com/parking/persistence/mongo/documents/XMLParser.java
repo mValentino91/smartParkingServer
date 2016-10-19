@@ -49,7 +49,7 @@ public class XMLParser {
     private int indexZone3 = 0;
     private int indexZone4 = 0;
     private int numParkingManagers = 5;
-    private int capacity = 25;
+    private int capacity = 20;
 
     private ArrayList<? extends Collection> list;
 

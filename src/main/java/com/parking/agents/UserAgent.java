@@ -154,6 +154,7 @@ public class UserAgent extends Agent {
         private AID bestSeller = null; // The agent who provides the best offer 
         private double bestUtility = 0; // The best utility obtained		
         private int repliesCnt = 0; // The counter of replies from seller agents
+        private int repliesFailure = 0; //The counter of refused replies
         private MessageTemplate mt; // The template to receive replies
         private Parking carPark = null;
         private String propose;
@@ -163,52 +164,57 @@ public class UserAgent extends Agent {
             ACLMessage reply = myAgent.receive();
             if (reply != null) {
                 // Reply received
-                if (reply.getPerformative() == ACLMessage.PROPOSE) {
-
-                    // This is an offer. Process it
-                    String acceptedPark = reply.getContent();
-                    Parking parking = gson.fromJson(acceptedPark, Parking.class);
-                    double utility = calculateUtility(parking);
-                    // Calculate Utility for UA
-                    if (utility >= threshold && utility > bestUtility) {
-                        carPark = parking;
-                        bestSeller = reply.getSender();
-                        bestUtility = utility;
-                    }
+                if (reply.getPerformative() == ACLMessage.PROPOSE || reply.getPerformative() == ACLMessage.FAILURE) {
+                    //incremento il numero delle risposte
                     repliesCnt++;
+                    if (reply.getPerformative() == ACLMessage.FAILURE) {
+                        repliesFailure++;
+                    }
+                    else if (reply.getPerformative() == ACLMessage.PROPOSE) {
+                        // This is an offer. Process it
+                        String acceptedPark = reply.getContent();
+                        Parking parking = gson.fromJson(acceptedPark, Parking.class);
+                        double utility = calculateUtility(parking);
+                        // Calculate Utility for UA
+                        if (utility >= threshold && utility > bestUtility) {
+                            carPark = parking;
+                            bestSeller = reply.getSender();
+                            bestUtility = utility;
+                        }
+                    }
+                    //se ho ricevuto tutte le risposte nel round di negoziazione
                     if (repliesCnt >= sellerAgents.length) {
-                        //ho ricevuto le proposte da tutti gli agenti
-                        repliesCnt = 0;
-                        //rispondo a tutti gli agenti venditori
-                        //se nessun offerta soddisfa l'agente le rifiuta tutte
-                        if (bestSeller == null) {
-                            refuseAll(myAgent);
+                        //se tutti gli agenti hanno terminato la lista
+                        if (repliesFailure >= sellerAgents.length) {
+                            System.out.println(myAgent.getAID()+": Accordo non raggiunto!!");
+                            myAgent.doDelete();
                         } else {
-                            acceptProposal(myAgent, bestSeller, carPark);
+                            //riaggiorno i contatori
+                            repliesCnt = 0;
+                            repliesFailure = 0;
+                            //rispondo a tutti gli agenti venditori
+                            //se nessun offerta soddisfa l'agente le rifiuta tutte
+                            if (bestSeller == null) {
+                                refuseAll(myAgent);
+                            } else {
+                                acceptProposal(myAgent, bestSeller, carPark);
+                            }
                         }
                     }
                 } else if (reply.getPerformative() == ACLMessage.INFORM) {
                     // create json propose
                     gson = new Gson();
-                    propose = gson.toJson(carPark);
+                    String acceptedPark = reply.getContent();
+                    Parking parking = gson.fromJson(acceptedPark, Parking.class);
+                    //propose = gson.toJson(acceptedPark);
                     /*System.out.println("=================================\n"
                      + myAgent.getAID().getName() + ": Conferma Prenotazione Ricevuta... ");*/
                     result.put(myAgent.getLocalName(), carPark);
                     System.out.println("\n=================================\n"
                             + myAgent.getAID().getName() + " Proposta prenotato - Parcheggio:\n"
-                            + "Nome:" + carPark.getName() + "\n"
-                            + "Soglia: " + threshold + "\n"
-                            + "Utilità: " + bestUtility + "\n"
-                            + "Manager: " + carPark.getParkingManagerId() + "\n"
-                            + "Prezzo: " + carPark.getPrice() + "\n"
-                            + "Capienza: " + carPark.getCapacity() + "\n"
-                            + "Posti liberi: " + (carPark.getCapacity() - carPark.getOccupied()) + "\n"
-                            + "Zona: " + carPark.getZone() + "\n"
-                            + "Utilità Manager: " + carPark.getUtility() + "\n"
-                            + "=================================\n");
-
+                            + "Nome:" + parking.getName() + "\n");
                     CsvCreator csv = PersistenceWrapper.getCsvCreator();
-                    csv.writeTest(myAgent.getAID().getName() + "#" + threshold + "#" + bestUtility + "#" + carPark.getZone() + "#" + carPark.getParkingManagerId() + "#" + carPark.getUtility() + "#" + carPark.getCapacity() + "#" + (carPark.getOccupied() + 1) + "#" + carPark.getName());
+                    csv.writeTest(myAgent.getAID().getName() + "#" + threshold + "#" + bestUtility + "#" + parking.getZone() + "#" + parking.getParkingManagerId() + "#" + parking.getUtility() + "#" + parking.getCapacity() + "#" + (parking.getOccupied()) + "#" + parking.getName());
                     myAgent.doDelete();
                 } else {
                     //se la prenotazione non va a buon fine

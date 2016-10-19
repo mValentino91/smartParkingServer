@@ -129,14 +129,16 @@ public class ParkingManagerAgent extends Agent {
                     JsonParser parser = new JsonParser();
                     JsonElement json = parser.parse(msg.getContent());
                     proposes.put(msg.getSender().getName(), caclulateProposes(json));
+                    //controlla se ci sono ancora proposte disponibili
                     if (proposes.get(msg.getSender().getName()) != null && proposes.get(msg.getSender().getName()).size() > 0) {
                         reply.setPerformative(ACLMessage.PROPOSE);
+                        //prende il primo parcheggio disponibile
                         String propose = gson.toJson(proposes.get(msg.getSender().getName()).get(0));
                         // prepare reply
                         reply.setContent(propose);
                         myAgent.send(reply);
                     } else {
-                        reply.setPerformative(ACLMessage.REFUSE);
+                        reply.setPerformative(ACLMessage.FAILURE);
                         reply.setContent("not-available");
                         myAgent.send(reply);
                     }
@@ -149,7 +151,7 @@ public class ParkingManagerAgent extends Agent {
                     double[] params = {parking.getCapacity() - parking.getOccupied(), parking.getZone()};
                     if (parking.getCapacity() - parking.getOccupied() <= 0 || parking.getUtility() / 2 >= utilityCalculator.calculate(params, weights, new double[]{parking.getCapacity(), 4})) {
                         //rispondere con messaggio di fallimento e riprendere la negoziazione dal parcheggio successivo
-                        reply.setPerformative(ACLMessage.REFUSE);
+                        reply.setPerformative(ACLMessage.FAILURE);
                         String propose = gson.toJson(proposes.get(msg.getSender().getName()).get(0));
                         reply.setContent(propose);
                         myAgent.send(reply);
@@ -159,7 +161,7 @@ public class ParkingManagerAgent extends Agent {
                         //è possibile prenotare il parcheggio
                         parking.setOccupied(parking.getOccupied() + 1);
                         reply.setPerformative(ACLMessage.INFORM);
-                        String propose = gson.toJson(proposes.get(msg.getSender().getName()).get(0));
+                        String propose = gson.toJson(parking);
                         reply.setContent(propose);
                         myAgent.send(reply);
                         /*System.out.println("=================================\n"
@@ -180,8 +182,8 @@ public class ParkingManagerAgent extends Agent {
                         block();
                     } else {
                         // The requested book has been sold to another buyer in the meanwhile .
-                        System.out.println("=================================\n"
-                                + "Prenotazione gia' effettuata");
+                        //System.out.println("=================================\n"
+                        //        + "Prenotazione gia' effettuata");
                         reply.setPerformative(ACLMessage.FAILURE);
                         reply.setContent("not-available");
                         reply.addReceiver(msg.getSender());
