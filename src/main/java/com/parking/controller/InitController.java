@@ -190,8 +190,8 @@ public class InitController {
         double weights[][] = {{0.7, 0.2, 0.1}, {0.6, 0.2, 0.2}, {0.5, 0.3, 0.2}, {0.4, 0.4, 0.2}, {0.3, 0.4, 0.3}};
         int res = 0;
         double treshold = obj.getAsJsonObject().get("soglia").getAsDouble();
-        PersistenceWrapper.numAgents = 300;
-        for (int j = 0; j < 300; j++) {
+        PersistenceWrapper.numAgents = 400;
+        for (int j = 0; j < 400; j++) {
             int indexWeights = (int) (Math.random() * ((4) + 1));
             System.out.println("Indice Parametri scelto: " + indexWeights);
             res = AgentsManager.startUserAgent("id" + j, location, destination, weights[indexWeights], treshold);

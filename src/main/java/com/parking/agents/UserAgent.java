@@ -155,6 +155,7 @@ public class UserAgent extends Agent {
         private double bestUtility = 0; // The best utility obtained		
         private int repliesCnt = 0; // The counter of replies from seller agents
         private int repliesFailure = 0; //The counter of refused replies
+        private int round = 0;
         private MessageTemplate mt; // The template to receive replies
         private Parking carPark = null;
         private String propose;
@@ -192,6 +193,7 @@ public class UserAgent extends Agent {
                             //riaggiorno i contatori
                             repliesCnt = 0;
                             repliesFailure = 0;
+                            round ++;
                             //rispondo a tutti gli agenti venditori
                             //se nessun offerta soddisfa l'agente le rifiuta tutte
                             if (bestSeller == null) {
@@ -214,7 +216,7 @@ public class UserAgent extends Agent {
                             + myAgent.getAID().getName() + " Proposta prenotato - Parcheggio:\n"
                             + "Nome:" + parking.getName() + "\n");
                     CsvCreator csv = PersistenceWrapper.getCsvCreator();
-                    csv.writeTest(myAgent.getAID().getName() + "#" + threshold + "#" + bestUtility + "#" + parking.getZone() + "#" + parking.getParkingManagerId() + "#" + parking.getUtility() + "#" + parking.getCapacity() + "#" + (parking.getOccupied()) + "#" + parking.getName());
+                    csv.writeTest(myAgent.getAID().getName() + "#" + threshold + "#" + bestUtility + "#" + parking.getZone() + "#" + parking.getParkingManagerId() + "#" + parking.getUtility() + "#" + parking.getCapacity() + "#" + (parking.getOccupied()) + "#" + parking.getName() + "#" + round);
                     myAgent.doDelete();
                 } else {
                     //se la prenotazione non va a buon fine

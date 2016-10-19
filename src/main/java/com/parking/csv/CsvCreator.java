@@ -39,7 +39,7 @@ public class CsvCreator {
         char separator = ';';
         try {
             writer = new CSVWriter(new FileWriter(path + name), separator);
-            String[] header = {"ID User","Soglia","Utilità User","Zona Parcheggio","ID Parking","Utilità Parking","Capienza Parcheggio","Posti Occupati","Nome Parcheggio"};
+            String[] header = {"ID User","Soglia","Utilità User","Zona Parcheggio","ID Parking","Utilità Parking","Capienza Parcheggio","Posti Occupati","Nome Parcheggio","Round"};
             writer.writeNext(header);
         } catch (IOException e) {
             e.printStackTrace();
