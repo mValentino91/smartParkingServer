@@ -115,80 +115,94 @@ public class ParkingManagerAgent extends Agent {
     private class PurchaseOrdersServer extends CyclicBehaviour {
 
         private static final long serialVersionUID = 1L;
+        private int cont = 0;
 
         public void action() {
             ACLMessage msg = myAgent.receive();
-            block();
             if (msg != null) {
+                cont++;
                 // oggetto che incapsula la risposta
-                ACLMessage reply = msg.createReply();
                 // richiesta di negoziazione da parte dell'utente
                 if (msg.getPerformative() == ACLMessage.CFP) {
                     /*System.out.println("=================================\n"
-                            + myAgent.getAID().getName() + ": Nuova Richiesta Ricevuta... ");*/
+                     + myAgent.getAID().getName() + ": Nuova Richiesta Ricevuta... ");*/
                     JsonParser parser = new JsonParser();
                     JsonElement json = parser.parse(msg.getContent());
                     proposes.put(msg.getSender().getName(), caclulateProposes(json));
                     //controlla se ci sono ancora proposte disponibili
                     if (proposes.get(msg.getSender().getName()) != null && proposes.get(msg.getSender().getName()).size() > 0) {
-                        reply.setPerformative(ACLMessage.PROPOSE);
+                        ACLMessage reply = new ACLMessage(ACLMessage.PROPOSE);
                         //prende il primo parcheggio disponibile
                         String propose = gson.toJson(proposes.get(msg.getSender().getName()).get(0));
+                        System.out.println(myAgent.getAID().getLocalName() + ": " + proposes.get(msg.getSender().getName()).size());
                         // prepare reply
                         reply.setContent(propose);
+                        reply.addReceiver(msg.getSender());
+                        //System.out.println("\n" + myAgent.getAID().getLocalName() + cont + "SEND CFP\n");
                         myAgent.send(reply);
                     } else {
-                        reply.setPerformative(ACLMessage.FAILURE);
+                        ACLMessage reply = new ACLMessage(ACLMessage.FAILURE);
+                        reply.addReceiver(msg.getSender());
                         reply.setContent("not-available");
+                        //System.out.println("\n" + myAgent.getAID().getLocalName() + cont + "SEND FAILURE\n");
                         myAgent.send(reply);
                     }
                 } else if (msg.getPerformative() == ACLMessage.ACCEPT_PROPOSAL) {
+                    //System.out.println("\n"+ myAgent.getAID().getLocalName()+ "ACCEPTPROPOSAL\n");
                     /*System.out.println("=================================\n"
-                            + myAgent.getAID().getName() + ": Proposta accettata dall'utente.. ");*/
+                     + myAgent.getAID().getName() + ": Proposta accettata dall'utente.. ");*/
                     // get object
                     Parking parking = proposes.get(msg.getSender().getName()).get(0);
                     //verifico che l'utilità corrente non sia dimezzata rispetto a quella calcolata a inizio negoziazione
                     double[] params = {parking.getCapacity() - parking.getOccupied(), parking.getZone()};
                     if (parking.getCapacity() - parking.getOccupied() <= 0 || parking.getUtility() / 2 >= utilityCalculator.calculate(params, weights, new double[]{parking.getCapacity(), 4})) {
                         //rispondere con messaggio di fallimento e riprendere la negoziazione dal parcheggio successivo
-                        reply.setPerformative(ACLMessage.FAILURE);
+                        ACLMessage reply = new ACLMessage(ACLMessage.FAILURE);
                         String propose = gson.toJson(proposes.get(msg.getSender().getName()).get(0));
                         reply.setContent(propose);
+                        reply.addReceiver(msg.getSender());
+                        //System.out.println("\n" + myAgent.getAID().getLocalName() + cont + "SEND FAILURE\n");
+                        reply.setSender(myAgent.getAID());
                         myAgent.send(reply);
                         System.out.println("=================================\n"
                                 + myAgent.getAID().getName() + ": Impossibile effettuare la prenotazione... " + parking.getName());
                     } else {
                         //è possibile prenotare il parcheggio
                         parking.setOccupied(parking.getOccupied() + 1);
-                        reply.setPerformative(ACLMessage.INFORM);
+                        ACLMessage reply = new ACLMessage(ACLMessage.INFORM);
                         String propose = gson.toJson(parking);
                         reply.setContent(propose);
+                        reply.addReceiver(msg.getSender());
+                        reply.setSender(myAgent.getAID());
+                        //System.out.println("\n" + myAgent.getAID().getLocalName() + cont + "SEND INFORM\n");
                         myAgent.send(reply);
                         /*System.out.println("=================================\n"
-                                + myAgent.getAID().getName() + ": Prenotazione effettuata... " + parking.getName());*/
+                         + myAgent.getAID().getName() + ": Prenotazione effettuata... " + parking.getName());*/
                     }
-                    block();
                 } else if (msg.getPerformative() == ACLMessage.REJECT_PROPOSAL) {
                     if (proposes.get(msg.getSender().getName()).size() > 1) {
-                        reply.setPerformative(ACLMessage.PROPOSE);
+                        ACLMessage reply = new ACLMessage(ACLMessage.PROPOSE);
                         // Remove last parking offer by list
                         proposes.get(msg.getSender().getName()).remove(0);
                         // build a new offer for the buyer
                         // create json propose
                         String propose = gson.toJson(proposes.get(msg.getSender().getName()).get(0));
                         // prepare reply
+                        reply.addReceiver(msg.getSender());
                         reply.setContent(propose);
+                        reply.setSender(myAgent.getAID());
+                        //System.out.println("\n" + myAgent.getAID().getLocalName() + cont + "SEND PROPOSE\n");
                         myAgent.send(reply);
-                        block();
                     } else {
                         // The requested book has been sold to another buyer in the meanwhile .
                         //System.out.println("=================================\n"
                         //        + "Prenotazione gia' effettuata");
-                        reply.setPerformative(ACLMessage.FAILURE);
+                        //System.out.println("\n" + myAgent.getAID().getLocalName() + cont + "SEND FAILURE\n");
+                        ACLMessage reply = new ACLMessage(ACLMessage.FAILURE);
                         reply.setContent("not-available");
                         reply.addReceiver(msg.getSender());
+                        reply.setSender(myAgent.getAID());
                         myAgent.send(reply);
-                        block();
                     }
                 }
             }

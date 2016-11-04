@@ -48,7 +48,7 @@ public class XMLParser {
     private int indexZone2 = 0;
     private int indexZone3 = 0;
     private int indexZone4 = 0;
-    private int numParkingManagers = 5;
+    private int numParkingManagers = 0;
     private int capacity = 20;
 
     private ArrayList<? extends Collection> list;
@@ -62,13 +62,14 @@ public class XMLParser {
      * nominatim.openstreetmap)
      * @param collection - "parking" or "parkingManager"
      */
-    public XMLParser(String filePath, String tagName, String collection, float lat, float lon) {
+    public XMLParser(String filePath, String tagName, String collection, float lat, float lon, int num) {
 
         this.filePath = filePath;
         this.tagName = tagName;
         this.collection = collection;
         this.lat = lat;
         this.lon = lon;
+        this.numParkingManagers = num;
 
         Document dom = getXMLFile();
 
@@ -136,7 +137,6 @@ public class XMLParser {
             //int indexmanager = 0;
             //double price = calculator.getStaticPrice(zone, capacity);
             //String[] pm = {"NapoliPark", "ParkingPrisca", "ParcheggiCampania"};
-
             // get the element
             Element el = (Element) nl.item(i);
 
@@ -159,7 +159,7 @@ public class XMLParser {
             Point.Double center = new Point2D.Double(lat, lon);
             double distance = center.distance(p.getLocation()[0], p.getLocation()[1]);
 
-            String[] pm = {"parking1", "parking2", "parking3", "parking4", "parking5"}; //Single Parking Manager
+            String[] pm = {"parking1", "parking2", "parking3", "parking4", "parking5", "parking6", "parking7", "parking8", "parking9", "parking10"}; //Single Parking Manager
             //distribuzione uniforme dei parkeggi ai parking managers
             if (distance < 0.005) {
                 p.setZone(1);

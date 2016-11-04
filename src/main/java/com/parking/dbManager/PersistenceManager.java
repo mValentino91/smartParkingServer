@@ -16,5 +16,6 @@ public interface PersistenceManager {
     public Iterable<Parking> getParkingByManager(String parkingManagerId);
     public void saveParking(Parking p);
     public void saveParkingManager(ParkingManager p);
+    public void removeAll();
     
 }

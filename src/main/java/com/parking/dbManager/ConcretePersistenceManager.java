@@ -63,4 +63,10 @@ public class ConcretePersistenceManager implements PersistenceManager {
         managerRepo.save(p);
     }
 
+    @Override
+    public void removeAll() {
+        managerRepo.deleteAll();
+        parkingRepo.deleteAll();
+    }
+
 }

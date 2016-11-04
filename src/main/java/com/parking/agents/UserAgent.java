@@ -22,6 +22,7 @@ import jade.domain.FIPAException;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 import java.awt.geom.Point2D;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -46,6 +47,7 @@ public class UserAgent extends Agent {
     private UtilityCalculator utilityCalculator = new UserAgentUtilityCalculator();
     // The list of known seller agents
     private AID[] sellerAgents;
+    private Map<String,Integer> sellerReplies;
     private Map<String, Parking> result;
 
     //method to initialize agent
@@ -98,14 +100,16 @@ public class UserAgent extends Agent {
                         result = DFService.search(myAgent, template);
                         sellerAgents = new AID[result.length];
                     }
-                    for (int i = 0; i < result.length; ++i) {
+                    //sellerReplies = new HashMap<String, Integer>();
+                    for (int i = 0; i < result.length; i++) {
                         sellerAgents[i] = result[i].getName();
+                        //sellerReplies.put(sellerAgents[i].getName(), new Integer(0));
                     }
                 } catch (FIPAException fe) {
                     fe.printStackTrace();
                 }
                 ACLMessage cfp = new ACLMessage(ACLMessage.CFP);
-                for (int i = 0; i < sellerAgents.length; ++i) {
+                for (int i = 0; i < sellerAgents.length; i++) {
                     cfp.addReceiver(sellerAgents[i]);
                 }
                 cfp.setContent("{\"location\":["
@@ -114,6 +118,7 @@ public class UserAgent extends Agent {
                         + destination[0] + "," + destination[1] + "]}");
                 cfp.setConversationId("trade");
                 cfp.setReplyWith("cfp" + System.currentTimeMillis());
+                cfp.setSender(myAgent.getAID());
                 myAgent.send(cfp);
             }
 
@@ -121,11 +126,7 @@ public class UserAgent extends Agent {
             public boolean done() {
                 boolean temp = true;
                 addBehaviour(new RequestPerformer());
-                ACLMessage reply = myAgent.receive();
-                if (reply != null && reply.getPerformative() == ACLMessage.PROPOSE) {
-                    temp = true;
-                    addBehaviour(new RequestPerformer());
-                }
+                System.out.println("Done");
                 return temp;
             }
 
@@ -156,6 +157,8 @@ public class UserAgent extends Agent {
         private int repliesCnt = 0; // The counter of replies from seller agents
         private int repliesFailure = 0; //The counter of refused replies
         private int round = 0;
+        private int totReplies = 0;
+        private int totFailure = 0;
         private MessageTemplate mt; // The template to receive replies
         private Parking carPark = null;
         private String propose;
@@ -169,9 +172,11 @@ public class UserAgent extends Agent {
                     //incremento il numero delle risposte
                     repliesCnt++;
                     if (reply.getPerformative() == ACLMessage.FAILURE) {
+                        //System.out.println("getResponse: FAILURE " + reply.getSender().getLocalName());
                         repliesFailure++;
-                    }
-                    else if (reply.getPerformative() == ACLMessage.PROPOSE) {
+                    } else if (reply.getPerformative() == ACLMessage.PROPOSE) {
+                        //System.out.println("getResponse: PROPOSE " + reply.getSender().getLocalName());
+                        totReplies++;
                         // This is an offer. Process it
                         String acceptedPark = reply.getContent();
                         Parking parking = gson.fromJson(acceptedPark, Parking.class);
@@ -187,24 +192,30 @@ public class UserAgent extends Agent {
                     if (repliesCnt >= sellerAgents.length) {
                         //se tutti gli agenti hanno terminato la lista
                         if (repliesFailure >= sellerAgents.length) {
-                            System.out.println(myAgent.getAID()+": Accordo non raggiunto!!");
+                            System.out.println(myAgent.getAID() + ": Accordo non raggiunto!!");
+                            System.out.println(totReplies);
                             myAgent.doDelete();
                         } else {
                             //riaggiorno i contatori
                             repliesCnt = 0;
                             repliesFailure = 0;
-                            round ++;
+                            round++;
                             //rispondo a tutti gli agenti venditori
                             //se nessun offerta soddisfa l'agente le rifiuta tutte
                             if (bestSeller == null) {
                                 refuseAll(myAgent);
+                                //System.out.println("\nRefuse all\n");
                             } else {
                                 acceptProposal(myAgent, bestSeller, carPark);
+                                //System.out.println("\nAccept\n");
                             }
                         }
+                         System.out.println("\n======================================\n");
                     }
                 } else if (reply.getPerformative() == ACLMessage.INFORM) {
                     // create json propose
+                    //System.out.println("\nINFORM\n");
+                    //System.out.println(totReplies);
                     gson = new Gson();
                     String acceptedPark = reply.getContent();
                     Parking parking = gson.fromJson(acceptedPark, Parking.class);
@@ -232,9 +243,11 @@ public class UserAgent extends Agent {
             // Send the purchase order to the seller that provided the best offer
             ACLMessage reject = new ACLMessage(ACLMessage.REJECT_PROPOSAL);
             reject.setSender(myAgent.getAID());
-            for (int i = 0; i < sellerAgents.length; ++i) {
+            for (int i = 0; i < sellerAgents.length; i++) {
                 reject.addReceiver(sellerAgents[i]);
+                //System.out.println("add refuse: "+ sellerAgents[i].getLocalName());
             }
+            reject.setConversationId("trade");
             myAgent.send(reject);
         }
 
@@ -244,6 +257,7 @@ public class UserAgent extends Agent {
              + myAgent.getAID().getName() + ": Accept_Proposal " + bestSeller.getName());*/
             ACLMessage order = new ACLMessage(ACLMessage.ACCEPT_PROPOSAL);
             order.addReceiver(bestSeller);
+            order.setSender(myAgent.getAID());
             order.setConversationId("book-trade");
             order.setReplyWith("order" + System.currentTimeMillis());
             myAgent.send(order);
