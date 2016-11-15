@@ -200,6 +200,7 @@ public class UserAgent extends Agent {
                             repliesCnt = 0;
                             repliesFailure = 0;
                             round++;
+                            System.out.println(round);
                             //rispondo a tutti gli agenti venditori
                             //se nessun offerta soddisfa l'agente le rifiuta tutte
                             if (bestSeller == null) {

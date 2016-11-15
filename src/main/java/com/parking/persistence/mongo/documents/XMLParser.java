@@ -129,70 +129,156 @@ public class XMLParser {
 
         ArrayList<Parking> list = new ArrayList<Parking>(nl.getLength());
 
-        for (int i = 0; i < nl.getLength(); i++) {
+        /*for (int i = 0; i < nl.getLength(); i++) {
 
-            //int zone = 1 + (int) (Math.random() * ((4 - 1) + 1));
-            //int capacity = 10 + (int) (Math.random() * ((50 - 10) + 1));
-            //int indexmanager = (int) (Math.random() * ((4) + 1));
-            //int indexmanager = 0;
-            //double price = calculator.getStaticPrice(zone, capacity);
-            //String[] pm = {"NapoliPark", "ParkingPrisca", "ParcheggiCampania"};
-            // get the element
-            Element el = (Element) nl.item(i);
+         //int zone = 1 + (int) (Math.random() * ((4 - 1) + 1));
+         //int capacity = 10 + (int) (Math.random() * ((50 - 10) + 1));
+         //int indexmanager = (int) (Math.random() * ((4) + 1));
+         //int indexmanager = 0;
+         //double price = calculator.getStaticPrice(zone, capacity);
+         //String[] pm = {"NapoliPark", "ParkingPrisca", "ParcheggiCampania"};
+         // get the element
+         Element el = (Element) nl.item(i);
 
-            // create parking object
-            Parking p = new Parking();
+         // create parking object
+         Parking p = new Parking();
 
-            double[] location = new double[]{
-                Double.parseDouble(el.getAttribute("lat")),
-                Double.parseDouble(el.getAttribute("lon"))
-            };
+         double[] location = new double[]{
+         Double.parseDouble(el.getAttribute("lat")),
+         Double.parseDouble(el.getAttribute("lon"))
+         };
 
-            p.setLocation(location);
-            p.setAddress(el.getAttribute("display_name"));
+         p.setLocation(location);
+         p.setAddress(el.getAttribute("display_name"));
+         p.setName("park" + i);
 
-            String[] str = el.getAttribute("display_name").split("-");
-            if (str.length > 0) {
-                p.setName(str[0]);
+         Point.Double center = new Point2D.Double(lat, lon);
+         double distance = center.distance(p.getLocation()[0], p.getLocation()[1]);
+
+         String[] pm = {"parking1", "parking2", "parking3", "parking4", "parking5", "parking6", "parking7", "parking8", "parking9", "parking10"}; //Single Parking Manager
+         //distribuzione uniforme dei parkeggi ai parking managers
+         if (distance < 0.005) {
+         p.setZone(1);
+         p.setParkingManagerId(pm[indexZone1 % numParkingManagers]);
+         System.out.println(indexZone1);
+         indexZone1++;
+         } else if (distance < 0.01) {
+         p.setZone(2);
+         p.setParkingManagerId(pm[indexZone2 % numParkingManagers]);
+         indexZone2++;
+         System.out.println(indexZone2);
+         } else if (distance < 0.018) {
+         p.setZone(3);
+         p.setParkingManagerId(pm[indexZone3 % numParkingManagers]);
+         indexZone3++;
+         System.out.println(indexZone3);
+         } else {
+         p.setZone(4);
+         p.setParkingManagerId(pm[indexZone4 % numParkingManagers]);
+         indexZone4++;
+         System.out.println(indexZone4);
+         }
+
+         p.setCapacity(capacity);
+         p.setOccupied(0);
+         p.setIsFull(false);
+         p.setUtility(0);
+         p.setPrice(calculator.getStaticPrice(p.getZone(), capacity));
+         //p.setParkingManagerId(pm[indexmanager]);
+
+         // add to list
+         list.add(i, p);
+         }*/
+        for (int i = 0; i < 16; i++) {
+
+            Parking p1 = new Parking();
+            Parking p2 = new Parking();
+            Parking p3 = new Parking();
+
+            double sum1 = Math.random() * 0.0049;
+            double sum2 = 0.005 + Math.random() * 0.0039;
+            double sum3 = 0.009 + Math.random() * 0.0089;
+            double check = Math.random();
+
+            if (check < 0.5) {
+                double[] location = new double[]{
+                    lat,
+                    lon + sum1
+                };
+                p1.setLocation(location);
+                double[] location1 = new double[]{
+                    lat,
+                    lon + sum2
+                };
+                p2.setLocation(location1);
+                double[] location2 = new double[]{
+                    lat,
+                    lon + sum3
+                };
+                p3.setLocation(location2);
+            } else {
+                 double[] location = new double[]{
+                    lat + sum1,
+                    lon
+                };
+                p1.setLocation(location);
+                double[] location1 = new double[]{
+                    lat + sum2,
+                    lon
+                };
+                p2.setLocation(location1);
+                double[] location2 = new double[]{
+                    lat + sum3,
+                    lon
+                };
+                p3.setLocation(location2);
             }
+            
+            p1.setAddress("pA"+i);
+            p1.setName("pA" + i);
+            p2.setAddress("pB"+i);
+            p2.setName("pB" + i);
+            p3.setAddress("pC"+i);
+            p3.setName("pC" + i);
 
-            Point.Double center = new Point2D.Double(lat, lon);
-            double distance = center.distance(p.getLocation()[0], p.getLocation()[1]);
 
             String[] pm = {"parking1", "parking2", "parking3", "parking4", "parking5", "parking6", "parking7", "parking8", "parking9", "parking10"}; //Single Parking Manager
-            //distribuzione uniforme dei parkeggi ai parking managers
-            if (distance < 0.005) {
-                p.setZone(1);
-                p.setParkingManagerId(pm[indexZone1 % numParkingManagers]);
+                p1.setZone(1);
+                p1.setParkingManagerId(pm[indexZone1 % numParkingManagers]);
                 System.out.println(indexZone1);
                 indexZone1++;
-            } else if (distance < 0.01) {
-                p.setZone(2);
-                p.setParkingManagerId(pm[indexZone2 % numParkingManagers]);
+                p2.setZone(2);
+                p2.setParkingManagerId(pm[indexZone2 % numParkingManagers]);
                 indexZone2++;
                 System.out.println(indexZone2);
-            } else if (distance < 0.018) {
-                p.setZone(3);
-                p.setParkingManagerId(pm[indexZone3 % numParkingManagers]);
+                p3.setZone(3);
+                p3.setParkingManagerId(pm[indexZone3 % numParkingManagers]);
                 indexZone3++;
                 System.out.println(indexZone3);
-            } else {
-                p.setZone(4);
-                p.setParkingManagerId(pm[indexZone4 % numParkingManagers]);
-                indexZone4++;
-                System.out.println(indexZone4);
+                //p.setZone(4);
+                //p.setParkingManagerId(pm[indexZone4 % numParkingManagers]);
+                //indexZone4++;
+                //System.out.println(indexZone4);
+            p1.setCapacity(capacity);
+            p1.setOccupied(0);
+            p1.setIsFull(false);
+            p1.setUtility(0);
+            p1.setPrice(calculator.getStaticPrice(p1.getZone(), capacity));
+            p2.setCapacity(capacity);
+            p2.setOccupied(0);
+            p2.setIsFull(false);
+            p2.setUtility(0);
+            p2.setPrice(calculator.getStaticPrice(p2.getZone(), capacity));
+            p3.setCapacity(capacity);
+            p3.setOccupied(0);
+            p3.setIsFull(false);
+            p3.setUtility(0);
+            p3.setPrice(calculator.getStaticPrice(p3.getZone(), capacity));
+            list.add(p1);
+            list.add(p2);
+            list.add(p3);
+            
             }
-
-            p.setCapacity(capacity);
-            p.setOccupied(0);
-            p.setIsFull(false);
-            p.setUtility(0);
-            p.setPrice(calculator.getStaticPrice(p.getZone(), capacity));
-            //p.setParkingManagerId(pm[indexmanager]);
-
-            // add to list
-            list.add(i, p);
-        }
 
         return list;
     }

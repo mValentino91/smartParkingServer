@@ -134,12 +134,54 @@ public class InitController {
     String parsing(HttpServletRequest request, @RequestParam(value = "num") int num, @RequestParam(value = "lat") float lat, @RequestParam(value = "lon") float lon) {
         HttpSession session = request.getSession();
         ServletContext sc = session.getServletContext();
-        XMLParser parser = new XMLParser(sc.getRealPath("/") + "dist" + File.separator + "xmls" + File.separator + "carparks.xml", "place", "parking", lat, lon, num);
 
-        ArrayList<Parking> list = parser.getList();
-        for (Parking parking : list) {
+        int indexZone1 = 0;
+        int indexZone2 = 0;
+        int indexZone3 = 0;
+        String[] pm = {"parking1", "parking2", "parking3", "parking4", "parking5", "parking6", "parking7", "parking8", "parking9", "parking10"};
+
+        ArrayList<Parking> park = (ArrayList<Parking>) persistence.getAllParking();
+        persistence.removeAll();
+        
+        for (int i = 0; i < num; i++) {
+            ParkingManager p = new ParkingManager();
+            int j = i + 1;
+            p.setName("parking" + j);
+            persistence.saveParkingManager(p);
+
+        }
+
+        for (Parking parking : park) {
+            if (parking.getZone() == 1) {
+                parking.setParkingManagerId(pm[indexZone1 % num]);
+                indexZone1++;
+            } else if (parking.getZone() == 2) {
+                parking.setParkingManagerId(pm[indexZone2 % num]);
+                indexZone2++;
+            } else if (parking.getZone() == 3) {
+                parking.setParkingManagerId(pm[indexZone3 % num]);
+                indexZone3++;
+            }
             persistence.saveParking(parking);
         }
+        /*
+        persistence.removeAll();
+        
+         for (int i = 0; i < num; i++) {
+         ParkingManager p = new ParkingManager();
+         int j = i + 1;
+         p.setName("parking" + j);
+         persistence.saveParkingManager(p);
+
+         }
+        
+         XMLParser parser = new XMLParser(sc.getRealPath("/") + "dist" + File.separator + "xmls" + File.separator + "carparks.xml", "place", "parking", lat, lon, num);
+
+         ArrayList<Parking> list = parser.getList();
+         for (Parking parking : list) {
+         persistence.saveParking(parking);
+         }*/
+         
         return gson.toJson(persistence.getAllParking());
     }
 
@@ -171,7 +213,7 @@ public class InitController {
 
     @RequestMapping(value = "/MixedTest")
     public @ResponseBody
-    String mixedTestUserAgent(HttpServletRequest request) throws InterruptedException {
+    String mixedTestUserAgent(HttpServletRequest request, @RequestParam(value = "num") int num) throws InterruptedException {
         String requestJson = request.getParameter("requestJson");
         JsonParser parser = new JsonParser();
         JsonElement json = parser.parse(requestJson);
@@ -183,12 +225,12 @@ public class InitController {
         double weights[][] = {{0.6, 0.4, 0}, {0.5, 0.5, 0}, {0.4, 0.6, 0}};
         int res = 0;
         double treshold = obj.getAsJsonObject().get("soglia").getAsDouble();
-        PersistenceWrapper.numAgents = 200;
-        for (int j = 0; j < 200; j++) {
-            int indexWeights = (int) (Math.random() * ((2) + 1));
+        PersistenceWrapper.numAgents = num;
+        for (int j = 0; j < num; j++) {
+            int indexWeights = 2;
             System.out.println("Indice Parametri scelto: " + indexWeights);
             res = AgentsManager.startUserAgent("id" + j, location, destination, weights[indexWeights], treshold);
-            Thread.sleep(100);
+            Thread.sleep(50);
         }
         //create json response
         JsonObject response = new JsonObject();
